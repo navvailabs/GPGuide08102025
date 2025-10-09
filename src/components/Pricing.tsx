@@ -116,7 +116,6 @@ const Pricing = () => {
                 >
                     <ul className="flex flex-wrap justify-center gap-x-6 gap-y-2">
                         <li className="flex items-center"><Check className="h-4 w-4 mr-2 text-success-green" />All prices include GST</li>
-                        <li className="flex items-center"><Check className="h-4 w-4 mr-2 text-success-green" />30-day satisfaction guarantee</li>
                         <li className="flex items-center"><Check className="h-4 w-4 mr-2 text-success-green" />No setup fees or hidden costs</li>
                         <li className="flex items-center"><Check className="h-4 w-4 mr-2 text-success-green" />Pause subscription anytime</li>
                     </ul>

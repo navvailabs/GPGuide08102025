@@ -16,13 +16,10 @@ import FAQ from './components/FAQ';
 import FinalCTA from './components/FinalCTA';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
-import ExitIntentPopup from './components/ExitIntentPopup';
 import StickyHeaderCTA from './components/StickyHeaderCTA';
-import SocialProofPopup from './components/SocialProofPopup';
 
 function App() {
   const [showStickyCTA, setShowStickyCTA] = useState(false);
-  const [showExitPopup, setShowExitPopup] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -34,20 +31,10 @@ function App() {
       }
     };
 
-    const handleMouseLeave = (e: MouseEvent) => {
-        // Show exit-intent popup if mouse leaves the top of the viewport
-        if (e.clientY <= 0 && !sessionStorage.getItem('exitIntentShown')) {
-            setShowExitPopup(true);
-            sessionStorage.setItem('exitIntentShown', 'true');
-        }
-    };
-
     window.addEventListener('scroll', handleScroll);
-    document.addEventListener('mouseleave', handleMouseLeave);
 
     return () => {
       window.removeEventListener('scroll', handleScroll);
-      document.removeEventListener('mouseleave', handleMouseLeave);
     };
   }, []);
 
@@ -75,12 +62,6 @@ function App() {
       </main>
       
       <Footer />
-
-      <AnimatePresence>
-        {showExitPopup && <ExitIntentPopup onClose={() => setShowExitPopup(false)} />}
-      </AnimatePresence>
-
-      <SocialProofPopup />
     </div>
   );
 }

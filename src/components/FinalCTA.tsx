@@ -34,17 +34,16 @@ const FinalCTA = () => {
                 </motion.div>
 
                 <motion.div
-                    className="mt-8 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 text-sm text-gray-300 max-w-4xl mx-auto"
+                    className="mt-8 grid grid-cols-2 md:grid-cols-4 gap-4 text-sm text-gray-300 max-w-4xl mx-auto"
                     initial={{ opacity: 0, y: 30 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true, amount: 0.5 }}
                     transition={{ duration: 0.6, delay: 0.2 }}
                 >
                     <div className="flex items-center justify-center"><CheckCircle className="h-4 w-4 mr-2 text-success-green"/>Start saving in minutes</div>
-                    <div className="flex items-center justify-center"><CheckCircle className="h-4 w-4 mr-2 text-success-green"/>30-day money-back guarantee</div>
                     <div className="flex items-center justify-center"><CheckCircle className="h-4 w-4 mr-2 text-success-green"/>Cancel anytime</div>
                     <div className="flex items-center justify-center"><CheckCircle className="h-4 w-4 mr-2 text-success-green"/>Australian-based support</div>
-                    <div className="flex items-center justify-center col-span-2 lg:col-span-1"><ShieldCheck className="h-4 w-4 mr-2 text-success-green"/>No patient data stored</div>
+                    <div className="flex items-center justify-center"><ShieldCheck className="h-4 w-4 mr-2 text-success-green"/>No patient data stored</div>
                 </motion.div>
 
                 <motion.div
