@@ -3,6 +3,7 @@ import { Link, useLocation } from 'react-router-dom';
 import { Menu, X, BriefcaseMedical, Home } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { cn } from '@/lib/utils';
+import BrightnessControl from './BrightnessControl';
 
 interface HeaderProps {
   variant?: 'default' | 'transparent';
@@ -16,7 +17,7 @@ const Header = ({ variant = 'default' }: HeaderProps) => {
     { name: 'Features', href: '/#features' },
     { name: 'Pricing', href: '/#pricing' },
     { name: 'Testimonials', href: '/#testimonials' },
-    { name: 'GPCCM', href: '/gp-care-plan-generator' },
+    { name: 'Care Suite', href: '/gp-care-plan-generator' },
   ];
 
   const headerClasses = cn(
@@ -65,6 +66,7 @@ const Header = ({ variant = 'default' }: HeaderProps) => {
               </nav>
 
               <div className="hidden md:flex items-center space-x-4 ml-8">
+                <BrightnessControl />
                 <motion.div
                   initial={{ opacity: 0, x: 50 }}
                   animate={{ opacity: 1, x: 0 }}
@@ -89,6 +91,7 @@ const Header = ({ variant = 'default' }: HeaderProps) => {
           
           {variant === 'transparent' && (
              <div className="flex items-center space-x-4">
+              <BrightnessControl />
               <motion.div
                 initial={{ opacity: 0, x: 50 }}
                 animate={{ opacity: 1, x: 0 }}
