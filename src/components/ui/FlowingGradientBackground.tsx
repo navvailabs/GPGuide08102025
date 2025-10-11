@@ -1,6 +1,12 @@
+import { useBrightness } from '@/contexts/BrightnessContext';
+
 const FlowingGradientBackground = () => {
+    const { brightness } = useBrightness();
     return (
-      <div className="fixed inset-0 -z-10 overflow-hidden">
+      <div 
+        className="fixed inset-0 -z-10 overflow-hidden"
+        style={{ filter: `brightness(${brightness})`, transition: 'filter 0.3s ease-in-out' }}
+      >
         <div className="absolute inset-0 bg-medical-blue" />
         <div 
           className="absolute top-[-50vh] left-[-50vw] w-[200vw] h-[200vh] bg-[radial-gradient(circle_at_center,_rgba(15,110,110,0.4)_0%,_rgba(10,37,64,0.4)_30%,_rgba(10,37,64,0)_70%)]"
