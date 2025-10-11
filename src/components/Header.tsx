@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { Menu, X, BriefcaseMedical, Home } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { cn } from '@/lib/utils';
@@ -10,12 +10,21 @@ interface HeaderProps {
 
 const Header = ({ variant = 'default' }: HeaderProps) => {
   const [isOpen, setIsOpen] = useState(false);
-  const navItems = ['Features', 'Pricing', 'Testimonials'];
+  const location = useLocation();
+
+  const navItems = [
+    { name: 'Features', href: '/#features' },
+    { name: 'Pricing', href: '/#pricing' },
+    { name: 'Testimonials', href: '/#testimonials' },
+    { name: 'GPCCM', href: '/gp-care-plan-generator' },
+  ];
 
   const headerClasses = cn(
     "sticky top-0 z-50 backdrop-blur-xl border-b",
-    variant === 'default' ? "bg-medical-blue/80 border-white/10" : "bg-black/30 border-white/10"
+    variant === 'default' ? "bg-black/30 border-white/10" : "bg-black/30 border-white/10"
   );
+  
+  const isHomePage = location.pathname === '/';
 
   return (
     <header className={headerClasses}>
@@ -36,16 +45,22 @@ const Header = ({ variant = 'default' }: HeaderProps) => {
             <>
               <nav className="hidden md:flex items-center space-x-8">
                 {navItems.map((item, index) => (
-                  <motion.a
-                    key={item}
-                    href={`#${item.toLowerCase()}`}
-                    className="text-trust-gray hover:text-premium-gold transition-colors duration-300"
+                  <motion.div
+                    key={item.name}
                     initial={{ opacity: 0, y: -20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.5, delay: 0.2 + index * 0.1 }}
                   >
-                    {item}
-                  </motion.a>
+                    {item.href.startsWith('/') ? (
+                      <Link to={item.href} className="text-trust-gray hover:text-premium-gold transition-colors duration-300">
+                        {item.name}
+                      </Link>
+                    ) : (
+                      <a href={item.href} className="text-trust-gray hover:text-premium-gold transition-colors duration-300">
+                        {item.name}
+                      </a>
+                    )}
+                  </motion.div>
                 ))}
               </nav>
 
@@ -98,13 +113,19 @@ const Header = ({ variant = 'default' }: HeaderProps) => {
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: 'auto' }}
             exit={{ opacity: 0, height: 0 }}
-            className="md:hidden bg-medical-blue pb-4"
+            className="md:hidden bg-black/80 pb-4"
           >
             <nav className="flex flex-col items-center space-y-4 pt-4">
               {navItems.map((item) => (
-                <a key={item} href={`#${item.toLowerCase()}`} className="text-trust-gray hover:text-premium-gold transition-colors duration-300 py-2" onClick={() => setIsOpen(false)}>
-                  {item}
-                </a>
+                 item.href.startsWith('/') ? (
+                  <Link key={item.name} to={item.href} className="text-trust-gray hover:text-premium-gold transition-colors duration-300 py-2" onClick={() => setIsOpen(false)}>
+                    {item.name}
+                  </Link>
+                ) : (
+                  <a key={item.name} href={item.href} className="text-trust-gray hover:text-premium-gold transition-colors duration-300 py-2" onClick={() => setIsOpen(false)}>
+                    {item.name}
+                  </a>
+                )
               ))}
               <Link to="/login" className="w-4/5 text-center px-6 py-3 text-white bg-premium-gold rounded-full font-semibold hover:bg-opacity-90 transition-all duration-300" onClick={() => setIsOpen(false)}>
                 Login
