@@ -1,6 +1,7 @@
 import { useEffect, useRef } from 'react';
 import { motion, useInView, useAnimate, animate } from 'framer-motion';
-import { Quote, CheckCircle } from 'lucide-react';
+import { Quote } from 'lucide-react';
+import SectionGradientBackground from './ui/SectionGradientBackground';
 
 interface CounterProps {
   from: number;
@@ -61,8 +62,9 @@ const Testimonials = () => {
     ];
 
     return (
-        <section className="py-20 sm:py-24 bg-medical-blue">
-            <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+        <section className="relative overflow-hidden py-20 sm:py-24">
+            <SectionGradientBackground />
+            <div className="relative z-10 container mx-auto px-4 sm:px-6 lg:px-8">
                 <motion.div
                     className="text-center max-w-3xl mx-auto mb-12"
                     initial={{ opacity: 0, y: 20 }}

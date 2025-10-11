@@ -39,7 +39,7 @@ function App() {
   }, []);
 
   return (
-    <div className="bg-trust-gray overflow-x-hidden">
+    <div className="bg-background-light dark:bg-background-dark overflow-x-hidden">
       <Header />
       <AnimatePresence>
         {showStickyCTA && <StickyHeaderCTA />}
