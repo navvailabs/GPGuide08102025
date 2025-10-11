@@ -14,8 +14,6 @@ export default {
         'medical-blue': '#0A2540',
         'medical-teal': '#0F6E6E',
         'pain-red': '#D62828',
-        // New Colors
-        "primary": "#104370",
         "primary-gradient-start": "#1D5A9C",
         "primary-gradient-end": "#05A39E",
         "accent-gold": "#D4AF37",
@@ -30,7 +28,40 @@ export default {
         "border-light": "#E2E8F0",
         "border-dark": "#2D3748",
         "disclaimer-light": "#E2E8F0",
-        "disclaimer-dark": "#172A3A"
+        "disclaimer-dark": "#172A3A",
+        border: "hsl(var(--border))",
+        input: "hsl(var(--input))",
+        ring: "hsl(var(--ring))",
+        background: "hsl(var(--background))",
+        foreground: "hsl(var(--foreground))",
+        primary: {
+          DEFAULT: "hsl(var(--primary))",
+          foreground: "hsl(var(--primary-foreground))",
+        },
+        secondary: {
+          DEFAULT: "hsl(var(--secondary))",
+          foreground: "hsl(var(--secondary-foreground))",
+        },
+        destructive: {
+          DEFAULT: "hsl(var(--destructive))",
+          foreground: "hsl(var(--destructive-foreground))",
+        },
+        muted: {
+          DEFAULT: "hsl(var(--muted))",
+          foreground: "hsl(var(--muted-foreground))",
+        },
+        accent: {
+          DEFAULT: "hsl(var(--accent))",
+          foreground: "hsl(var(--accent-foreground))",
+        },
+        popover: {
+          DEFAULT: "hsl(var(--popover))",
+          foreground: "hsl(var(--popover-foreground))",
+        },
+        card: {
+          DEFAULT: "hsl(var(--card))",
+          foreground: "hsl(var(--card-foreground))",
+        },
       },
       fontFamily: {
         inter: ['"Inter"', 'sans-serif'],
@@ -48,7 +79,9 @@ export default {
       },
       borderRadius: {
         "DEFAULT": "0.75rem",
-        "lg": "1rem",
+        "lg": "var(--radius)",
+        "md": "calc(var(--radius) - 2px)",
+        "sm": "calc(var(--radius) - 4px)",
         "xl": "1.5rem",
         "2xl": "1rem",
         "full": "9999px"
@@ -95,6 +128,14 @@ export default {
             transform: 'rotate(-0.5deg)',
           },
         },
+        "accordion-down": {
+          from: { height: "0" },
+          to: { height: "var(--radix-accordion-content-height)" },
+        },
+        "accordion-up": {
+          from: { height: "var(--radix-accordion-content-height)" },
+          to: { height: "0" },
+        },
       },
       animation: {
         'pulse-green': 'pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite',
@@ -102,6 +143,8 @@ export default {
         'float-1': 'float-delay-1 7s ease-in-out infinite',
         'float-2': 'float-delay-2 5s ease-in-out infinite',
         tilt: 'tilt 10s infinite linear',
+        "accordion-down": "accordion-down 0.2s ease-out",
+        "accordion-up": "accordion-up 0.2s ease-out",
       },
     },
   },

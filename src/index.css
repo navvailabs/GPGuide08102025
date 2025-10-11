@@ -6,6 +6,53 @@
 @tailwind utilities;
 
 @layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 222.2 84% 4.9%;
+    --card: 0 0% 100%;
+    --card-foreground: 222.2 84% 4.9%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 222.2 84% 4.9%;
+    --primary: 222.2 47.4% 11.2%;
+    --primary-foreground: 210 40% 98%;
+    --secondary: 210 40% 96.1%;
+    --secondary-foreground: 222.2 47.4% 11.2%;
+    --muted: 210 40% 96.1%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+    --accent: 210 40% 96.1%;
+    --accent-foreground: 222.2 47.4% 11.2%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    --ring: 222.2 84% 4.9%;
+    --radius: 0.5rem;
+  }
+
+  .dark {
+    --background: 222.2 84% 4.9%;
+    --foreground: 210 40% 98%;
+    --card: 222.2 84% 4.9%;
+    --card-foreground: 210 40% 98%;
+    --popover: 222.2 84% 4.9%;
+    --popover-foreground: 210 40% 98%;
+    --primary: 210 40% 98%;
+    --primary-foreground: 222.2 47.4% 11.2%;
+    --secondary: 217.2 32.6% 17.5%;
+    --secondary-foreground: 210 40% 98%;
+    --muted: 217.2 32.6% 17.5%;
+    --muted-foreground: 215 20.2% 65.1%;
+    --accent: 217.2 32.6% 17.5%;
+    --accent-foreground: 210 40% 98%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 217.2 32.6% 17.5%;
+    --input: 217.2 32.6% 17.5%;
+    --ring: 212.7 26.8% 83.9%;
+  }
+}
+
+@layer base {
   html {
     @apply scroll-smooth;
   }
@@ -21,10 +68,111 @@
   .glass-card {
     @apply bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl shadow-lg;
   }
+
+  /* Living Origami Styles */
+  .hero-section {
+    @apply relative w-full h-screen overflow-hidden;
+    perspective: 1000px;
+  }
+
+  .drifter-container {
+    @apply absolute top-1/2 left-1/2;
+    animation-name: drift;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+  }
+
+  .origami-crane {
+    @apply absolute;
+    transform-style: preserve-3d;
+    animation-name: bob;
+    animation-duration: 4s;
+    animation-timing-function: ease-in-out;
+    animation-iteration-count: infinite;
+  }
+
+  .crane-part {
+    @apply absolute;
+    width: 0;
+    height: 0;
+    filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.3));
+  }
+
+  .crane-part.body {
+    border-left: 25px solid transparent;
+    border-right: 25px solid transparent;
+    border-bottom: 50px solid rgba(255, 255, 255, 0.1);
+    transform: translate(-25px, -25px) rotate(45deg);
+  }
+  
+  .crane-part.wing-left {
+    border-left: 30px solid transparent;
+    border-right: 30px solid transparent;
+    border-bottom: 60px solid rgba(255, 255, 255, 0.2);
+    transform-origin: bottom center;
+    animation-name: flap-left;
+    animation-duration: 2s;
+    animation-timing-function: ease-in-out;
+    animation-iteration-count: infinite;
+  }
+
+  .crane-part.wing-right {
+    border-left: 30px solid transparent;
+    border-right: 30px solid transparent;
+    border-bottom: 60px solid rgba(255, 255, 255, 0.2);
+    transform-origin: bottom center;
+    animation-name: flap-right;
+    animation-duration: 2s;
+    animation-timing-function: ease-in-out;
+    animation-iteration-count: infinite;
+  }
+
+  .crane-part.tail {
+    border-left: 15px solid transparent;
+    border-right: 15px solid transparent;
+    border-bottom: 30px solid rgba(255, 255, 255, 0.15);
+    transform: translate(-15px, 25px) rotate(225deg);
+  }
 }
 
 @layer utilities {
   .text-gradient-gold {
     @apply bg-gold-gradient bg-clip-text text-transparent;
+  }
+}
+
+@keyframes drift {
+  0% {
+    transform: translateX(-100vw) translateY(var(--y-start)) rotateZ(var(--r-start));
+  }
+  100% {
+    transform: translateX(100vw) translateY(var(--y-end)) rotateZ(var(--r-end));
+  }
+}
+
+@keyframes bob {
+  0%, 100% {
+    transform: translateY(-10px);
+  }
+  50% {
+    transform: translateY(10px);
+  }
+}
+
+@keyframes flap-left {
+  0%, 100% {
+    transform: translateZ(15px) rotateY(-90deg) skewX(20deg) rotateX(10deg);
+  }
+  50% {
+    transform: translateZ(15px) rotateY(-90deg) skewX(20deg) rotateX(-20deg);
+  }
+}
+
+@keyframes flap-right {
+  0%, 100% {
+    transform: translateZ(15px) rotateY(90deg) skewX(-20deg) rotateX(10deg);
+  }
+  50% {
+    transform: translateZ(15px) rotateY(90deg) skewX(-20deg) rotateX(-20deg);
   }
 }

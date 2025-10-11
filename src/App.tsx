@@ -1,72 +1,13 @@
-import { useState, useEffect } from 'react';
-import { AnimatePresence } from 'framer-motion';
-
-import Header from './components/Header';
-import Hero from './components/Hero';
-import Pricing from './components/Pricing';
-import PainPoints from './components/PainPoints';
-import Showcase from './components/Showcase';
-import VideoDemo from './components/VideoDemo';
-import HowItWorks from './components/HowItWorks';
-import Testimonials from './components/Testimonials';
-import Features from './components/Features';
-import Trust from './components/Trust';
-import Value from './components/Value';
-import FAQ from './components/FAQ';
-import FinalCTA from './components/FinalCTA';
-import Contact from './components/Contact';
-import Footer from './components/Footer';
-import StickyHeaderCTA from './components/StickyHeaderCTA';
-import FlowingGradientBackground from './components/ui/FlowingGradientBackground';
+import { Routes, Route } from 'react-router-dom';
+import HomePage from './pages/Home';
+import LoginPage from './pages/Login';
 
 function App() {
-  const [showStickyCTA, setShowStickyCTA] = useState(false);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      // Show sticky CTA after scrolling past the hero section (approx 700px)
-      if (window.scrollY > 700) {
-        setShowStickyCTA(true);
-      } else {
-        setShowStickyCTA(false);
-      }
-    };
-
-    window.addEventListener('scroll', handleScroll);
-
-    return () => {
-      window.removeEventListener('scroll', handleScroll);
-    };
-  }, []);
-
   return (
-    <div className="bg-transparent overflow-x-hidden relative">
-      <FlowingGradientBackground />
-      <div className="relative z-10">
-        <Header />
-        <AnimatePresence>
-          {showStickyCTA && <StickyHeaderCTA />}
-        </AnimatePresence>
-        
-        <main>
-          <Hero />
-          <PainPoints />
-          <Showcase />
-          <VideoDemo />
-          <HowItWorks />
-          <Pricing />
-          <Testimonials />
-          <Features />
-          <Trust />
-          <Value />
-          <FAQ />
-          <FinalCTA />
-          <Contact />
-        </main>
-        
-        <Footer />
-      </div>
-    </div>
+    <Routes>
+      <Route path="/" element={<HomePage />} />
+      <Route path="/login" element={<LoginPage />} />
+    </Routes>
   );
 }
 
