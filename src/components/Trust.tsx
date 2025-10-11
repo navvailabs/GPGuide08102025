@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion';
-import { ShieldCheck, Lock, CheckCircle } from 'lucide-react';
+import { ShieldCheck, CheckCircle } from 'lucide-react';
+import SectionGradientBackground from './ui/SectionGradientBackground';
 
 const Trust = () => {
     const badges = [
@@ -19,8 +20,9 @@ const Trust = () => {
     ];
 
     return (
-        <section className="py-20 sm:py-24 bg-medical-blue">
-            <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+        <section className="relative overflow-hidden py-20 sm:py-24">
+            <SectionGradientBackground />
+            <div className="relative z-10 container mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="grid lg:grid-cols-2 gap-12 items-center">
                     <motion.div
                         initial={{ opacity: 0, x: -30 }}

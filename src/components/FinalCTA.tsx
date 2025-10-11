@@ -1,10 +1,11 @@
 import { motion } from 'framer-motion';
 import { CheckCircle, ShieldCheck } from 'lucide-react';
+import SectionGradientBackground from './ui/SectionGradientBackground';
 
 const FinalCTA = () => {
     return (
-        <section className="relative py-20 sm:py-24 bg-primary-gradient text-white">
-            <div className="absolute inset-0 bg-grid-pattern opacity-10"></div>
+        <section className="relative overflow-hidden py-20 sm:py-24 text-white">
+            <SectionGradientBackground />
             <div className="container mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
                 <motion.div
                     initial={{ opacity: 0, y: 30 }}
