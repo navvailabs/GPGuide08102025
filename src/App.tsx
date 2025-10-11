@@ -17,6 +17,7 @@ import FinalCTA from './components/FinalCTA';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
 import StickyHeaderCTA from './components/StickyHeaderCTA';
+import FlowingGradientBackground from './components/ui/FlowingGradientBackground';
 
 function App() {
   const [showStickyCTA, setShowStickyCTA] = useState(false);
@@ -39,29 +40,32 @@ function App() {
   }, []);
 
   return (
-    <div className="bg-background-light dark:bg-background-dark overflow-x-hidden">
-      <Header />
-      <AnimatePresence>
-        {showStickyCTA && <StickyHeaderCTA />}
-      </AnimatePresence>
-      
-      <main>
-        <Hero />
-        <Pricing />
-        <PainPoints />
-        <Showcase />
-        <VideoDemo />
-        <HowItWorks />
-        <Testimonials />
-        <Features />
-        <Trust />
-        <Value />
-        <FAQ />
-        <FinalCTA />
-        <Contact />
-      </main>
-      
-      <Footer />
+    <div className="bg-transparent overflow-x-hidden relative">
+      <FlowingGradientBackground />
+      <div className="relative z-10">
+        <Header />
+        <AnimatePresence>
+          {showStickyCTA && <StickyHeaderCTA />}
+        </AnimatePresence>
+        
+        <main>
+          <Hero />
+          <PainPoints />
+          <Showcase />
+          <VideoDemo />
+          <HowItWorks />
+          <Pricing />
+          <Testimonials />
+          <Features />
+          <Trust />
+          <Value />
+          <FAQ />
+          <FinalCTA />
+          <Contact />
+        </main>
+        
+        <Footer />
+      </div>
     </div>
   );
 }

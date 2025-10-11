@@ -13,6 +13,7 @@ export default {
         'trust-gray': '#F8FAFC',
         'medical-blue': '#0A2540',
         'medical-teal': '#0F6E6E',
+        'pain-red': '#D62828',
         // New Colors
         "primary": "#104370",
         "primary-gradient-start": "#1D5A9C",
@@ -49,6 +50,7 @@ export default {
         "DEFAULT": "0.75rem",
         "lg": "1rem",
         "xl": "1.5rem",
+        "2xl": "1rem",
         "full": "9999px"
       },
       boxShadow: {
@@ -82,12 +84,24 @@ export default {
             '50%': { transform: 'translateY(-8px)' },
             '100%': { transform: 'translateY(0px)' },
         },
+        tilt: {
+          '0%, 50%, 100%': {
+            transform: 'rotate(0deg)',
+          },
+          '25%': {
+            transform: 'rotate(0.5deg)',
+          },
+          '75%': {
+            transform: 'rotate(-0.5deg)',
+          },
+        },
       },
       animation: {
         'pulse-green': 'pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite',
         float: 'float 6s ease-in-out infinite',
         'float-1': 'float-delay-1 7s ease-in-out infinite',
         'float-2': 'float-delay-2 5s ease-in-out infinite',
+        tilt: 'tilt 10s infinite linear',
       },
     },
   },

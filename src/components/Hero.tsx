@@ -11,8 +11,8 @@ const Hero = () => {
     ];
 
     return (
-        <section className="relative w-full overflow-hidden bg-background-light dark:bg-background-dark font-body text-text-secondary dark:text-gray-300">
-            <div className="absolute top-0 left-0 w-full h-[120vh] bg-gradient-to-r from-primary-gradient-start to-primary-gradient-end transform -skew-y-6 -translate-y-24" style={{ zIndex: 0 }}></div>
+        <section className="relative w-full overflow-hidden font-body text-text-secondary dark:text-gray-300">
+            <div className="absolute top-0 left-0 w-full h-[120vh] bg-transparent transform -skew-y-6 -translate-y-24" style={{ zIndex: 0 }}></div>
             
             <main className="relative z-10 px-6 pt-16 pb-8 sm:pt-24 sm:pb-12 lg:px-8">
                 <div className="max-w-screen-xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
@@ -65,10 +65,14 @@ const Hero = () => {
                         </div>
                     </div>
 
-                    <div className="lg:col-span-6 relative h-[500px] lg:h-auto @container">
-                        <div className="relative w-full h-full bg-glass-light dark:bg-glass-dark backdrop-blur-xl rounded-xl shadow-layered-xl border border-white/20 dark:border-white/10 p-6">
-                            <div className="h-full flex flex-col border border-border-light dark:border-border-dark rounded-lg bg-surface-light dark:bg-surface-dark shadow-inner-light dark:shadow-inner-dark">
-                                <div className="flex items-center justify-between p-3 border-b border-border-light dark:border-border-dark">
+                    <div className="lg:col-span-6 relative h-[500px] lg:h-auto @container group">
+                        {/* Glowing background element */}
+                        <div className="absolute -inset-1 bg-gradient-to-r from-cyan-400 to-blue-500 rounded-2xl blur-lg opacity-50 group-hover:opacity-80 transition-all duration-500 animate-tilt"></div>
+                        
+                        {/* Main glassmorphism card */}
+                        <div className="relative w-full h-full bg-white/10 dark:bg-slate-900/30 backdrop-blur-xl rounded-2xl shadow-layered-xl border border-white/10 p-6">
+                            <div className="h-full flex flex-col border border-border-light/50 dark:border-border-dark/50 rounded-lg bg-surface-light/80 dark:bg-surface-dark/80 shadow-inner-light dark:shadow-inner-dark">
+                                <div className="flex items-center justify-between p-3 border-b border-border-light/50 dark:border-border-dark/50">
                                     <div className="flex items-center gap-1.5">
                                         <span className="w-3 h-3 bg-red-400 rounded-full"></span>
                                         <span className="w-3 h-3 bg-yellow-400 rounded-full"></span>
@@ -78,7 +82,7 @@ const Hero = () => {
                                     <div className="w-12"></div>
                                 </div>
                                 <div className="flex-1 p-4 @sm:p-6 space-y-4 overflow-y-auto">
-                                    <div className="bg-background-light dark:bg-background-dark p-4 rounded-lg shadow-layered">
+                                    <div className="bg-background-light/80 dark:bg-background-dark/80 p-4 rounded-lg shadow-layered">
                                         <label className="block text-sm font-bold text-text-primary dark:text-white mb-2" htmlFor="patient-condition">Patient Condition</label>
                                         <input className="w-full px-4 py-2 bg-surface-light dark:bg-surface-dark border border-border-light dark:border-border-dark rounded-md focus:ring-2 focus:ring-primary-gradient-start focus:border-transparent transition" id="patient-condition" type="text" defaultValue="Type 2 Diabetes Mellitus" />
                                     </div>
@@ -87,7 +91,7 @@ const Hero = () => {
                                         <span className="font-medium">Process:</span> Input → <span className="text-accent-gold font-semibold">Generate</span> → Export
                                     </div>
                                     
-                                    <div className="bg-background-light dark:bg-background-dark p-4 rounded-lg shadow-layered flex flex-col items-center justify-center text-center h-40">
+                                    <div className="bg-background-light/80 dark:bg-background-dark/80 p-4 rounded-lg shadow-layered flex flex-col items-center justify-center text-center h-40">
                                         <TextShimmer className='font-mono text-sm [--base-color:theme(colors.text-secondary)] dark:[--base-color:theme(colors.gray.400)] [--base-gradient-color:theme(colors.text-primary)] dark:[--base-gradient-color:theme(colors.white)]' duration={1.5}>
                                             Generating template...
                                         </TextShimmer>

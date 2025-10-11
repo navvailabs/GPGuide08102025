@@ -6,6 +6,9 @@
 @tailwind utilities;
 
 @layer base {
+  html {
+    @apply scroll-smooth;
+  }
   body {
     @apply bg-medical-blue text-trust-gray font-inter antialiased;
   }
@@ -14,11 +17,14 @@
   }
 }
 
+@layer components {
+  .glass-card {
+    @apply bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl shadow-lg;
+  }
+}
+
 @layer utilities {
   .text-gradient-gold {
     @apply bg-gold-gradient bg-clip-text text-transparent;
-  }
-  .glass-card {
-    @apply bg-white/10 backdrop-blur-lg border border-white/20 rounded-2xl shadow-lg;
   }
 }
