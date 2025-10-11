@@ -1,136 +1,116 @@
 import { motion } from 'framer-motion';
-import { Zap, ShieldCheck, Rocket, DollarSign, CheckCircle, AlertTriangle } from 'lucide-react';
+import { Zap, ShieldCheck, FileText, DollarSign, CheckCircle } from 'lucide-react';
 import { TextShimmer } from './ui/text-shimmer';
 
 const Hero = () => {
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.1,
-      },
-    },
-  };
+    const features = [
+        { icon: Zap, text: "Save 5+ Hours Weekly" },
+        { icon: ShieldCheck, text: "No Patient Data Stored" },
+        { icon: FileText, text: "Professional Templates" },
+        { icon: DollarSign, text: "Boost Practice Revenue" }
+    ];
 
-  const itemVariants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: { opacity: 1, y: 0, transition: { duration: 0.5 } },
-  };
-
-  return (
-    <section className="relative pt-12 pb-20 md:pt-20 md:pb-24 overflow-hidden">
-        <div className="absolute inset-0 bg-primary-gradient"></div>
-        <div className="absolute inset-0 bg-grid-pattern opacity-5"></div>
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <div className="grid lg:grid-cols-2 gap-12 items-center">
-          <motion.div
-            variants={containerVariants}
-            initial="hidden"
-            animate="visible"
-            className="text-center lg:text-left"
-          >
-            <motion.div variants={itemVariants} className="inline-flex items-center space-x-2 bg-success-green/10 border border-success-green/30 rounded-full px-4 py-1 mb-4">
-              <div className="relative flex h-3 w-3">
-                <div className="animate-pulse-green absolute inline-flex h-full w-full rounded-full bg-success-green opacity-75"></div>
-                <div className="relative inline-flex rounded-full h-3 w-3 bg-success-green"></div>
-              </div>
-              <span className="text-sm font-medium text-success-green">Used by 500+ Australian GPs</span>
-            </motion.div>
-
-            <motion.h1 variants={itemVariants} className="text-mobile-h1 md:text-desktop-h1 font-extrabold leading-tight text-white font-satoshi">
-              HIGH YIELD GP <br /> <span className="text-gradient-gold">RESOURCE GUIDE</span>
-            </motion.h1>
+    return (
+        <section className="relative w-full overflow-hidden bg-background-light dark:bg-background-dark font-body text-text-secondary dark:text-gray-300">
+            <div className="absolute top-0 left-0 w-full h-[120vh] bg-gradient-to-r from-primary-gradient-start to-primary-gradient-end transform -skew-y-6 -translate-y-24" style={{ zIndex: 0 }}></div>
             
-            <motion.p variants={itemVariants} className="mt-4 text-lg text-gray-300">
-              For GPs, GP Registrars, Aspiring GPs
-            </motion.p>
+            <main className="relative z-10 px-6 pt-16 pb-8 sm:pt-24 sm:pb-12 lg:px-8">
+                <div className="max-w-screen-xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
+                    
+                    <div className="lg:col-span-6 flex flex-col items-start text-left">
+                        <span className="inline-flex items-center px-3 py-1 mb-4 text-sm font-medium text-green-300 rounded-full bg-green-500/20 ring-1 ring-inset ring-green-400/30">
+                            <span className="w-2 h-2 mr-2 bg-green-400 rounded-full animate-pulse"></span>
+                            Used by 500+ Australian GPs
+                        </span>
 
-            <motion.p variants={itemVariants} className="mt-6 text-desktop-body max-w-xl mx-auto lg:mx-0 text-gray-300">
-              Stop drowning in documentation. Generate professional care plan templates in minutes, not hours. Reclaim your time for patient care while maintaining clinical excellence.
-            </motion.p>
+                        <h1 className="font-display font-black text-5xl sm:text-6xl md:text-7xl text-white tracking-tighter leading-tight mb-4">
+                            HIGH YIELD GP <br />
+                            <span className="text-accent-gold">RESOURCE GUIDE</span>
+                        </h1>
 
-            <motion.div variants={itemVariants} className="mt-8 grid grid-cols-2 sm:grid-cols-4 gap-4 text-left">
-              {[
-                { icon: Zap, text: "Save 5+ Hours Weekly" },
-                { icon: ShieldCheck, text: "No Patient Data Stored" },
-                { icon: Rocket, text: "Professional Templates" },
-                { icon: DollarSign, text: "Boost Practice Revenue" }
-              ].map(item => (
-                <div key={item.text} className="flex items-center space-x-2">
-                  <item.icon className="h-5 w-5 text-success-green" />
-                  <span className="text-sm text-gray-200">{item.text}</span>
-                </div>
-              ))}
-            </motion.div>
+                        <p className="text-lg text-white/80 mb-4">For GPs, GP Registrars, Aspiring GPs</p>
+                        <p className="text-lg text-white/90 mb-8 max-w-xl">
+                            Stop drowning in documentation. Generate professional care plan templates in minutes, not hours. Reclaim your time for patient care while maintaining clinical excellence.
+                        </p>
 
-            <motion.div variants={itemVariants} className="mt-10 flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
-              <button className="w-full sm:w-auto text-medical-blue bg-premium-gold font-bold py-3 px-8 rounded-lg text-lg shadow-lg hover:scale-105 transform transition-transform duration-300 flex flex-col items-center">
-                <span>Start Weekly Plan</span>
-                <span className="text-sm font-normal">$14.99/week</span>
-              </button>
-              <button className="w-full sm:w-auto text-white border-2 border-white font-bold py-3 px-8 rounded-lg text-lg hover:bg-white hover:text-medical-blue transform transition-all duration-300 flex flex-col items-center">
-                <span>Choose Pro Plan</span>
-                <span className="text-sm font-normal">$22/week</span>
-              </button>
-            </motion.div>
-
-            <motion.div variants={itemVariants} className="mt-8 flex flex-col sm:flex-row items-center justify-center lg:justify-start space-y-2 sm:space-y-0 sm:space-x-6 text-sm text-gray-400">
-                <div className="flex items-center"><CheckCircle className="h-4 w-4 mr-2 text-success-green"/>Cancel anytime, no contracts</div>
-                <div className="flex items-center"><CheckCircle className="h-4 w-4 mr-2 text-success-green"/>500+ active Australian GPs</div>
-            </motion.div>
-
-            <motion.div variants={itemVariants} className="mt-8 bg-amber-500/10 border border-amber-500/30 p-3 rounded-lg text-amber-400 text-sm flex items-center space-x-2 max-w-lg mx-auto lg:mx-0">
-                <AlertTriangle className="h-5 w-5 flex-shrink-0"/>
-                <span>Educational templates for review. No patient data stored.</span>
-            </motion.div>
-          </motion.div>
-          
-          <motion.div 
-            className="relative hidden lg:block"
-            initial={{ opacity: 0, scale: 0.8 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.7, delay: 0.3 }}
-          >
-            <div className="bg-medical-teal/20 backdrop-blur-2xl border border-white/10 rounded-2xl shadow-2xl p-1.5">
-                <div className="bg-medical-blue/30 rounded-xl p-6">
-                    <div className="flex justify-between items-center mb-6">
-                        <span className="text-white font-bold text-lg">Template Generator</span>
-                        <div className="flex space-x-2">
-                            <div className="w-3.5 h-3.5 rounded-full bg-red-500"></div>
-                            <div className="w-3.5 h-3.5 rounded-full bg-yellow-500"></div>
-                            <div className="w-3.5 h-3.5 rounded-full bg-green-500"></div>
+                        <div className="grid grid-cols-2 gap-x-8 gap-y-4 mb-8 text-white/90 w-full">
+                            {features.map((feature, index) => (
+                                <div key={index} className="flex items-center gap-3">
+                                    <feature.icon className="w-5 h-5 text-accent-gold flex-shrink-0" />
+                                    <span>{feature.text}</span>
+                                </div>
+                            ))}
                         </div>
-                    </div>
-                    <div className="bg-medical-blue/50 p-4 rounded-lg">
-                        <p className="text-gray-300 text-sm mb-2">Patient Condition:</p>
-                        <div className="bg-white/10 p-3 rounded text-white font-medium">Type 2 Diabetes Mellitus</div>
-                        <div className="flex justify-between items-center mt-4">
-                            <span className="text-gray-300 text-sm">Process:</span>
-                            <div className="flex items-center space-x-2 text-sm">
-                                <span className="text-white">Input</span>
-                                <span className="text-gray-500">→</span>
-                                <span className="text-premium-gold font-bold">Generate</span>
-                                <span className="text-gray-500">→</span>
-                                <span className="text-white">Export</span>
+
+                        <div className="flex flex-col sm:flex-row gap-4 mb-4 w-full sm:w-auto">
+                            <a className="inline-block text-center font-bold text-text-primary bg-accent-gold hover:bg-yellow-500 transition-all duration-300 rounded-lg px-8 py-4 shadow-layered-lg transform hover:scale-105" href="#pricing">
+                                Start Weekly Plan
+                                <span className="block text-sm font-normal opacity-75">$14.99/week</span>
+                            </a>
+                            <a className="inline-flex flex-col items-center justify-center text-center font-bold text-white bg-white/10 hover:bg-white/20 backdrop-blur-sm border border-white/20 transition-all duration-300 rounded-lg px-8 py-4 shadow-layered-lg transform hover:scale-105" href="#pricing">
+                                Choose Pro Plan
+                                <span className="block text-sm font-normal opacity-75">$22/week</span>
+                            </a>
+                        </div>
+
+                        <div className="flex flex-col sm:flex-row items-start sm:items-center gap-x-6 gap-y-2 text-white/70 text-sm mt-4">
+                            <div className="flex items-center gap-2">
+                                <CheckCircle className="w-4 h-4 text-green-400" />
+                                <span>Cancel anytime, no contracts</span>
+                            </div>
+                            <div className="flex items-center gap-2">
+                                <CheckCircle className="w-4 h-4 text-green-400" />
+                                <span>500+ active Australian GPs</span>
                             </div>
                         </div>
                     </div>
-                    <div className="mt-4 h-48 bg-white/5 rounded-lg flex flex-col items-center justify-center text-center p-4">
-                        <TextShimmer className='font-mono text-sm [--base-color:theme(colors.gray.400)] [--base-gradient-color:theme(colors.white)]' duration={1.5}>
-                            Generating template...
-                        </TextShimmer>
-                        <p className="text-gray-500 text-xs mt-2 animate-pulse">
-                            Analyzing "Type 2 Diabetes Mellitus" input...
+
+                    <div className="lg:col-span-6 relative h-[500px] lg:h-auto @container">
+                        <div className="relative w-full h-full bg-glass-light dark:bg-glass-dark backdrop-blur-xl rounded-xl shadow-layered-xl border border-white/20 dark:border-white/10 p-6">
+                            <div className="h-full flex flex-col border border-border-light dark:border-border-dark rounded-lg bg-surface-light dark:bg-surface-dark shadow-inner-light dark:shadow-inner-dark">
+                                <div className="flex items-center justify-between p-3 border-b border-border-light dark:border-border-dark">
+                                    <div className="flex items-center gap-1.5">
+                                        <span className="w-3 h-3 bg-red-400 rounded-full"></span>
+                                        <span className="w-3 h-3 bg-yellow-400 rounded-full"></span>
+                                        <span className="w-3 h-3 bg-green-400 rounded-full"></span>
+                                    </div>
+                                    <p className="text-sm font-medium text-text-primary dark:text-gray-300">Template Generator</p>
+                                    <div className="w-12"></div>
+                                </div>
+                                <div className="flex-1 p-4 @sm:p-6 space-y-4 overflow-y-auto">
+                                    <div className="bg-background-light dark:bg-background-dark p-4 rounded-lg shadow-layered">
+                                        <label className="block text-sm font-bold text-text-primary dark:text-white mb-2" htmlFor="patient-condition">Patient Condition</label>
+                                        <input className="w-full px-4 py-2 bg-surface-light dark:bg-surface-dark border border-border-light dark:border-border-dark rounded-md focus:ring-2 focus:ring-primary-gradient-start focus:border-transparent transition" id="patient-condition" type="text" defaultValue="Type 2 Diabetes Mellitus" />
+                                    </div>
+                                    
+                                    <div className="text-sm text-text-secondary dark:text-gray-400 px-1">
+                                        <span className="font-medium">Process:</span> Input → <span className="text-accent-gold font-semibold">Generate</span> → Export
+                                    </div>
+                                    
+                                    <div className="bg-background-light dark:bg-background-dark p-4 rounded-lg shadow-layered flex flex-col items-center justify-center text-center h-40">
+                                        <TextShimmer className='font-mono text-sm [--base-color:theme(colors.text-secondary)] dark:[--base-color:theme(colors.gray.400)] [--base-gradient-color:theme(colors.text-primary)] dark:[--base-gradient-color:theme(colors.white)]' duration={1.5}>
+                                            Generating template...
+                                        </TextShimmer>
+                                        <p className="text-text-secondary dark:text-gray-500 text-xs mt-2 animate-pulse">
+                                            Analyzing "Type 2 Diabetes Mellitus" input...
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div className="max-w-screen-xl mx-auto mt-16">
+                    <div className="p-4 bg-disclaimer-light dark:bg-disclaimer-dark rounded-lg border border-border-light dark:border-border-dark">
+                        <p className="text-xs text-text-secondary dark:text-gray-400 text-center">
+                            Disclaimer: GPGuide is a clinical decision support tool and should be used to supplement, not replace, professional medical judgment. All patient information is hypothetical and for illustrative purposes only.
                         </p>
                     </div>
                 </div>
-            </div>
-          </motion.div>
-        </div>
-      </div>
-    </section>
-  );
+            </main>
+        </section>
+    );
 };
 
 export default Hero;
