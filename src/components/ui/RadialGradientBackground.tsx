@@ -1,13 +1,32 @@
 import { useBrightness } from '@/contexts/BrightnessContext';
 
-const RadialGradientBackground = () => {
+const SoftMedicalGradientBackground = () => {
     const { brightness } = useBrightness();
     return (
-      <div 
-        className="fixed inset-0 -z-20 bg-[radial-gradient(125%_125%_at_50%_101%,rgba(245,87,2,1)_10.5%,rgba(245,120,2,1)_16%,rgba(245,140,2,1)_17.5%,rgba(245,170,100,1)_25%,rgba(238,174,202,1)_40%,rgba(202,179,214,1)_65%,rgba(148,201,233,1)_100%)]"
-        style={{ filter: `brightness(${brightness})`, transition: 'filter 0.3s ease-in-out' }}
-      />
+        <div
+            className="fixed inset-0 -z-20 overflow-hidden"
+            style={{ filter: `brightness(${brightness})`, transition: 'filter 0.3s ease-in-out' }}
+        >
+            {/* Base Gradient Layer: soft blue -> lavender/pink -> peach/apricot */}
+            <div className="absolute inset-0 bg-gradient-to-b from-[#7c99b8] via-[#b09db2] to-[#d0a283]" />
+
+            {/* Faint Bluish Overlay Tint */}
+            <div className="absolute inset-0 bg-blue-950/30" />
+
+            {/* Soft Glow Effects */}
+            <div 
+                className="absolute -top-1/4 -left-1/4 w-1/2 h-1/2 rounded-full bg-sky-400/10 blur-3xl animate-pulse" 
+                style={{ animationDuration: '12s' }}
+            />
+            <div 
+                className="absolute -bottom-1/4 -right-1/4 w-1/2 h-1/2 rounded-full bg-amber-300/10 blur-3xl animate-pulse" 
+                style={{ animationDuration: '10s', animationDelay: '3s' }}
+            />
+
+            {/* Slight blur for overall softness */}
+            <div className="absolute inset-0 backdrop-blur-[2px]" />
+        </div>
     );
-  };
-  
-export default RadialGradientBackground;
+};
+
+export default SoftMedicalGradientBackground;
