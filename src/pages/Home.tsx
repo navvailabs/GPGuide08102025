@@ -17,7 +17,7 @@ import FinalCTA from '@/components/FinalCTA.tsx';
 import Contact from '@/components/Contact.tsx';
 import Footer from '@/components/Footer.tsx';
 import StickyHeaderCTA from '@/components/StickyHeaderCTA.tsx';
-import FlowingGradientBackground from '@/components/ui/FlowingGradientBackground.tsx';
+import RadialGradientBackground from '@/components/ui/RadialGradientBackground.tsx';
 
 function HomePage() {
   const [showStickyCTA, setShowStickyCTA] = useState(false);
@@ -41,7 +41,7 @@ function HomePage() {
 
   return (
     <div className="bg-transparent overflow-x-hidden relative">
-      <FlowingGradientBackground />
+      <RadialGradientBackground />
       <div className="relative z-10">
         <Header />
         <AnimatePresence>

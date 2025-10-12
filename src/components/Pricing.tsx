@@ -43,7 +43,7 @@ const Pricing = () => {
     ];
 
     return (
-        <section id="pricing" className="py-20 sm:py-24 bg-trust-gray text-gray-800">
+        <section id="pricing" className="py-20 sm:py-24 text-white">
             <div className="container mx-auto px-4 sm:px-6 lg:px-8">
                 <motion.div 
                     className="text-center max-w-3xl mx-auto mb-12"
@@ -52,8 +52,8 @@ const Pricing = () => {
                     viewport={{ once: true, amount: 0.5 }}
                     transition={{ duration: 0.5 }}
                 >
-                    <h2 className="text-mobile-h2 md:text-desktop-h2 font-bold text-medical-blue">Choose Your Productivity Plan</h2>
-                    <p className="mt-4 text-lg text-gray-600">
+                    <h2 className="text-mobile-h2 md:text-desktop-h2 font-bold text-white">Choose Your Productivity Plan</h2>
+                    <p className="mt-4 text-lg text-gray-300">
                         Flexible weekly subscriptions designed for busy healthcare professionals.
                         <br />
                         No contracts • Immediate access • Start saving time today
@@ -108,7 +108,7 @@ const Pricing = () => {
                 </div>
 
                 <motion.div 
-                    className="mt-12 text-center text-gray-600"
+                    className="mt-12 text-center text-gray-300"
                     initial={{ opacity: 0 }}
                     whileInView={{ opacity: 1 }}
                     viewport={{ once: true, amount: 0.5 }}

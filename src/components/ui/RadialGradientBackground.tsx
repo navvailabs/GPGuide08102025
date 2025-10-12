@@ -8,18 +8,18 @@ const SoftMedicalGradientBackground = () => {
             style={{ filter: `brightness(${brightness})`, transition: 'filter 0.3s ease-in-out' }}
         >
             {/* Base Gradient Layer: soft blue -> lavender/pink -> peach/apricot */}
-            <div className="absolute inset-0 bg-gradient-to-b from-[#7c99b8] via-[#b09db2] to-[#d0a283]" />
+            <div className="absolute inset-0 bg-gradient-to-b from-[#5f7b97] via-[#9c899f] to-[#b98e6e]" />
 
             {/* Faint Bluish Overlay Tint */}
-            <div className="absolute inset-0 bg-blue-950/30" />
+            <div className="absolute inset-0 bg-blue-950/50" />
 
             {/* Soft Glow Effects */}
             <div 
-                className="absolute -top-1/4 -left-1/4 w-1/2 h-1/2 rounded-full bg-sky-400/10 blur-3xl animate-pulse" 
+                className="absolute -top-1/4 -left-1/4 w-1/2 h-1/2 rounded-full bg-sky-400/05 blur-3xl animate-pulse" 
                 style={{ animationDuration: '12s' }}
             />
             <div 
-                className="absolute -bottom-1/4 -right-1/4 w-1/2 h-1/2 rounded-full bg-amber-300/10 blur-3xl animate-pulse" 
+                className="absolute -bottom-1/4 -right-1/4 w-1/2 h-1/2 rounded-full bg-amber-300/05 blur-3xl animate-pulse" 
                 style={{ animationDuration: '10s', animationDelay: '3s' }}
             />
 

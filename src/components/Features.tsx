@@ -31,7 +31,7 @@ const Features = () => {
     ];
 
     return (
-        <section className="py-20 sm:py-24 bg-trust-gray text-gray-800">
+        <section className="py-20 sm:py-24 text-white">
             <div className="container mx-auto px-4 sm:px-6 lg:px-8">
                 <motion.div
                     className="text-center max-w-3xl mx-auto mb-12"
@@ -40,8 +40,8 @@ const Features = () => {
                     viewport={{ once: true, amount: 0.5 }}
                     transition={{ duration: 0.5 }}
                 >
-                    <h2 className="text-mobile-h2 md:text-desktop-h2 font-bold text-medical-blue">Everything You Need for Practice Excellence</h2>
-                    <p className="mt-4 text-lg text-gray-600">
+                    <h2 className="text-mobile-h2 md:text-desktop-h2 font-bold text-white">Everything You Need for Practice Excellence</h2>
+                    <p className="mt-4 text-lg text-gray-300">
                         Comprehensive tools designed specifically for Australian GPs.
                     </p>
                 </motion.div>
@@ -78,7 +78,7 @@ const Features = () => {
                     viewport={{ once: true, amount: 0.5 }}
                     transition={{ duration: 0.5, delay: 0.3 }}
                 >
-                    <h3 className="text-3xl font-bold text-medical-blue mb-8">Transform Your Practice Starting Today</h3>
+                    <h3 className="text-3xl font-bold text-white mb-8">Transform Your Practice Starting Today</h3>
                     <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-8">
                         {achievements.map((item, index) => (
                             <div key={item.title} className="bg-white p-6 rounded-lg shadow-md">

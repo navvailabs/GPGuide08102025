@@ -10,7 +10,7 @@ const Contact = () => {
     ];
 
     return (
-        <section className="py-20 sm:py-24 bg-trust-gray text-gray-800">
+        <section className="py-20 sm:py-24 text-white">
             <div className="container mx-auto px-4 sm:px-6 lg:px-8">
                 <motion.div
                     className="text-center max-w-3xl mx-auto mb-12"
@@ -19,8 +19,8 @@ const Contact = () => {
                     viewport={{ once: true, amount: 0.5 }}
                     transition={{ duration: 0.5 }}
                 >
-                    <h2 className="text-3xl md:text-4xl font-bold text-medical-blue">Get Help When You Need It</h2>
-                    <p className="mt-4 text-lg text-gray-600">
+                    <h2 className="text-3xl md:text-4xl font-bold text-white">Get Help When You Need It</h2>
+                    <p className="mt-4 text-lg text-gray-300">
                         Our Australian-based support team understands the challenges GPs face and is here to provide real help from real people.
                     </p>
                 </motion.div>

@@ -11,7 +11,7 @@ const templates = [
             'Evidence-based intervention strategies',
             'Clear measurable goals and timelines'
         ],
-        image: 'https://img-wrapper.vercel.app/image?url=https://img-wrapper.vercel.app/image?url=https://img-wrapper.vercel.app/image?url=https://img-wrapper.vercel.app/image?url=https://img-wrapper.vercel.app/image?url=https://img-wrapper.vercel.app/image?url=https://img-wrapper.vercel.app/image?url=https://img-wrapper.vercel.app/image?url=https://img-wrapper.vercel.app/image?url=https://placehold.co/800x500/1E40AF/FFFFFF?text=CDM+Plan'
+        image: 'https://img-wrapper.vercel.app/image?url=https://img-wrapper.vercel.app/image?url=https://img-wrapper.vercel.app/image?url=https://img-wrapper.vercel.app/image?url=https://img-wrapper.vercel.app/image?url=https://img-wrapper.vercel.app/image?url=https://img-wrapper.vercel.app/image?url=https://img-wrapper.vercel.app/image?url=https://img-wrapper.vercel.app/image?url=https://img-wrapper.vercel.app/image?url=https://placehold.co/800x500/1E40AF/FFFFFF?text=CDM+Plan'
     },
     {
         title: 'Mental Health Care Plan',
@@ -21,7 +21,7 @@ const templates = [
             'Collaborative care approach',
             'Referral pathway optimization'
         ],
-        image: 'https://img-wrapper.vercel.app/image?url=https://img-wrapper.vercel.app/image?url=https://img-wrapper.vercel.app/image?url=https://img-wrapper.vercel.app/image?url=https://img-wrapper.vercel.app/image?url=https://img-wrapper.vercel.app/image?url=https://img-wrapper.vercel.app/image?url=https://img-wrapper.vercel.app/image?url=https://img-wrapper.vercel.app/image?url=https://placehold.co/800x500/1E40AF/FFFFFF?text=MHCP'
+        image: 'https://img-wrapper.vercel.app/image?url=https://img-wrapper.vercel.app/image?url=https://img-wrapper.vercel.app/image?url=https://img-wrapper.vercel.app/image?url=https://img-wrapper.vercel.app/image?url=https://img-wrapper.vercel.app/image?url=https://img-wrapper.vercel.app/image?url=https://img-wrapper.vercel.app/image?url=https://img-wrapper.vercel.app/image?url=https://img-wrapper.vercel.app/image?url=https://placehold.co/800x500/1E40AF/FFFFFF?text=MHCP'
     },
     {
         title: 'GP Management Plan',
@@ -31,7 +31,7 @@ const templates = [
             'Lifestyle intervention protocols',
             'Monitoring schedule templates'
         ],
-        image: 'https://img-wrapper.vercel.app/image?url=https://img-wrapper.vercel.app/image?url=https://img-wrapper.vercel.app/image?url=https://img-wrapper.vercel.app/image?url=https://img-wrapper.vercel.app/image?url=https://img-wrapper.vercel.app/image?url=https://img-wrapper.vercel.app/image?url=https://img-wrapper.vercel.app/image?url=https://img-wrapper.vercel.app/image?url=https://placehold.co/800x500/1E40AF/FFFFFF?text=GPMP'
+        image: 'https://img-wrapper.vercel.app/image?url=https://img-wrapper.vercel.app/image?url=https://img-wrapper.vercel.app/image?url=https://img-wrapper.vercel.app/image?url=https://img-wrapper.vercel.app/image?url=https://img-wrapper.vercel.app/image?url=https://img-wrapper.vercel.app/image?url=https://img-wrapper.vercel.app/image?url=https://img-wrapper.vercel.app/image?url=https://img-wrapper.vercel.app/image?url=https://placehold.co/800x500/1E40AF/FFFFFF?text=GPMP'
     }
 ];
 
@@ -62,7 +62,7 @@ const Showcase = () => {
     const currentTemplate = templates[page];
 
     return (
-        <section id="testimonials" className="py-20 sm:py-24 bg-trust-gray text-gray-800">
+        <section id="testimonials" className="py-20 sm:py-24 text-white">
             <div className="container mx-auto px-4 sm:px-6 lg:px-8">
                 <motion.div 
                     className="text-center max-w-3xl mx-auto mb-12"
@@ -71,8 +71,8 @@ const Showcase = () => {
                     viewport={{ once: true, amount: 0.5 }}
                     transition={{ duration: 0.5 }}
                 >
-                    <h2 className="text-mobile-h2 md:text-desktop-h2 font-bold text-medical-blue">Professional Templates That Save Time</h2>
-                    <p className="mt-4 text-lg text-gray-600">
+                    <h2 className="text-mobile-h2 md:text-desktop-h2 font-bold text-white">Professional Templates That Save Time</h2>
+                    <p className="mt-4 text-lg text-gray-300">
                         See exactly what GPGuide generates for you - no patient data required.
                     </p>
                 </motion.div>
@@ -94,11 +94,11 @@ const Showcase = () => {
                         >
                             <img src={currentTemplate.image} alt={currentTemplate.title} className="rounded-lg shadow-2xl w-full" />
                             <div className="text-left">
-                                <h3 className="text-2xl font-bold text-medical-blue">{currentTemplate.title}</h3>
+                                <h3 className="text-2xl font-bold text-white">{currentTemplate.title}</h3>
                                 <p className="text-premium-gold font-semibold my-2">{currentTemplate.time}</p>
                                 <ul className="space-y-2 mt-4">
                                     {currentTemplate.features.map(feature => (
-                                        <li key={feature} className="flex items-center text-gray-700">
+                                        <li key={feature} className="flex items-center text-gray-300">
                                             <CheckCircle className="h-5 w-5 mr-2 text-success-green" />
                                             {feature}
                                         </li>

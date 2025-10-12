@@ -87,7 +87,7 @@ const AccordionItem = ({ q, a }: { q: string, a: string }) => {
 
 const FAQ = () => {
     return (
-        <section id="faq" className="py-20 sm:py-24 bg-trust-gray">
+        <section id="faq" className="py-20 sm:py-24">
             <div className="container mx-auto px-4 sm:px-6 lg:px-8">
                 <motion.div
                     className="text-center max-w-3xl mx-auto mb-12"
@@ -96,8 +96,8 @@ const FAQ = () => {
                     viewport={{ once: true, amount: 0.5 }}
                     transition={{ duration: 0.5 }}
                 >
-                    <h2 className="text-mobile-h2 md:text-desktop-h2 font-bold text-medical-blue">Frequently Asked Questions</h2>
-                    <p className="mt-4 text-lg text-gray-600">
+                    <h2 className="text-mobile-h2 md:text-desktop-h2 font-bold text-white">Frequently Asked Questions</h2>
+                    <p className="mt-4 text-lg text-gray-300">
                         Everything you need to know about GPGuide.
                     </p>
                 </motion.div>
