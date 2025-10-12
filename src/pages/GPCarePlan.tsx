@@ -1,9 +1,10 @@
 import { motion } from 'framer-motion';
-import { Sparkles, RefreshCw } from 'lucide-react';
+import { Sparkles, RefreshCw, Loader2 } from 'lucide-react';
 import ConditionsSection from '@/components/care-plan/ConditionsSection';
 import GoalsSection from '@/components/care-plan/GoalsSection';
 import PreviewSection from '@/components/care-plan/PreviewSection';
-import React from 'react';
+import React, { useState } from 'react';
+import axios from 'axios';
 
 interface GPCarePlanProps {
     conditions: string;
@@ -12,18 +13,95 @@ interface GPCarePlanProps {
     setGoals: React.Dispatch<React.SetStateAction<string>>;
     isPreviewGenerated: boolean;
     setIsPreviewGenerated: React.Dispatch<React.SetStateAction<boolean>>;
+    carePlanHtml: string | null;
+    setCarePlanHtml: React.Dispatch<React.SetStateAction<string | null>>;
 }
 
-const GPCarePlan = ({ conditions, setConditions, goals, setGoals, isPreviewGenerated, setIsPreviewGenerated }: GPCarePlanProps) => {
+const GPCarePlan = ({
+    conditions,
+    setConditions,
+    goals,
+    setGoals,
+    isPreviewGenerated,
+    setIsPreviewGenerated,
+    carePlanHtml,
+    setCarePlanHtml
+}: GPCarePlanProps) => {
+    const [isLoading, setIsLoading] = useState(false);
 
-    const handleGeneratePreview = () => {
-        setIsPreviewGenerated(true);
+    const handleGeneratePreview = async () => {
+        setIsLoading(true);
+        setIsPreviewGenerated(false);
+        setCarePlanHtml(null);
+
+        const payload = {
+            conditions,
+            goals,
+        };
+        const webhookUrl = 'https://gpmedics.app.n8n.cloud/webhook-test/Careplan';
+
+        try {
+            // Let axios handle the response parsing based on Content-Type
+            const response = await axios.post(webhookUrl, payload);
+            
+            const data = response.data;
+            let htmlContent: string | null = null;
+
+            // Recursively search for the first string that looks like HTML
+            const findHtml = (obj: any): string | null => {
+                if (typeof obj === 'string' && obj.trim().startsWith('<')) {
+                    return obj;
+                }
+                if (Array.isArray(obj)) {
+                    for (const item of obj) {
+                        const found = findHtml(item);
+                        if (found) return found;
+                    }
+                } else if (typeof obj === 'object' && obj !== null) {
+                    for (const key in obj) {
+                        if (Object.prototype.hasOwnProperty.call(obj, key)) {
+                            const found = findHtml(obj[key]);
+                            if (found) return found;
+                        }
+                    }
+                }
+                return null;
+            };
+
+            htmlContent = findHtml(data);
+
+            if (htmlContent) {
+                setCarePlanHtml(htmlContent);
+                setIsPreviewGenerated(true);
+            } else {
+                const receivedDataString = typeof data === 'string' ? data : JSON.stringify(data, null, 2);
+                console.error("Webhook response did not contain valid HTML.", data);
+                alert("Failed to display the care plan. The format of the data received from the webhook was not recognized.\n\nReceived data:\n" + receivedDataString);
+            }
+
+        } catch (error) {
+            console.error('Error fetching care plan from webhook:', error);
+            let errorMessage = 'An error occurred while generating the care plan.';
+            if (axios.isAxiosError(error)) {
+                if (!error.response) {
+                    errorMessage = 'A network error occurred. This is often due to a CORS policy on the server. Please check your browser\'s developer console (F12) for "CORS" errors and ensure your webhook is configured to allow requests from this origin.';
+                } else {
+                    errorMessage = `The server responded with an error: ${error.response.status} ${error.response.statusText}. Check the console for more details.`;
+                }
+            } else if (error instanceof Error) {
+                errorMessage = `An unexpected error occurred: ${error.message}`;
+            }
+            alert(errorMessage);
+        } finally {
+            setIsLoading(false);
+        }
     };
 
     const handleReset = () => {
         setConditions('');
         setGoals('');
         setIsPreviewGenerated(false);
+        setCarePlanHtml(null);
     };
 
     return (
@@ -54,22 +132,33 @@ const GPCarePlan = ({ conditions, setConditions, goals, setGoals, isPreviewGener
                 >
                     <button
                         onClick={handleGeneratePreview}
-                        className="w-full sm:w-auto flex items-center justify-center gap-2 h-12 px-6 bg-white text-black font-bold rounded-lg shadow-lg hover:bg-opacity-90 transition-all transform hover:scale-105"
+                        disabled={isLoading || !conditions.trim() || !goals.trim()}
+                        className="w-full sm:w-auto flex items-center justify-center gap-2 h-12 px-6 bg-white text-black font-bold rounded-lg shadow-lg hover:bg-opacity-90 transition-all transform hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed disabled:scale-100"
                     >
-                        <Sparkles className="h-5 w-5" />
-                        Generate Care Plan
+                        {isLoading ? (
+                            <>
+                                <Loader2 className="h-5 w-5 animate-spin" />
+                                Generating...
+                            </>
+                        ) : (
+                            <>
+                                <Sparkles className="h-5 w-5" />
+                                Generate Care Plan
+                            </>
+                        )}
                     </button>
                     <button
                         onClick={handleReset}
-                        className="w-full sm:w-auto flex items-center justify-center gap-2 h-12 px-6 bg-white/10 hover:bg-white/20 text-white font-semibold rounded-lg transition-colors"
+                        disabled={isLoading}
+                        className="w-full sm:w-auto flex items-center justify-center gap-2 h-12 px-6 bg-white/10 hover:bg-white/20 text-white font-semibold rounded-lg transition-colors disabled:opacity-70 disabled:cursor-not-allowed"
                     >
                         <RefreshCw className="h-5 w-5" />
                         Reset
                     </button>
                 </motion.div>
 
-                {isPreviewGenerated && (
-                    <PreviewSection conditions={conditions} goals={goals} />
+                {isPreviewGenerated && carePlanHtml && (
+                    <PreviewSection carePlanHtml={carePlanHtml} />
                 )}
             </div>
         </motion.div>

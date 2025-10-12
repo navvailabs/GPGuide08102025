@@ -12,6 +12,7 @@ const CarePlanSuite = () => {
     const [gpConditions, setGpConditions] = useState<string>('Hypertension, Type 2 Diabetes');
     const [gpGoals, setGpGoals] = useState<string>(`Lower A1c to <7.0% in 3 months.\nWalk 30 mins, 5 days/week.`);
     const [gpIsPreviewGenerated, setGpIsPreviewGenerated] = useState(false);
+    const [gpCarePlanHtml, setGpCarePlanHtml] = useState<string | null>(null);
 
     // State for MentalHealthCarePlan
     const [mhPresentation, setMhPresentation] = useState<string>('');
@@ -29,6 +30,8 @@ const CarePlanSuite = () => {
                     setGoals={setGpGoals}
                     isPreviewGenerated={gpIsPreviewGenerated}
                     setIsPreviewGenerated={setGpIsPreviewGenerated}
+                    carePlanHtml={gpCarePlanHtml}
+                    setCarePlanHtml={setGpCarePlanHtml}
                 />;
             case 'mental-health-care-plan':
                 return <MentalHealthCarePlan 
@@ -49,6 +52,8 @@ const CarePlanSuite = () => {
                     setGoals={setGpGoals}
                     isPreviewGenerated={gpIsPreviewGenerated}
                     setIsPreviewGenerated={setGpIsPreviewGenerated}
+                    carePlanHtml={gpCarePlanHtml}
+                    setCarePlanHtml={setGpCarePlanHtml}
                  />;
         }
     };
