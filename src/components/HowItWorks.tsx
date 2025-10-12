@@ -93,28 +93,32 @@ const HowItWorks = () => {
                 </motion.div>
 
                 <motion.div
-                    className="max-w-3xl mx-auto glass-card p-6 sm:p-8"
+                    className="max-w-4xl mx-auto glass-card p-8"
                     variants={itemVariants}
                 >
-                    <div className="grid sm:grid-cols-2 gap-6 items-center">
-                        <div className="text-center sm:text-left">
-                            <div className="flex items-center justify-center sm:justify-start gap-3">
-                                <Clock className="w-7 h-7 text-pain-red" />
-                                <h4 className="text-xl font-bold text-white">Traditional Method</h4>
+                    <div className="grid md:grid-cols-2 gap-8 items-start">
+                        {/* Traditional Method */}
+                        <div className="text-center">
+                            <div className="flex items-center justify-center gap-3 mb-4">
+                                <Clock className="w-8 h-8 text-gray-400" />
+                                <h4 className="text-2xl font-bold text-white">Traditional Method</h4>
                             </div>
-                            <p className="text-4xl sm:text-5xl font-bold text-pain-red my-2">45+ <span className="text-2xl font-medium">mins</span></p>
-                            <p className="text-gray-400">Manual research, writing, and formatting.</p>
+                            <p className="text-5xl font-bold text-gray-400">45+ <span className="text-2xl font-medium align-baseline">mins</span></p>
+                            <p className="mt-2 text-gray-400">Manual research, writing, and formatting.</p>
                         </div>
-                        <div className="text-center sm:text-left">
-                            <div className="flex items-center justify-center sm:justify-start gap-3">
-                                <Sparkles className="w-7 h-7 text-success-green" />
-                                <h4 className="text-xl font-bold text-white">GPGuide Method</h4>
+
+                        {/* GPGuide Method */}
+                        <div className="text-center md:border-l border-white/20 md:pl-8">
+                            <div className="flex items-center justify-center gap-3 mb-4">
+                                <Sparkles className="w-8 h-8 text-cyan-400" />
+                                <h4 className="text-2xl font-bold text-white">GPGuide Method</h4>
                             </div>
-                            <p className="text-4xl sm:text-5xl font-bold text-success-green my-2">6 <span className="text-2xl font-medium">mins</span></p>
-                            <p className="text-gray-400">Instant generation, quick review, and export.</p>
+                            <p className="text-5xl font-bold text-cyan-400">6 <span className="text-2xl font-medium align-baseline">mins</span></p>
+                            <p className="mt-2 text-gray-400">Instant generation, quick review, and export.</p>
                         </div>
                     </div>
-                    <div className="mt-6 pt-6 border-t border-white/10 text-center">
+                    
+                    <div className="mt-8 pt-8 border-t border-white/10 text-center">
                         <p className="text-2xl font-bold text-white">
                             Time Saved: <span className="text-gradient-gold">~39 minutes per complex care plan</span>
                         </p>

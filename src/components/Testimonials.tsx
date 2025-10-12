@@ -82,7 +82,7 @@ const Testimonials = () => {
                     {testimonials.map((testimonial, index) => (
                         <motion.div
                             key={testimonial.name}
-                            className="glass-card p-6 flex flex-col"
+                            className="bg-black/30 backdrop-blur-lg border border-white/10 rounded-2xl p-8 flex flex-col"
                             initial={{ opacity: 0, y: 50 }}
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true, amount: 0.3 }}
@@ -94,12 +94,12 @@ const Testimonials = () => {
                                 <img src={testimonial.image} alt={testimonial.name} className="w-16 h-16 rounded-full border-2 border-premium-gold" />
                                 <div className="flex-1">
                                     <h4 className="font-bold text-white">{testimonial.name}</h4>
-                                    <p className="text-sm text-gray-400">{testimonial.practice}</p>
-                                    <p className="text-xs text-gray-500 mt-1">{testimonial.details}</p>
+                                    <p className="text-sm text-gray-300">{testimonial.practice}</p>
+                                    <p className="text-xs text-gray-400 mt-1">{testimonial.details}</p>
                                 </div>
                             </div>
-                            <div className="mt-4 pt-4 border-t border-white/20 text-sm">
-                                <div className="bg-success-green/10 text-success-green font-semibold p-2 rounded-md text-center">
+                            <div className="mt-6 pt-6 border-t border-white/20 text-sm">
+                                <div className="bg-white/5 text-premium-gold font-semibold p-3 rounded-lg text-center">
                                     {testimonial.stats}
                                 </div>
                             </div>

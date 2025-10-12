@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { BrainCircuit, BarChart3, Share2, Zap, Smartphone, Lock, GraduationCap, CheckCircle } from 'lucide-react';
+import { BrainCircuit, BarChart3, Share2, CheckCircle } from 'lucide-react';
 
 const Features = () => {
     const primaryFeatures = [
@@ -34,7 +34,7 @@ const Features = () => {
         <section className="py-20 sm:py-24 text-white">
             <div className="container mx-auto px-4 sm:px-6 lg:px-8">
                 <motion.div
-                    className="text-center max-w-3xl mx-auto mb-12"
+                    className="text-center max-w-3xl mx-auto mb-16"
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true, amount: 0.5 }}
@@ -50,20 +50,23 @@ const Features = () => {
                     {primaryFeatures.map((feature, index) => (
                         <motion.div
                             key={feature.title}
-                            className="bg-white/50 backdrop-blur-sm border border-gray-200/50 rounded-2xl p-8 shadow-lg"
+                            className="glass-card p-8 flex flex-col h-full"
                             initial={{ opacity: 0, y: 40 }}
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true, amount: 0.3 }}
                             transition={{ duration: 0.5, delay: index * 0.1 }}
                         >
-                            <feature.icon className="h-12 w-12 text-medical-blue mb-4" />
-                            <h3 className="text-2xl font-bold text-medical-blue">{feature.title}</h3>
-                            <p className="mt-2 text-gray-600">{feature.description}</p>
-                            <ul className="mt-6 space-y-3">
+                            <div className="relative w-16 h-16 bg-medical-blue/50 border border-white/20 rounded-full flex items-center justify-center mb-6">
+                                <div className="absolute -inset-2 bg-cyan-400/20 rounded-full blur-md animate-pulse"></div>
+                                <feature.icon className="relative w-8 h-8 text-cyan-300" />
+                            </div>
+                            <h3 className="text-2xl font-bold text-white">{feature.title}</h3>
+                            <p className="mt-2 text-gray-300 flex-grow">{feature.description}</p>
+                            <ul className="mt-6 space-y-4">
                                 {feature.points.map(point => (
                                     <li key={point} className="flex items-start">
-                                        <CheckCircle className="h-5 w-5 text-success-green mr-2 mt-0.5 flex-shrink-0" />
-                                        <span className="text-gray-700">{point}</span>
+                                        <CheckCircle className="h-5 w-5 text-cyan-400 mr-3 mt-0.5 flex-shrink-0" />
+                                        <span className="text-gray-300">{point}</span>
                                     </li>
                                 ))}
                             </ul>
@@ -80,10 +83,10 @@ const Features = () => {
                 >
                     <h3 className="text-3xl font-bold text-white mb-8">Transform Your Practice Starting Today</h3>
                     <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-8">
-                        {achievements.map((item, index) => (
-                            <div key={item.title} className="bg-white p-6 rounded-lg shadow-md">
-                                <h4 className="font-bold text-medical-blue">{item.title}</h4>
-                                <p className="text-sm text-gray-600 mt-2">{item.description}</p>
+                        {achievements.map((item) => (
+                            <div key={item.title} className="glass-card p-6 text-center">
+                                <h4 className="font-bold text-white text-lg">{item.title}</h4>
+                                <p className="text-sm text-gray-400 mt-2">{item.description}</p>
                             </div>
                         ))}
                     </div>

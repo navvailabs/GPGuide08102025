@@ -3,13 +3,6 @@ import { Play, Eye, Clock, Star } from 'lucide-react';
 import SectionGradientBackground from './ui/SectionGradientBackground';
 
 const VideoDemo = () => {
-    const additionalDemos = [
-        { title: "Mobile App Walkthrough", duration: "1:30", image: "https://img-wrapper.vercel.app/image?url=https://img-wrapper.vercel.app/image?url=https://img-wrapper.vercel.app/image?url=https://img-wrapper.vercel.app/image?url=https://img-wrapper.vercel.app/image?url=https://img-wrapper.vercel.app/image?url=https://img-wrapper.vercel.app/image?url=https://img-wrapper.vercel.app/image?url=https://img-wrapper.vercel.app/image?url=https://img-wrapper.vercel.app/image?url=https://img-wrapper.vercel.app/image?url=https://placehold.co/400x225/0F6E6E/FFFFFF?text=Mobile+App" },
-        { title: "EMR Integration Demo", duration: "2:00", image: "https://img-wrapper.vercel.app/image?url=https://img-wrapper.vercel.app/image?url=https://img-wrapper.vercel.app/image?url=https://img-wrapper.vercel.app/image?url=https://img-wrapper.vercel.app/image?url=https://img-wrapper.vercel.app/image?url=https://img-wrapper.vercel.app/image?url=https://img-wrapper.vercel.app/image?url=https://img-wrapper.vercel.app/image?url=https://img-wrapper.vercel.app/image?url=https://img-wrapper.vercel.app/image?url=https://placehold.co/400x225/0F6E6E/FFFFFF?text=EMR+Integration" },
-        { title: "Customization Options", duration: "1:45", image: "https://img-wrapper.vercel.app/image?url=https://img-wrapper.vercel.app/image?url=https://img-wrapper.vercel.app/image?url=https://img-wrapper.vercel.app/image?url=https://img-wrapper.vercel.app/image?url=https://img-wrapper.vercel.app/image?url=https://img-wrapper.vercel.app/image?url=https://img-wrapper.vercel.app/image?url=https://img-wrapper.vercel.app/image?url=https://img-wrapper.vercel.app/image?url=https://img-wrapper.vercel.app/image?url=https://placehold.co/400x225/0F6E6E/FFFFFF?text=Customization" },
-        { title: "Team Features Overview", duration: "2:30", image: "https://img-wrapper.vercel.app/image?url=https://img-wrapper.vercel.app/image?url=https://img-wrapper.vercel.app/image?url=https://img-wrapper.vercel.app/image?url=https://img-wrapper.vercel.app/image?url=https://img-wrapper.vercel.app/image?url=https://img-wrapper.vercel.app/image?url=https://img-wrapper.vercel.app/image?url=https://img-wrapper.vercel.app/image?url=https://img-wrapper.vercel.app/image?url=https://img-wrapper.vercel.app/image?url=https://placehold.co/400x225/0F6E6E/FFFFFF?text=Team+Features" },
-    ];
-
     return (
         <section className="relative overflow-hidden py-20 sm:py-24">
             <SectionGradientBackground />
@@ -35,7 +28,7 @@ const VideoDemo = () => {
                     transition={{ duration: 0.7 }}
                 >
                     <div className="relative aspect-video bg-black rounded-xl shadow-2xl overflow-hidden group">
-                        <img src="https://img-wrapper.vercel.app/image?url=https://img-wrapper.vercel.app/image?url=https://img-wrapper.vercel.app/image?url=https://img-wrapper.vercel.app/image?url=https://img-wrapper.vercel.app/image?url=https://img-wrapper.vercel.app/image?url=https://img-wrapper.vercel.app/image?url=https://img-wrapper.vercel.app/image?url=https://img-wrapper.vercel.app/image?url=https://img-wrapper.vercel.app/image?url=https://img-wrapper.vercel.app/image?url=https://placehold.co/1280x720/0A2540/FFFFFF?text=GP+Workflow+Demo" alt="GPGuide Demo Video" className="w-full h-full object-cover" />
+                        <img src="https://img-wrapper.vercel.app/image?url=https://img-wrapper.vercel.app/image?url=https://img-wrapper.vercel.app/image?url=https://img-wrapper.vercel.app/image?url=https://img-wrapper.vercel.app/image?url=https://img-wrapper.vercel.app/image?url=https://img-wrapper.vercel.app/image?url=https://img-wrapper.vercel.app/image?url=https://img-wrapper.vercel.app/image?url=https://img-wrapper.vercel.app/image?url=https://img-wrapper.vercel.app/image?url=https://img-wrapper.vercel.app/image?url=https://img-wrapper.vercel.app/image?url=https://placehold.co/1280x720/0A2540/FFFFFF?text=GP+Workflow+Demo" alt="GPGuide Demo Video" className="w-full h-full object-cover" />
                         <div className="absolute inset-0 bg-black/40 flex items-center justify-center">
                             <button className="text-white transform group-hover:scale-110 transition-transform duration-300">
                                 <Play size={80} className="bg-premium-gold/80 rounded-full p-4" />
@@ -62,28 +55,6 @@ const VideoDemo = () => {
                         </div>
                     </div>
                 </motion.div>
-
-                <div className="mt-16 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-                    {additionalDemos.map((demo, index) => (
-                        <motion.div
-                            key={demo.title}
-                            className="relative group overflow-hidden rounded-lg shadow-lg"
-                            initial={{ opacity: 0, y: 30 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true, amount: 0.5 }}
-                            transition={{ duration: 0.5, delay: index * 0.1 }}
-                        >
-                            <img src={demo.image} alt={demo.title} className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-300" />
-                            <div className="absolute inset-0 bg-black/50 flex items-center justify-center">
-                                <Play size={48} className="text-white opacity-80 group-hover:opacity-100 transition-opacity" />
-                            </div>
-                            <div className="absolute bottom-0 left-0 right-0 p-3 bg-gradient-to-t from-black/80 to-transparent">
-                                <h4 className="text-white font-semibold">{demo.title}</h4>
-                                <p className="text-gray-300 text-xs">{demo.duration}</p>
-                            </div>
-                        </motion.div>
-                    ))}
-                </div>
             </div>
         </section>
     );

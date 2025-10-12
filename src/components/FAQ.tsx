@@ -55,17 +55,17 @@ const AccordionItem = ({ q, a }: { q: string, a: string }) => {
     const [isOpen, setIsOpen] = useState(false);
 
     return (
-        <div className="border-b border-gray-200 py-4">
+        <div className="border-b border-white/10 py-4 last:border-b-0">
             <button
                 onClick={() => setIsOpen(!isOpen)}
                 className="w-full flex justify-between items-center text-left"
             >
-                <span className="text-lg font-medium text-medical-blue">{q}</span>
+                <span className="text-lg font-medium text-white">{q}</span>
                 <motion.div
                     animate={{ rotate: isOpen ? 180 : 0 }}
                     transition={{ duration: 0.3 }}
                 >
-                    <ChevronDown className="h-6 w-6 text-medical-blue" />
+                    <ChevronDown className="h-6 w-6 text-gray-300" />
                 </motion.div>
             </button>
             <AnimatePresence>
@@ -75,7 +75,7 @@ const AccordionItem = ({ q, a }: { q: string, a: string }) => {
                         animate={{ opacity: 1, height: 'auto', marginTop: '1rem' }}
                         exit={{ opacity: 0, height: 0, marginTop: 0 }}
                         transition={{ duration: 0.3 }}
-                        className="text-gray-600"
+                        className="text-gray-300"
                     >
                         {a}
                     </motion.div>
@@ -112,8 +112,8 @@ const FAQ = () => {
                             viewport={{ once: true, amount: 0.3 }}
                             transition={{ duration: 0.5 }}
                         >
-                            <h3 className="text-2xl font-bold text-medical-teal mb-4">{category}</h3>
-                            <div className="bg-white p-6 rounded-xl shadow-md">
+                            <h3 className="text-2xl font-bold text-white mb-4">{category}</h3>
+                            <div className="bg-black/30 backdrop-blur-lg border border-white/10 rounded-2xl p-6">
                                 {items.map((item, index) => (
                                     <AccordionItem key={index} q={item.q} a={item.a} />
                                 ))}

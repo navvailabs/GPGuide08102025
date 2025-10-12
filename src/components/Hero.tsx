@@ -106,8 +106,8 @@ const Hero = () => {
                 </div>
 
                 <div className="max-w-screen-xl mx-auto mt-16">
-                    <div className="p-4 bg-disclaimer-light dark:bg-disclaimer-dark rounded-lg border border-border-light dark:border-border-dark">
-                        <p className="text-xs text-text-secondary dark:text-gray-400 text-center">
+                    <div className="p-4 bg-black/30 backdrop-blur-lg border border-white/10 rounded-2xl">
+                        <p className="text-xs text-gray-400 text-center">
                             Disclaimer: GPGuide is a clinical decision support tool and should be used to supplement, not replace, professional medical judgment. All patient information is hypothetical and for illustrative purposes only.
                         </p>
                     </div>

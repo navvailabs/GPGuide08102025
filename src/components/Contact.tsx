@@ -29,20 +29,20 @@ const Contact = () => {
                     {contactMethods.map((method, index) => (
                         <motion.div
                             key={method.title}
-                            className="bg-white p-6 rounded-xl shadow-lg text-center"
+                            className="bg-black/30 backdrop-blur-lg border border-white/10 rounded-2xl p-6 text-center flex flex-col"
                             initial={{ opacity: 0, y: 40 }}
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true, amount: 0.3 }}
                             transition={{ duration: 0.5, delay: index * 0.1 }}
                         >
                             <div className="flex justify-center mb-4">
-                                <div className="bg-medical-blue/10 p-4 rounded-full">
-                                    <method.icon className="h-8 w-8 text-medical-blue" />
+                                <div className="bg-white/10 p-4 rounded-full">
+                                    <method.icon className="h-8 w-8 text-cyan-400" />
                                 </div>
                             </div>
-                            <h3 className="text-xl font-bold text-medical-blue">{method.title}</h3>
-                            <p className="mt-2 font-semibold text-medical-teal">{method.detail}</p>
-                            <p className="mt-1 text-sm text-gray-500">{method.response}</p>
+                            <h3 className="text-xl font-bold text-white">{method.title}</h3>
+                            <p className="mt-2 font-semibold text-gray-300">{method.detail}</p>
+                            <p className="mt-1 text-sm text-gray-400 flex-grow">{method.response}</p>
                         </motion.div>
                     ))}
                 </div>
