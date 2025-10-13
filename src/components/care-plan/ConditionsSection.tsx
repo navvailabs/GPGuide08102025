@@ -6,11 +6,21 @@ interface ConditionsSectionProps {
 }
 
 const commonConditions = [
-    "Diabetes",
+    "Diabetes (Type 2)",
     "Hypertension",
+    "Depression",
+    "Anxiety",
+    "Heart Disease",
     "Asthma",
     "Arthritis",
-    "Heart Disease",
+    "COPD",
+    "Obesity",
+    "Osteoporosis",
+    "Chronic Pain",
+    "Hyperlipidaemia",
+    "Hypothyroidism",
+    "GORD",
+    "Atrial Fibrillation"
 ];
 
 const sectionVariants = {

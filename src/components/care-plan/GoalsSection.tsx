@@ -6,9 +6,10 @@ interface GoalsSectionProps {
 }
 
 const suggestedGoals = [
-    "Reduce blood sugar by 10% in 3 months.",
-    "Walk 30 mins, 5 days/week.",
-    "Achieve BMI of 24.9.",
+    "Achieve HbA1c ≤7.0% within 6 months",
+    "Achieve blood pressure <140/90 mmHg within 3 months",
+    "Reduce total cholesterol to <4.0 mmol/L in 6 months",
+    "Achieve 5-10% body weight reduction over 6 months"
 ];
 
 const sectionVariants = {

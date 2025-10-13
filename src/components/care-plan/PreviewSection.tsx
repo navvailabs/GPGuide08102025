@@ -1,5 +1,5 @@
 import React, { useState, useMemo } from 'react';
-import { Download, FileText, Copy, Check, Table } from 'lucide-react';
+import { FileText, Copy, Check, Table } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { cn } from '@/lib/utils';
 import { LiquidGlassCard } from '@/components/ui/liquid-notification';
@@ -359,10 +359,6 @@ const PreviewSection = ({ carePlanHtml }: PreviewSectionProps) => {
         document.body.removeChild(fileDownloadLink);
     };
 
-    const handleDownloadPdf = () => {
-        alert("PDF download functionality is not yet implemented.");
-    };
-
     return (
         <motion.div variants={sectionVariants} className="border-t border-white/10 pt-8 mt-12">
             <div className="flex flex-col sm:flex-row justify-between sm:items-center gap-4 mb-6">
@@ -426,15 +422,6 @@ const PreviewSection = ({ carePlanHtml }: PreviewSectionProps) => {
                     <FileText className="h-4 w-4" />
                     Download as Word
                 </button>
-                {viewMode === 'table' && (
-                    <button
-                        onClick={handleDownloadPdf}
-                        className="flex items-center justify-center gap-2 h-10 px-4 bg-black/20 hover:bg-black/40 font-semibold rounded-lg transition-colors text-gray-300"
-                    >
-                        <Download className="h-4 w-4" />
-                        Download as PDF
-                    </button>
-                )}
             </div>
         </motion.div>
     );
