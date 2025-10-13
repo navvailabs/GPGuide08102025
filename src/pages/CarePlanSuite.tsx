@@ -11,7 +11,6 @@ const CarePlanSuite = () => {
     // State for GPCarePlan
     const [gpConditions, setGpConditions] = useState<string>('');
     const [gpGoals, setGpGoals] = useState<string>('');
-    const [gpIsPreviewGenerated, setGpIsPreviewGenerated] = useState(false);
     const [gpCarePlanHtml, setGpCarePlanHtml] = useState<string | null>(null);
 
     // State for MentalHealthCarePlan
@@ -28,8 +27,6 @@ const CarePlanSuite = () => {
                     setConditions={setGpConditions}
                     goals={gpGoals}
                     setGoals={setGpGoals}
-                    isPreviewGenerated={gpIsPreviewGenerated}
-                    setIsPreviewGenerated={setGpIsPreviewGenerated}
                     carePlanHtml={gpCarePlanHtml}
                     setCarePlanHtml={setGpCarePlanHtml}
                 />;
@@ -50,8 +47,6 @@ const CarePlanSuite = () => {
                     setConditions={setGpConditions}
                     goals={gpGoals}
                     setGoals={setGpGoals}
-                    isPreviewGenerated={gpIsPreviewGenerated}
-                    setIsPreviewGenerated={setGpIsPreviewGenerated}
                     carePlanHtml={gpCarePlanHtml}
                     setCarePlanHtml={setGpCarePlanHtml}
                  />;

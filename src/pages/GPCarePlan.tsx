@@ -11,8 +11,6 @@ interface GPCarePlanProps {
     setConditions: React.Dispatch<React.SetStateAction<string>>;
     goals: string;
     setGoals: React.Dispatch<React.SetStateAction<string>>;
-    isPreviewGenerated: boolean;
-    setIsPreviewGenerated: React.Dispatch<React.SetStateAction<boolean>>;
     carePlanHtml: string | null;
     setCarePlanHtml: React.Dispatch<React.SetStateAction<string | null>>;
 }
@@ -22,8 +20,6 @@ const GPCarePlan = ({
     setConditions,
     goals,
     setGoals,
-    isPreviewGenerated,
-    setIsPreviewGenerated,
     carePlanHtml,
     setCarePlanHtml
 }: GPCarePlanProps) => {
@@ -31,7 +27,6 @@ const GPCarePlan = ({
 
     const handleGeneratePreview = async () => {
         setIsLoading(true);
-        setIsPreviewGenerated(false);
         setCarePlanHtml(null);
 
         const payload = {
@@ -46,26 +41,16 @@ const GPCarePlan = ({
             const data = response.data;
             let htmlContent: string | null = null;
 
-            /**
-             * Recursively searches for an HTML string within a potentially complex
-             * or nested data structure returned by the webhook.
-             * It can handle direct HTML strings, JSON objects/arrays containing HTML,
-             * and even stringified JSON.
-             * @param obj The data to search within.
-             * @returns The first HTML string found, or null.
-             */
             const findHtml = (obj: any): string | null => {
                 if (typeof obj === 'string') {
-                    // If the string itself is HTML
                     if (obj.trim().startsWith('<')) {
                         return obj;
                     }
-                    // If the string is stringified JSON, parse and recurse
                     try {
                         const parsed = JSON.parse(obj);
                         return findHtml(parsed);
                     } catch (e) {
-                        // Not a valid JSON string, do nothing
+                        // Not a valid JSON string
                     }
                 }
 
@@ -75,7 +60,6 @@ const GPCarePlan = ({
                         if (found) return found;
                     }
                 } else if (typeof obj === 'object' && obj !== null) {
-                    // Search in common keys first for better performance
                     const priorityKeys = ['html', 'content', 'body', 'data', 'output', 'message'];
                     for (const key of priorityKeys) {
                         if (Object.prototype.hasOwnProperty.call(obj, key)) {
@@ -83,7 +67,6 @@ const GPCarePlan = ({
                             if (found) return found;
                         }
                     }
-                    // Fallback to searching all keys
                     for (const key in obj) {
                         if (Object.prototype.hasOwnProperty.call(obj, key) && !priorityKeys.includes(key)) {
                             const found = findHtml(obj[key]);
@@ -119,14 +102,12 @@ const GPCarePlan = ({
             alert(errorMessage);
         } finally {
             setIsLoading(false);
-            setIsPreviewGenerated(true);
         }
     };
 
     const handleReset = () => {
         setConditions('');
         setGoals('');
-        setIsPreviewGenerated(false);
         setCarePlanHtml(null);
     };
 
@@ -183,9 +164,7 @@ const GPCarePlan = ({
                     </button>
                 </motion.div>
 
-                {isPreviewGenerated && (
-                    <PreviewSection carePlanHtml={carePlanHtml} />
-                )}
+                <PreviewSection carePlanHtml={carePlanHtml} />
             </div>
         </motion.div>
     );
