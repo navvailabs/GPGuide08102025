@@ -9,8 +9,8 @@ const faqData = {
             a: "We understand GP schedules are unpredictable. Weekly billing provides flexibility to pause during holidays, between positions, or during reduced hours without long-term financial commitments. You can upgrade, downgrade, or pause anytime."
         },
         {
-            q: "What's the difference between Weekly and Pro plans?",
-            a: "Weekly Plan ($14.99): Essential productivity tools for individual GPs - unlimited templates, mobile access, email support, EMR integration. Pro Plan ($22): Everything in Weekly PLUS priority support, advanced analytics, team collaboration, custom templates, and dedicated account management."
+            q: "What's the difference between Essential and Professional plans?",
+            a: "Essential Plan ($14.99): Essential productivity tools for individual GPs - unlimited templates, mobile access, email support, EMR integration. Professional Plan ($22): Everything in Essential PLUS priority support, advanced analytics, team collaboration, custom templates, and dedicated account management."
         },
         {
             q: "Can I cancel anytime? What's the refund policy?",
@@ -46,7 +46,7 @@ const faqData = {
         },
         {
             q: "What support is available?",
-            a: "Weekly Plan: Email support with 48-hour response time, comprehensive help documentation, video tutorials. Pro Plan: Priority support with 24-hour priority response, dedicated account manager, phone support, and personalized training sessions."
+            a: "Essential Plan: Email support with 48-hour response time, comprehensive help documentation, video tutorials. Professional Plan: Priority support with 24-hour priority response, dedicated account manager, phone support, and personalized training sessions."
         }
     ]
 };

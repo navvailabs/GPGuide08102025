@@ -27,10 +27,10 @@ const FinalCTA = () => {
                     transition={{ duration: 0.6, delay: 0.1 }}
                 >
                     <button className="w-full sm:w-auto text-white bg-gold-gradient font-bold py-4 px-8 rounded-full text-lg shadow-lg hover:scale-105 transform transition-transform duration-300">
-                        START WEEKLY PLAN - $14.99/week
+                        START ESSENTIAL PLAN - $7.99/week
                     </button>
                     <button className="w-full sm:w-auto text-white border-2 border-white font-bold py-4 px-8 rounded-full text-lg hover:bg-white hover:text-medical-blue transform transition-all duration-300">
-                        CHOOSE PRO PLAN - $22/week
+                        CHOOSE PROFESSIONAL PLAN - $14.99/week
                     </button>
                 </motion.div>
 

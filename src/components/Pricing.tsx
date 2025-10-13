@@ -4,8 +4,8 @@ import { Check } from 'lucide-react';
 const Pricing = () => {
     const plans = [
         {
-            name: 'Weekly Plan',
-            price: '$14.99',
+            name: 'Essential Plan',
+            price: '$24.99',
             salePrice: '$7.99',
             billing: '/week',
             description: 'Perfect for Individual GPs',
@@ -15,33 +15,36 @@ const Pricing = () => {
                 'Built-in guideline references (RACGP, eTG, PBS links)',
                 'Secure local document generation (no PHI stored)',
                 'Instant Document export and Copy-paste integration',
-                'Email support',
+                'Priority support with 24-hour response',
             ],
-            cta: 'Start Weekly Plan',
+            cta: 'Start Essential Plan',
             isPopular: false,
             roi: 'Pays for itself by saving 1 hour per week',
-            value: 'ROI: $300+ monthly value for $60 cost',
+            value: 'ROI: $300+ monthly value for ~$32 cost',
             limitedNote: 'Limited accounts available!',
-            disclaimer: 'After one month, payment will resume at the regular weekly price of $14.99.'
+            disclaimer: 'After one month, payment will resume at the regular weekly price of $24.99.'
         },
         {
-            name: 'Pro Plan',
-            price: '$22',
+            name: 'Professional Plan',
+            price: '$39',
+            salePrice: '$14.99',
             billing: '/week',
             description: 'Complete Practice Transformation',
             features: [
-                'Everything in Weekly Plan',
-                'Priority support (24hr response)',
-                'Advanced practice analytics',
-                'Team collaboration tools',
-                'Custom template creation',
-                'Bulk export capabilities',
-                'Dedicated account manager',
+                'Everything in Essential Plan',
+                'Access to advanced clinical tools:',
+                ' - DEXA Scan Interpreter (bone density summariser)',
+                ' - Opioid Calculator & Safety Checker (titration & conversion aid)',
+                ' - WorkCover Template Generator',
+                ' - Allied Health Referral Wizard (physio, psych, dietitian templates)',
+                'Submit your own template ideas — we’ll review and build them into the platform.',
             ],
-            cta: 'Choose Pro Plan',
+            cta: 'Choose Professional Plan',
             isPopular: true,
             roi: 'Save 8+ hours weekly - $400+ monthly value',
-            value: 'ROI: $800+ monthly value for $88 cost'
+            value: 'ROI: $800+ monthly value for ~$60 cost',
+            limitedNote: 'Limited time offer!',
+            disclaimer: 'After one month, payment will resume at the regular weekly price of $39.'
         },
     ];
 
@@ -63,7 +66,7 @@ const Pricing = () => {
                     </p>
                 </motion.div>
 
-                <div className="grid lg:grid-cols-2 gap-8 max-w-4xl mx-auto">
+                <div className="grid lg:grid-cols-2 gap-8 max-w-4xl mx-auto lg:items-stretch">
                     {plans.map((plan, index) => (
                         <motion.div
                             key={plan.name}
@@ -105,12 +108,29 @@ const Pricing = () => {
                             </div>
 
                             <ul className="mt-8 space-y-4 flex-grow">
-                                {plan.features.map((feature) => (
-                                    <li key={feature} className="flex items-start">
-                                        <Check className="h-6 w-6 text-success-green mr-3 flex-shrink-0" />
-                                        <span className="text-gray-700">{feature}</span>
-                                    </li>
-                                ))}
+                                {plan.features.map((feature) => {
+                                    if (feature.endsWith(':')) {
+                                        return (
+                                            <li key={feature} className="flex items-start pt-2">
+                                                <span className="text-gray-800 font-semibold">{feature}</span>
+                                            </li>
+                                        );
+                                    }
+                                    if (feature.startsWith(' - ')) {
+                                        return (
+                                            <li key={feature} className="flex items-start pl-5">
+                                                <Check className="h-5 w-5 text-success-green mr-2 mt-0.5 flex-shrink-0" />
+                                                <span className="text-gray-700">{feature.replace(' - ', '')}</span>
+                                            </li>
+                                        );
+                                    }
+                                    return (
+                                        <li key={feature} className="flex items-start">
+                                            <Check className="h-6 w-6 text-success-green mr-3 flex-shrink-0" />
+                                            <span className="text-gray-700">{feature}</span>
+                                        </li>
+                                    );
+                                })}
                             </ul>
 
                             <div className="mt-8">

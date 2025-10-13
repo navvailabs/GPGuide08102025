@@ -4,7 +4,7 @@ import { Mail, Phone, MessageSquare, BookOpen } from 'lucide-react';
 const Contact = () => {
     const contactMethods = [
         { icon: Mail, title: "Email Support", detail: "support@gpguide.com.au", response: "48-hour response guarantee" },
-        { icon: Phone, title: "Pro Plan Phone Support", detail: "1800-GP-GUIDE", response: "Priority phone access" },
+        { icon: Phone, title: "Professional Plan Phone Support", detail: "1800-GP-GUIDE", response: "Priority phone access" },
         { icon: MessageSquare, title: "Live Chat", detail: "Available 9 AM - 6 PM AEST", response: "Instant help during business hours" },
         { icon: BookOpen, title: "Training Resources", detail: "Comprehensive video library & guides", response: "24/7 self-help available" }
     ];

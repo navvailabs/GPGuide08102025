@@ -2,7 +2,7 @@ import { BriefcaseMedical, ShieldCheck, Lock } from 'lucide-react';
 
 const Footer = () => {
     const sections = {
-        "Product": ["Weekly Plan - $14.99", "Pro Plan - $22", "Features Comparison", "Template Examples", "How It Works", "Mobile Apps"],
+        "Product": ["Essential Plan - $14.99", "Professional Plan - $22", "Features Comparison", "Template Examples", "How It Works", "Mobile Apps"],
         "Support": ["Help Center", "Video Tutorials", "Contact Support", "Privacy Policy", "Terms of Service", "Medical Disclaimer"],
         "Company": ["About GPGuide", "Our Mission", "Security & Compliance", "Professional Indemnity", "Partner Program", "Careers"]
     };
@@ -17,7 +17,7 @@ const Footer = () => {
                             <span className="text-2xl font-satoshi font-bold text-white">GPGuide</span>
                         </div>
                         <p className="text-sm">Professional clinical decision support for Australian GPs.</p>
-                        <p className="text-xs">GPGuide Pty Ltd<br/>ABN: 12 345 678 901<br/>Sydney, Australia</p>
+                        <p className="text-xs">New Era Pty Ltd (trading as GPGuide)<br/>ABN: 12 345 678 901<br/>Sydney, Australia</p>
                     </div>
 
                     {Object.entries(sections).map(([title, links]) => (
@@ -36,7 +36,7 @@ const Footer = () => {
 
                 <div className="mt-12 border-t border-white/10 pt-8">
                     <div className="bg-amber-500/10 border border-amber-500/20 p-4 rounded-lg text-amber-300 text-xs mb-8">
-                        © 2025 GPGuide Pty Ltd. All rights reserved. GPGuide provides educational clinical decision support tools. Professional medical judgment required for all patient care decisions. Not affiliated with RACGP, AMA, eTG, or PBS.
+                        © 2025 New Era Pty Ltd (trading as GPGuide). All rights reserved. GPGuide provides educational clinical documentation and decision-support tools for Australian healthcare professionals. Use requires professional judgment and clinical oversight. GPGuide is not affiliated with RACGP, AMA, eTG, or PBS. Full details in our <a href="#" className="underline hover:text-amber-100">Terms of Service</a> and <a href="#" className="underline hover:text-amber-100">Privacy Policy</a>.
                     </div>
                     <div className="flex flex-col sm:flex-row justify-between items-center text-sm">
                         <div className="flex space-x-4">

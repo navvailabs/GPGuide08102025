@@ -31,20 +31,20 @@ const ExitIntentPopup = ({ onClose }: ExitIntentPopupProps) => {
         <p className="mt-2 text-gray-600">Are you sure you want to continue spending hours on documentation?</p>
         
         <div className="mt-6 bg-amber-100/50 border border-amber-300 p-4 rounded-lg">
-            <h3 className="text-xl font-bold text-medical-blue">Special Offer</h3>
-            <p className="text-gray-700">Get your first week of GPGuide for just <span className="text-premium-gold font-bold text-2xl">$9.99</span></p>
-            <p className="text-sm text-gray-600">(Save $5 on Weekly Plan or $12 on Pro Plan)</p>
+            <h3 className="text-xl font-bold text-medical-blue">Limited Time Offer!</h3>
+            <p className="text-gray-700 mt-2">Get the Essential Plan for just <span className="text-premium-gold font-bold text-2xl">$7.99/week</span></p>
+            <p className="text-gray-700">or the Professional Plan for <span className="text-premium-gold font-bold text-2xl">$14.99/week</span>.</p>
         </div>
 
         <div className="mt-6 flex flex-col sm:flex-row gap-4">
             <button className="w-full text-white bg-gold-gradient font-bold py-3 px-6 rounded-full text-lg shadow-lg hover:scale-105 transform transition-transform duration-300">
-                Try Weekly for $9.99
+                Try Essential for $7.99
             </button>
             <button className="w-full text-medical-blue border-2 border-medical-blue font-bold py-3 px-6 rounded-full text-lg hover:bg-medical-blue hover:text-white transform transition-all duration-300">
-                Try Pro for $9.99
+                Try Professional for $14.99
             </button>
         </div>
-        <p className="mt-4 text-xs text-gray-500">Regular pricing applies after first week. Offer valid for new subscribers only. Cancel anytime.</p>
+        <p className="mt-4 text-xs text-gray-500">Regular pricing applies after first month. Offer valid for new subscribers only. Cancel anytime.</p>
       </motion.div>
     </motion.div>
   );

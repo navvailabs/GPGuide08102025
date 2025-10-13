@@ -44,12 +44,12 @@ const Hero = () => {
 
                         <div className="flex flex-col sm:flex-row gap-4 mb-4 w-full sm:w-auto">
                             <a className="inline-block text-center font-bold text-text-primary bg-accent-gold hover:bg-yellow-500 transition-all duration-300 rounded-lg px-8 py-4 shadow-layered-lg transform hover:scale-105" href="#pricing">
-                                Start Weekly Plan
-                                <span className="block text-sm font-normal opacity-75">$14.99/week</span>
+                                Start Essential Plan
+                                <span className="block text-sm font-normal opacity-75">$7.99/week</span>
                             </a>
                             <a className="inline-flex flex-col items-center justify-center text-center font-bold text-white bg-white/10 hover:bg-white/20 backdrop-blur-sm border border-white/20 transition-all duration-300 rounded-lg px-8 py-4 shadow-layered-lg transform hover:scale-105" href="#pricing">
-                                Choose Pro Plan
-                                <span className="block text-sm font-normal opacity-75">$22/week</span>
+                                Choose Professional Plan
+                                <span className="block text-sm font-normal opacity-75">$14.99/week</span>
                             </a>
                         </div>
 
