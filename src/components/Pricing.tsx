@@ -6,20 +6,23 @@ const Pricing = () => {
         {
             name: 'Weekly Plan',
             price: '$14.99',
+            salePrice: '$7.99',
             billing: '/week',
             description: 'Perfect for Individual GPs',
             features: [
-                'Unlimited care plan templates',
-                'Professional formatting ready for EMR',
-                'Mobile app access',
-                'Email support (48hr response)',
-                'Copy-paste integration',
-                'Basic usage analytics',
+                'Generate unlimited GP Management Plans, Reviews, and MHCPs',
+                'Pre-formatted and MBS-aligned structure',
+                'Built-in guideline references (RACGP, eTG, PBS links)',
+                'Secure local document generation (no PHI stored)',
+                'Instant Document export and Copy-paste integration',
+                'Email support',
             ],
             cta: 'Start Weekly Plan',
             isPopular: false,
             roi: 'Pays for itself by saving 1 hour per week',
-            value: 'ROI: $300+ monthly value for $60 cost'
+            value: 'ROI: $300+ monthly value for $60 cost',
+            limitedNote: 'Limited accounts available!',
+            disclaimer: 'After one month, payment will resume at the regular weekly price of $14.99.'
         },
         {
             name: 'Pro Plan',
@@ -79,9 +82,25 @@ const Pricing = () => {
                             <h3 className="text-2xl font-bold text-medical-blue">{plan.name}</h3>
                             <p className="mt-2 text-gray-500">{plan.description}</p>
                             
+                            {plan.limitedNote && (
+                                <div className="mt-4 bg-amber-100 text-amber-800 text-sm font-semibold px-3 py-1 rounded-full inline-block">
+                                    {plan.limitedNote}
+                                </div>
+                            )}
+
                             <div className="mt-6">
-                                <span className="text-5xl font-bold text-medical-blue">{plan.price}</span>
-                                <span className="text-lg text-gray-500">{plan.billing}</span>
+                                {plan.salePrice ? (
+                                    <div className="flex items-baseline gap-2">
+                                        <span className="text-5xl font-bold text-medical-blue">{plan.salePrice}</span>
+                                        <del className="text-2xl font-medium text-gray-400">{plan.price}</del>
+                                        <span className="text-lg text-gray-500">{plan.billing}</span>
+                                    </div>
+                                ) : (
+                                    <div>
+                                        <span className="text-5xl font-bold text-medical-blue">{plan.price}</span>
+                                        <span className="text-lg text-gray-500">{plan.billing}</span>
+                                    </div>
+                                )}
                                 <p className="text-sm text-gray-500 mt-1">Billed weekly • Cancel anytime</p>
                             </div>
 
@@ -102,6 +121,9 @@ const Pricing = () => {
                                     <p className="font-semibold">{plan.roi}</p>
                                     <p>{plan.value}</p>
                                 </div>
+                                {plan.disclaimer && (
+                                    <p className="mt-4 text-xs text-center text-gray-500">{plan.disclaimer}</p>
+                                )}
                             </div>
                         </motion.div>
                     ))}
