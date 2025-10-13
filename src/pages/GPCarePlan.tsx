@@ -33,7 +33,7 @@ const GPCarePlan = ({
             conditions,
             goals,
         };
-        const webhookUrl = 'https://gpccm.app.n8n.cloud/webhook-test/Careplan';
+        const webhookUrl = 'https://gpccm.app.n8n.cloud/webhook/Careplan';
 
         try {
             const response = await axios.post(webhookUrl, payload);

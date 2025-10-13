@@ -21,7 +21,62 @@ const viewVariants = {
     exit: { opacity: 0, y: -10 },
 };
 
-// --- New, Improved Document View Logic ---
+// --- New Card-Specific Copy Button ---
+const CardCopyButton = ({ contentToCopy }: { contentToCopy: string }) => {
+    const [isCopied, setIsCopied] = useState(false);
+
+    const handleCopy = (e: React.MouseEvent) => {
+        e.stopPropagation(); // Prevents any parent onClick handlers
+        const tempDiv = document.createElement('div');
+        tempDiv.innerHTML = contentToCopy;
+        const plainText = tempDiv.innerText;
+
+        const listener = (e: ClipboardEvent) => {
+            if (e.clipboardData) {
+                e.clipboardData.setData('text/html', contentToCopy);
+                e.clipboardData.setData('text/plain', plainText);
+                e.preventDefault();
+            }
+        };
+
+        try {
+            document.addEventListener('copy', listener);
+            document.execCommand('copy');
+            setIsCopied(true);
+        } catch (err) {
+            console.error('Failed to copy card content:', err);
+        } finally {
+            document.removeEventListener('copy', listener);
+            setTimeout(() => setIsCopied(false), 2000);
+        }
+    };
+
+    return (
+        <button
+            onClick={handleCopy}
+            className={cn(
+                "absolute top-4 right-4 z-10 flex items-center justify-center h-9 w-9 bg-black/30 hover:bg-black/50 backdrop-blur-sm font-semibold rounded-full transition-all text-gray-300 text-sm p-0",
+                isCopied && "text-success-green bg-green-500/20"
+            )}
+            aria-label={isCopied ? "Copied" : "Copy section"}
+        >
+            <AnimatePresence mode="wait">
+                <motion.div
+                    key={isCopied ? "check" : "copy"}
+                    initial={{ scale: 0.5, opacity: 0, rotate: -45 }}
+                    animate={{ scale: 1, opacity: 1, rotate: 0 }}
+                    exit={{ scale: 0.5, opacity: 0, rotate: 45 }}
+                    transition={{ duration: 0.2 }}
+                >
+                    {isCopied ? <Check className="h-4 w-4" /> : <Copy className="h-4 w-4" />}
+                </motion.div>
+            </AnimatePresence>
+        </button>
+    );
+};
+
+
+// --- Updated Document View Logic ---
 
 const ParsedTableToDocument = ({ tableHtml }: { tableHtml: string }) => {
     const cardAccents = useMemo(() => [
@@ -79,6 +134,11 @@ const ParsedTableToDocument = ({ tableHtml }: { tableHtml: string }) => {
             const topSection = contentPairs[0];
             const otherSections = contentPairs.slice(1);
 
+            let cardHtmlString = `<h3>${topSection.header.trim().replace(/:$/, '')}</h3><div>${topSection.content}</div>`;
+            otherSections.forEach(pair => {
+                cardHtmlString += `<div><h4>${pair.header.trim().replace(/:$/, '')}</h4><div>${pair.content}</div></div>`;
+            });
+
             return (
                 <LiquidGlassCard
                     key={`row-card-${rowIndex}`}
@@ -88,10 +148,11 @@ const ParsedTableToDocument = ({ tableHtml }: { tableHtml: string }) => {
                     glowIntensity='md'
                     draggable={false}
                     expandable={false}
-                    className={cn("p-6 border", cardAccents[rowIndex % cardAccents.length])}
+                    className={cn("p-6 border relative", cardAccents[rowIndex % cardAccents.length])}
                 >
+                    <CardCopyButton contentToCopy={cardHtmlString} />
                     <div>
-                        <h4 className="text-lg font-bold text-white mb-3" dangerouslySetInnerHTML={{ __html: topSection.header.trim().replace(/:$/, '') }} />
+                        <h4 className="text-lg font-bold text-white mb-3 pr-10" dangerouslySetInnerHTML={{ __html: topSection.header.trim().replace(/:$/, '') }} />
                         <div className="prose prose-invert max-w-none text-gray-300 prose-p:my-0 prose-ul:my-0 prose-li:my-1" dangerouslySetInnerHTML={{ __html: topSection.content }} />
                     </div>
 
@@ -116,9 +177,10 @@ const ParsedTableToDocument = ({ tableHtml }: { tableHtml: string }) => {
                     const label = cells[0].innerHTML;
                     const value = cells[1].innerHTML;
                     if (cells[0].textContent?.trim() || cells[1].textContent?.trim()) {
+                         const cardHtmlString = `<h3>${cells[0].textContent?.trim().replace(/:$/, '') || 'Section'}</h3><div>${value}</div>`;
                          const contentBlock = (
                              <div key={`fallback-pair-${rowIndex}`}>
-                                <h4 className="text-lg font-bold text-white mb-2" dangerouslySetInnerHTML={{ __html: label.trim().replace(/:$/, '') }} />
+                                <h4 className="text-lg font-bold text-white mb-2 pr-10" dangerouslySetInnerHTML={{ __html: label.trim().replace(/:$/, '') }} />
                                 <div className="prose prose-invert max-w-none text-gray-300 prose-p:my-0 prose-ul:my-0 prose-li:my-1" dangerouslySetInnerHTML={{ __html: value }} />
                             </div>
                          );
@@ -131,8 +193,9 @@ const ParsedTableToDocument = ({ tableHtml }: { tableHtml: string }) => {
                                 glowIntensity='md'
                                 draggable={false}
                                 expandable={false}
-                                className={cn("p-6 border", cardAccents[rowIndex % cardAccents.length])}
+                                className={cn("p-6 border relative", cardAccents[rowIndex % cardAccents.length])}
                             >
+                                <CardCopyButton contentToCopy={cardHtmlString} />
                                 {contentBlock}
                             </LiquidGlassCard>
                          );
@@ -166,10 +229,10 @@ const DocumentView = ({ htmlString }: { htmlString: string }) => {
                 return <ParsedTableToDocument key={`table-${index}`} tableHtml={part} />;
             } else if (part.trim()) {
                 return (
-                    <div 
-                        key={`other-${index}`} 
-                        className="prose prose-invert max-w-none text-gray-300" 
-                        dangerouslySetInnerHTML={{ __html: part }} 
+                    <div
+                        key={`other-${index}`}
+                        className="prose prose-invert max-w-none text-gray-300"
+                        dangerouslySetInnerHTML={{ __html: part }}
                     />
                 );
             }
@@ -177,7 +240,9 @@ const DocumentView = ({ htmlString }: { htmlString: string }) => {
         }).filter(Boolean);
     }, [htmlString]);
 
-    return <div className="space-y-8">{documentParts}</div>;
+    return (
+        <div className="space-y-8">{documentParts}</div>
+    );
 };
 
 
@@ -361,13 +426,15 @@ const PreviewSection = ({ carePlanHtml }: PreviewSectionProps) => {
                     <FileText className="h-4 w-4" />
                     Download as Word
                 </button>
-                <button
-                    onClick={handleDownloadPdf}
-                    className="flex items-center justify-center gap-2 h-10 px-4 bg-black/20 hover:bg-black/40 font-semibold rounded-lg transition-colors text-gray-300"
-                >
-                    <Download className="h-4 w-4" />
-                    Download as PDF
-                </button>
+                {viewMode === 'table' && (
+                    <button
+                        onClick={handleDownloadPdf}
+                        className="flex items-center justify-center gap-2 h-10 px-4 bg-black/20 hover:bg-black/40 font-semibold rounded-lg transition-colors text-gray-300"
+                    >
+                        <Download className="h-4 w-4" />
+                        Download as PDF
+                    </button>
+                )}
             </div>
         </motion.div>
     );
