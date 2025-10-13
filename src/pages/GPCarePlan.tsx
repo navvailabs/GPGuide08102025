@@ -38,7 +38,7 @@ const GPCarePlan = ({
             conditions,
             goals,
         };
-        const webhookUrl = 'https://gpmedics.app.n8n.cloud/webhook-test/Careplan';
+        const webhookUrl = 'https://gpccm.app.n8n.cloud/webhook-test/Careplan';
 
         try {
             const response = await axios.post(webhookUrl, payload);
@@ -46,18 +46,46 @@ const GPCarePlan = ({
             const data = response.data;
             let htmlContent: string | null = null;
 
+            /**
+             * Recursively searches for an HTML string within a potentially complex
+             * or nested data structure returned by the webhook.
+             * It can handle direct HTML strings, JSON objects/arrays containing HTML,
+             * and even stringified JSON.
+             * @param obj The data to search within.
+             * @returns The first HTML string found, or null.
+             */
             const findHtml = (obj: any): string | null => {
-                if (typeof obj === 'string' && obj.trim().startsWith('<')) {
-                    return obj;
+                if (typeof obj === 'string') {
+                    // If the string itself is HTML
+                    if (obj.trim().startsWith('<')) {
+                        return obj;
+                    }
+                    // If the string is stringified JSON, parse and recurse
+                    try {
+                        const parsed = JSON.parse(obj);
+                        return findHtml(parsed);
+                    } catch (e) {
+                        // Not a valid JSON string, do nothing
+                    }
                 }
+
                 if (Array.isArray(obj)) {
                     for (const item of obj) {
                         const found = findHtml(item);
                         if (found) return found;
                     }
                 } else if (typeof obj === 'object' && obj !== null) {
-                    for (const key in obj) {
+                    // Search in common keys first for better performance
+                    const priorityKeys = ['html', 'content', 'body', 'data', 'output', 'message'];
+                    for (const key of priorityKeys) {
                         if (Object.prototype.hasOwnProperty.call(obj, key)) {
+                            const found = findHtml(obj[key]);
+                            if (found) return found;
+                        }
+                    }
+                    // Fallback to searching all keys
+                    for (const key in obj) {
+                        if (Object.prototype.hasOwnProperty.call(obj, key) && !priorityKeys.includes(key)) {
                             const found = findHtml(obj[key]);
                             if (found) return found;
                         }
