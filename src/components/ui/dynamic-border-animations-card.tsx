@@ -10,7 +10,7 @@ const AnimatedCard = ({ children }: { children: React.ReactNode }) => {
     let animationId: number;
     const animateBorder = () => {
       const now = Date.now() / 1000;
-      const speed = 0.5;
+      const speed = 0.4; // Slightly slower for a more elegant feel
       const topX = Math.sin(now * speed) * 100;
       const rightY = Math.cos(now * speed) * 100;
       const bottomX = Math.sin(now * speed + Math.PI) * 100;
@@ -29,30 +29,30 @@ const AnimatedCard = ({ children }: { children: React.ReactNode }) => {
   }, []);
 
   return (
-    <div className="relative w-full h-full bg-gray-900/80 backdrop-blur-sm border border-gray-800 rounded-2xl p-6 md:p-8 overflow-hidden shadow-2xl">
+    <div className="relative w-full h-full bg-black/30 backdrop-blur-xl border border-white/10 rounded-2xl p-6 md:p-8 overflow-hidden shadow-[0_8px_32px_0_rgba(0,0,0,0.37),inset_0_1px_0_0_rgba(255,255,255,0.1)] transition-transform duration-300 hover:-translate-y-2">
       {/* Animated border elements */}
       <div className="absolute top-0 left-0 w-full h-0.5 overflow-hidden">
         <div
           ref={topRef}
-          className="absolute top-0 left-0 w-full h-full bg-gradient-to-r from-transparent via-orange-500/50 to-transparent"
+          className="absolute top-0 left-0 w-full h-full bg-gradient-to-r from-transparent via-cyan-400/40 to-transparent"
         ></div>
       </div>
       <div className="absolute top-0 right-0 w-0.5 h-full overflow-hidden">
         <div
           ref={rightRef}
-          className="absolute top-0 left-0 w-full h-full bg-gradient-to-b from-transparent via-purple-500/50 to-transparent"
+          className="absolute top-0 left-0 w-full h-full bg-gradient-to-b from-transparent via-cyan-400/40 to-transparent"
         ></div>
       </div>
       <div className="absolute bottom-0 left-0 w-full h-0.5 overflow-hidden">
         <div
           ref={bottomRef}
-          className="absolute top-0 left-0 w-full h-full bg-gradient-to-r from-transparent via-orange-500/50 to-transparent"
+          className="absolute top-0 left-0 w-full h-full bg-gradient-to-l from-transparent via-cyan-400/40 to-transparent"
         ></div>
       </div>
       <div className="absolute top-0 left-0 w-0.5 h-full overflow-hidden">
         <div
           ref={leftRef}
-          className="absolute top-0 left-0 w-full h-full bg-gradient-to-b from-transparent via-purple-500/50 to-transparent"
+          className="absolute top-0 left-0 w-full h-full bg-gradient-to-t from-transparent via-cyan-400/40 to-transparent"
         ></div>
       </div>
       {/* Card Content */}
