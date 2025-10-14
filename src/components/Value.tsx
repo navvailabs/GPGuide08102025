@@ -46,20 +46,6 @@ const Value = () => {
                         </ul>
                     </motion.div>
                 </div>
-                
-                <motion.div 
-                    className="mt-16 bg-amber-500/10 border border-amber-500/30 p-6 rounded-lg text-amber-300 flex items-start space-x-4 max-w-4xl mx-auto"
-                    initial={{ opacity: 0 }}
-                    whileInView={{ opacity: 1 }}
-                    viewport={{ once: true, amount: 0.5 }}
-                    transition={{ duration: 0.5 }}
-                >
-                    <AlertTriangle className="h-8 w-8 flex-shrink-0 mt-1 text-amber-600"/>
-                    <div>
-                        <h4 className="font-bold">IMPORTANT: Medical Disclaimer</h4>
-                        <p className="text-sm mt-1">GPGuide provides educational templates and clinical decision support tools. All generated content is for educational purposes only and must be reviewed by qualified healthcare professionals. Templates are based on general best practices - always apply professional clinical judgment and refer to official guidelines.</p>
-                    </div>
-                </motion.div>
             </div>
         </section>
     );
