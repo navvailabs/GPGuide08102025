@@ -11,7 +11,7 @@ const templates = [
             'Evidence-based intervention strategies',
             'Clear measurable goals and timelines'
         ],
-        image: 'https://img-wrapper.vercel.app/image?url=https://img-wrapper.vercel.app/image?url=https://img-wrapper.vercel.app/image?url=https://placehold.co/800x500/1E40AF/FFFFFF?text=CDM+Plan'
+        image: 'https://img-wrapper.vercel.app/image?url=https://img-wrapper.vercel.app/image?url=https://img-wrapper.vercel.app/image?url=https://img-wrapper.vercel.app/image?url=https://placehold.co/800x500/1E40AF/FFFFFF?text=CDM+Plan'
     },
     {
         title: 'Mental Health Care Plan',
@@ -21,7 +21,7 @@ const templates = [
             'Collaborative care approach',
             'Referral pathway optimization'
         ],
-        image: 'https://img-wrapper.vercel.app/image?url=https://img-wrapper.vercel.app/image?url=https://img-wrapper.vercel.app/image?url=https://placehold.co/800x500/1E40AF/FFFFFF?text=MHCP'
+        image: 'https://img-wrapper.vercel.app/image?url=https://img-wrapper.vercel.app/image?url=https://img-wrapper.vercel.app/image?url=https://img-wrapper.vercel.app/image?url=https://placehold.co/800x500/1E40AF/FFFFFF?text=MHCP'
     },
     {
         title: 'GP Management Plan',
@@ -31,7 +31,7 @@ const templates = [
             'Lifestyle intervention protocols',
             'Monitoring schedule templates'
         ],
-        image: 'https://img-wrapper.vercel.app/image?url=https://img-wrapper.vercel.app/image?url=https://img-wrapper.vercel.app/image?url=https://placehold.co/800x500/1E40AF/FFFFFF?text=GPMP'
+        image: 'https://img-wrapper.vercel.app/image?url=https://img-wrapper.vercel.app/image?url=https://img-wrapper.vercel.app/image?url=https://img-wrapper.vercel.app/image?url=https://placehold.co/800x500/1E40AF/FFFFFF?text=GPMP'
     }
 ];
 
