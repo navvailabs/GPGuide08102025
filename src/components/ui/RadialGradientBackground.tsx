@@ -1,32 +1,32 @@
 import { useBrightness } from '@/contexts/BrightnessContext';
 
-const SoftMedicalGradientBackground = () => {
+const DuskGradientBackground = () => {
     const { brightness } = useBrightness();
+
     return (
         <div
             className="fixed inset-0 -z-20 overflow-hidden"
-            style={{ filter: `brightness(${brightness})`, transition: 'filter 0.3s ease-in-out' }}
+            style={{ 
+                filter: `brightness(${brightness})`, 
+                transition: 'filter 0.3s ease-in-out',
+                transform: 'translateZ(0)' /* Promotes to a new layer for hardware acceleration */
+            }}
         >
-            {/* Base Gradient Layer: soft blue -> lavender/pink -> peach/apricot */}
-            <div className="absolute inset-0 bg-gradient-to-b from-[#5f7b97] via-[#9c899f] to-[#b98e6e]" />
-
-            {/* Faint Bluish Overlay Tint */}
-            <div className="absolute inset-0 bg-blue-950/50" />
-
-            {/* Soft Glow Effects */}
-            <div 
-                className="absolute -top-1/4 -left-1/4 w-1/2 h-1/2 rounded-full bg-sky-400/05 blur-3xl animate-pulse" 
-                style={{ animationDuration: '12s' }}
-            />
-            <div 
-                className="absolute -bottom-1/4 -right-1/4 w-1/2 h-1/2 rounded-full bg-amber-300/05 blur-3xl animate-pulse" 
-                style={{ animationDuration: '10s', animationDelay: '3s' }}
+            {/* Gradient Layer - updated to make the bottom half darker */}
+            <div
+                className="absolute inset-0 bg-[linear-gradient(to_bottom,#0b0f20_0%,#3c2f5d_40%,#8f6c91_80%,#b07d6f_100%)]"
             />
 
-            {/* Slight blur for overall softness */}
-            <div className="absolute inset-0 backdrop-blur-[2px]" />
+            {/* Noise Overlay */}
+            <div
+                className="absolute inset-0 opacity-[0.035] mix-blend-soft-light pointer-events-none"
+                style={{
+                    backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")`,
+                    backgroundSize: '400px 400px',
+                }}
+            />
         </div>
     );
 };
 
-export default SoftMedicalGradientBackground;
+export default DuskGradientBackground;

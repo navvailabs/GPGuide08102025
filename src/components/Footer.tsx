@@ -8,7 +8,7 @@ const Footer = () => {
     };
 
     return (
-        <footer className="bg-medical-blue border-t border-white/10 text-gray-400">
+        <footer className="bg-black/30 backdrop-blur-xl border-t border-white/10 text-gray-400 shadow-lg">
             <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-16">
                 <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
                     <div className="space-y-4 pr-8">
@@ -39,7 +39,7 @@ const Footer = () => {
                         © 2025 New Era Pty Ltd (trading as GPGuide). All rights reserved. GPGuide provides educational clinical documentation and decision-support tools for Australian healthcare professionals. Use requires professional judgment and clinical oversight. GPGuide is not affiliated with RACGP, AMA, eTG, or PBS. Full details in our <a href="#" className="underline hover:text-amber-100">Terms of Service</a> and <a href="#" className="underline hover:text-amber-100">Privacy Policy</a>.
                     </div>
                     <div className="flex flex-col sm:flex-row justify-between items-center text-sm">
-                        <div className="flex space-x-4">
+                        <div className="flex flex-wrap gap-x-4 gap-y-2">
                             <div className="flex items-center space-x-1.5">
                                 <Lock className="h-4 w-4" />
                                 <span>Australian Privacy Compliant</span>
