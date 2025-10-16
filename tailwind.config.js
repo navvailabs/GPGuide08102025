@@ -22,7 +22,7 @@ export default {
       colors: {
         'dark-slate': '#0d1117',
         // Existing Marketing Colors
-        'premium-gold': '#F59E0B',
+        'premium-gold': '#F49F38',
         'success-green': '#10B981',
         'clinical-white': '#FFFFFF',
         'trust-gray': '#F8FAFC',
@@ -31,7 +31,7 @@ export default {
         'pain-red': '#D62828',
         "primary-gradient-start": "#1D5A9C",
         "primary-gradient-end": "#05A39E",
-        "accent-gold": "#D4AF37",
+        "accent-gold": "#F49F38",
         "text-primary": "#0A1D31",
         "text-secondary": "#4A5568",
         "background-light": "#f6f8f8",
@@ -121,7 +121,7 @@ export default {
       },
       backgroundImage: {
         'primary-gradient': 'linear-gradient(to right, #0A2540, #0F6E6E)',
-        'gold-gradient': 'linear-gradient(to right, #F59E0B, #facc15)',
+        'gold-gradient': 'linear-gradient(to right, #F49F38, #FABE7A)',
       },
       keyframes: {
         pulse: {

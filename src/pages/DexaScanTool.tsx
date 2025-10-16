@@ -149,7 +149,7 @@ const DexaScanTool = ({ inputs, setInputs, summary, setSummary }: DexaScanToolPr
                                     className={cn(
                                         'text-sm font-medium px-3 py-1.5 rounded-full transition-all duration-200 border',
                                         inputs.indications.includes(indication)
-                                            ? 'bg-amber-400/20 border-amber-400 text-amber-300'
+                                            ? 'bg-premium-gold/20 border-premium-gold text-premium-gold'
                                             : 'bg-black/20 border-white/10 hover:bg-black/40 text-gray-300'
                                     )}
                                 >
