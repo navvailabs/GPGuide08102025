@@ -1,4 +1,17 @@
+import flattenColorPalette from "tailwindcss/lib/util/flattenColorPalette";
+
 /** @type {import('tailwindcss').Config} */
+function addVariablesForColors({ addBase, theme }) {
+  let allColors = flattenColorPalette(theme("colors"));
+  let newVars = Object.fromEntries(
+    Object.entries(allColors).map(([key, val]) => [`--${key}`, val])
+  );
+
+  addBase({
+    ":root": newVars,
+  });
+}
+
 export default {
   content: [
     "./index.html",
@@ -175,7 +188,15 @@ export default {
             opacity: "1",
             transform: "scale(1)"
           }
-        }
+        },
+        aurora: {
+          from: {
+            backgroundPosition: "50% 50%, 50% 50%",
+          },
+          to: {
+            backgroundPosition: "350% 50%, 350% 50%",
+          },
+        },
       },
       animation: {
         'pulse-green': 'pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite',
@@ -187,7 +208,8 @@ export default {
         "accordion-up": "accordion-up 0.2s ease-out",
         "fade-in-up": "fade-in-up 0.5s ease-out forwards",
         "fade-in": "fade-in 0.5s ease-out forwards",
-        "scale-in": "scale-in 0.5s ease-out forwards"
+        "scale-in": "scale-in 0.5s ease-out forwards",
+        aurora: "aurora 60s linear infinite",
       },
     },
   },
@@ -195,5 +217,6 @@ export default {
     require('@tailwindcss/container-queries'),
     require('@tailwindcss/forms'),
     require('@tailwindcss/typography'),
+    addVariablesForColors,
   ],
 }
