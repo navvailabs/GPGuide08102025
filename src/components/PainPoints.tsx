@@ -53,9 +53,9 @@ const PainPoints = () => {
                     viewport={{ once: true, amount: 0.5 }}
                     transition={{ duration: 0.5 }}
                 >
-                    <h2 className="text-3xl md:text-4xl font-bold text-white tracking-tight">The Hidden Cost of the Documentation Burden</h2>
+                    <h2 className="text-3xl md:text-4xl font-bold text-white tracking-tight">The Hidden Cost of GP Documentation</h2>
                     <p className="mt-4 text-lg text-gray-300">
-                      Follow the journey from administrative drain to clinical efficiency, and see how GPGuide restores the balance.
+                      Every hour spent on admin is an hour lost to patient care. GPGuide helps Australian GPs reclaim their time, improve compliance, and restore work–life balance.
                     </p>
                 </motion.div>
 

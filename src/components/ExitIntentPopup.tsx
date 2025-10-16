@@ -26,11 +26,11 @@ const ExitIntentPopup = ({ onClose }: ExitIntentPopupProps) => {
           <X size={24} />
         </button>
         
-        <AlertTriangle className="h-16 w-16 text-amber-500 mx-auto mb-4" />
+        <AlertTriangle className="h-16 w-16 text-premium-gold mx-auto mb-4" />
         <h2 className="text-3xl font-bold text-medical-blue font-satoshi">Wait! Before You Go...</h2>
         <p className="mt-2 text-gray-600">Are you sure you want to continue spending hours on documentation?</p>
         
-        <div className="mt-6 bg-amber-100/50 border border-amber-300 p-4 rounded-lg">
+        <div className="mt-6 bg-amber-100/50 border border-premium-gold/50 p-4 rounded-lg">
             <h3 className="text-xl font-bold text-medical-blue">Limited Time Offer!</h3>
             <p className="text-gray-700 mt-2">Get the Essential Plan for just <span className="text-premium-gold font-bold text-2xl">$7.99/week</span></p>
             <p className="text-gray-700">or the Professional Plan for <span className="text-premium-gold font-bold text-2xl">$14.99/week</span>.</p>
