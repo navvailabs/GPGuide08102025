@@ -48,7 +48,7 @@ const FinalCTA = () => {
                 </motion.div>
 
                 <motion.div
-                    className="mt-12 text-amber-400 font-semibold"
+                    className="mt-12 text-premium-gold font-semibold"
                     initial={{ opacity: 0 }}
                     whileInView={{ opacity: 1 }}
                     viewport={{ once: true, amount: 0.5 }}

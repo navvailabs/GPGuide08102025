@@ -35,8 +35,8 @@ const Footer = () => {
                 </div>
 
                 <div className="mt-12 border-t border-white/10 pt-8">
-                    <div className="bg-amber-500/10 border border-amber-500/20 p-4 rounded-lg text-amber-300 text-xs mb-8">
-                        © 2025 New Era Pty Ltd (trading as GPGuide). All rights reserved. GPGuide provides educational clinical documentation and decision-support tools for Australian healthcare professionals. Use requires professional judgment and clinical oversight. GPGuide is not affiliated with RACGP, AMA, eTG, or PBS. Full details in our <a href="#" className="underline hover:text-amber-100">Terms of Service</a> and <a href="#" className="underline hover:text-amber-100">Privacy Policy</a>.
+                    <div className="bg-premium-gold/10 border border-premium-gold/20 p-4 rounded-lg text-premium-gold text-xs mb-8">
+                        © 2025 New Era Pty Ltd (trading as GPGuide). All rights reserved. GPGuide provides educational clinical documentation and decision-support tools for Australian healthcare professionals. Use requires professional judgment and clinical oversight. GPGuide is not affiliated with RACGP, AMA, eTG, or PBS. Full details in our <a href="#" className="underline hover:text-white">Terms of Service</a> and <a href="#" className="underline hover:text-white">Privacy Policy</a>.
                     </div>
                     <div className="flex flex-col sm:flex-row justify-between items-center text-sm">
                         <div className="flex flex-wrap gap-x-4 gap-y-2">
