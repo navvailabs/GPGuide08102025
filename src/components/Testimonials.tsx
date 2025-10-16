@@ -72,8 +72,8 @@ const Testimonials = () => {
                     viewport={{ once: true, amount: 0.5 }}
                     transition={{ duration: 0.5 }}
                 >
-                    <h2 className="text-mobile-h2 md:text-desktop-h2 font-bold text-white">Real GPs, Real Results, Real Time Savings</h2>
-                    <p className="mt-4 text-lg text-gray-300">
+                    <h2 className="text-mobile-h2 md:text-desktop-h2 font-bold bg-clip-text text-transparent bg-gradient-to-b from-neutral-50 to-neutral-400">Real GPs, Real Results, Real Time Savings</h2>
+                    <p className="mt-4 text-lg text-neutral-300">
                         Join 500+ Australian GPs who've transformed their practice efficiency.
                     </p>
                 </motion.div>

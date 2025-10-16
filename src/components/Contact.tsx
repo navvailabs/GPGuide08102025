@@ -19,8 +19,8 @@ const Contact = () => {
                     viewport={{ once: true, amount: 0.5 }}
                     transition={{ duration: 0.5 }}
                 >
-                    <h2 className="text-3xl md:text-4xl font-bold text-white">Get Help When You Need It</h2>
-                    <p className="mt-4 text-lg text-gray-300">
+                    <h2 className="text-3xl md:text-4xl font-bold bg-clip-text text-transparent bg-gradient-to-b from-neutral-50 to-neutral-400">Get Help When You Need It</h2>
+                    <p className="mt-4 text-lg text-neutral-300">
                         Our Australian-based support team understands the challenges GPs face and is here to provide real help from real people.
                     </p>
                 </motion.div>
@@ -40,7 +40,7 @@ const Contact = () => {
                                     <method.icon className="h-8 w-8 text-cyan-400" />
                                 </div>
                             </div>
-                            <h3 className="text-xl font-bold text-white">{method.title}</h3>
+                            <h3 className="text-xl font-bold bg-clip-text text-transparent bg-gradient-to-b from-neutral-50 to-neutral-400">{method.title}</h3>
                             <p className="mt-2 font-semibold text-gray-300">{method.detail}</p>
                             <p className="mt-1 text-sm text-gray-400 flex-grow">{method.response}</p>
                         </motion.div>

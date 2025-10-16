@@ -13,8 +13,8 @@ const FinalCTA = () => {
                     viewport={{ once: true, amount: 0.5 }}
                     transition={{ duration: 0.6 }}
                 >
-                    <h2 className="text-3xl md:text-5xl font-bold font-satoshi">Ready to Reclaim Your Time?</h2>
-                    <p className="mt-4 text-lg text-gray-300 max-w-3xl mx-auto">
+                    <h2 className="text-3xl md:text-5xl font-bold font-satoshi bg-clip-text text-transparent bg-gradient-to-b from-neutral-50 to-neutral-400">Ready to Reclaim Your Time?</h2>
+                    <p className="mt-4 text-lg text-neutral-300 max-w-3xl mx-auto">
                         Join 500+ Australian GPs who've already transformed their practice efficiency. Every day without GPGuide is another day lost to unnecessary admin work.
                     </p>
                 </motion.div>
@@ -48,7 +48,7 @@ const FinalCTA = () => {
                 </motion.div>
 
                 <motion.div
-                    className="mt-12 text-amber-400 font-semibold"
+                    className="mt-12 text-premium-gold font-semibold"
                     initial={{ opacity: 0 }}
                     whileInView={{ opacity: 1 }}
                     viewport={{ once: true, amount: 0.5 }}

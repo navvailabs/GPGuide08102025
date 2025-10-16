@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion';
 import { Zap, ShieldCheck, FileText, DollarSign, CheckCircle } from 'lucide-react';
 import { TextShimmer } from './ui/text-shimmer';
+import { ShinyButton } from './ui/shiny-button';
 
 const Hero = () => {
     const features = [
@@ -9,6 +10,13 @@ const Hero = () => {
         { icon: FileText, text: "Professional Templates" },
         { icon: DollarSign, text: "Boost Practice Revenue" }
     ];
+
+    const handleSignUpClick = () => {
+        const pricingSection = document.getElementById('pricing');
+        if (pricingSection) {
+            pricingSection.scrollIntoView({ behavior: 'smooth' });
+        }
+    };
 
     return (
         <section className="relative w-full font-body text-text-secondary dark:text-gray-300">
@@ -23,14 +31,16 @@ const Hero = () => {
                             Used by 500+ Australian GPs
                         </span>
 
-                        <h1 className="font-display font-black text-5xl sm:text-6xl md:text-7xl text-white tracking-tighter leading-tight mb-4">
+                        <h1 className="font-display font-black text-5xl sm:text-6xl md:text-7xl tracking-tighter leading-tight mb-4 bg-clip-text text-transparent bg-gradient-to-b from-neutral-50 to-neutral-400">
                             HIGH YIELD GP <br />
-                            <span className="text-accent-gold">RESOURCE GUIDE</span>
+                            RESOURCE GUIDE
                         </h1>
 
-                        <p className="text-lg text-white/80 mb-4">For GPs, GP Registrars, Aspiring GPs</p>
-                        <p className="text-lg text-white/90 mb-8 max-w-xl">
-                            Stop drowning in documentation. Generate professional care plan templates in minutes, not hours. Reclaim your time for patient care while maintaining clinical excellence.
+                        <p className="text-lg text-neutral-300 mb-4">For GPs, GP Registrars, Aspiring GPs</p>
+                        <p className="text-lg text-neutral-300 mb-8 max-w-xl">
+                            Generate RACGP-compliant drafts for Care Plans, Mental Health Care Plans, and clinical forms — in minutes, not hours.
+                            <br/><br/>
+                            Designed by Australian GPs. Trusted by over 500 clinicians nationwide.
                         </p>
 
                         <div className="grid grid-cols-2 gap-x-8 gap-y-4 mb-8 text-white/90 w-full">
@@ -42,26 +52,13 @@ const Hero = () => {
                             ))}
                         </div>
 
-                        <div className="flex flex-col sm:flex-row gap-4 mb-4 w-full sm:w-auto">
-                            <a className="inline-block text-center font-bold text-text-primary bg-accent-gold hover:bg-yellow-500 transition-all duration-300 rounded-lg px-8 py-4 shadow-layered-lg transform hover:scale-105" href="#pricing">
-                                Start Essential Plan
-                                <span className="block text-sm font-normal opacity-75">$7.99/week</span>
-                            </a>
-                            <a className="inline-flex flex-col items-center justify-center text-center font-bold text-white bg-white/10 hover:bg-white/20 backdrop-blur-sm border border-white/20 transition-all duration-300 rounded-lg px-8 py-4 shadow-layered-lg transform hover:scale-105" href="#pricing">
-                                Choose Professional Plan
-                                <span className="block text-sm font-normal opacity-75">$14.99/week</span>
-                            </a>
-                        </div>
+                        <ShinyButton onClick={handleSignUpClick} className="w-full max-w-md mt-8 mb-6">
+                            Start Generating a Care Plan
+                        </ShinyButton>
 
-                        <div className="flex flex-col sm:flex-row items-start sm:items-center gap-x-6 gap-y-2 text-white/70 text-sm mt-4">
-                            <div className="flex items-center gap-2">
-                                <CheckCircle className="w-4 h-4 text-green-400" />
-                                <span>Cancel anytime, no contracts</span>
-                            </div>
-                            <div className="flex items-center gap-2">
-                                <CheckCircle className="w-4 h-4 text-green-400" />
-                                <span>500+ active Australian GPs</span>
-                            </div>
+                        <div className="flex items-center gap-2 text-white/70 text-sm">
+                            <CheckCircle className="w-4 h-4 text-green-400 flex-shrink-0" />
+                            <span>GPGuide helps Australian GPs work smarter, faster, and stay fully compliant.</span>
                         </div>
                     </div>
 

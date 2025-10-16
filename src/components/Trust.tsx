@@ -30,8 +30,8 @@ const Trust = () => {
                         viewport={{ once: true, amount: 0.5 }}
                         transition={{ duration: 0.6 }}
                     >
-                        <h2 className="text-3xl md:text-4xl font-bold text-white">Your Data Security is Our Priority</h2>
-                        <p className="mt-4 text-gray-300">We are committed to the highest standards of data protection and privacy, ensuring your practice and patient information remains secure.</p>
+                        <h2 className="text-3xl md:text-4xl font-bold bg-clip-text text-transparent bg-gradient-to-b from-neutral-50 to-neutral-400">Your Data Security is Our Priority</h2>
+                        <p className="mt-4 text-neutral-300">We are committed to the highest standards of data protection and privacy, ensuring your practice and patient information remains secure.</p>
                         <ul className="mt-6 space-y-3">
                             {securityPoints.map(point => (
                                 <li key={point} className="flex items-start">
