@@ -58,8 +58,8 @@ const Pricing = () => {
                     viewport={{ once: true, amount: 0.5 }}
                     transition={{ duration: 0.5 }}
                 >
-                    <h2 className="text-mobile-h2 md:text-desktop-h2 font-bold text-white">Choose Your Productivity Plan</h2>
-                    <p className="mt-4 text-lg text-gray-300">
+                    <h2 className="text-mobile-h2 md:text-desktop-h2 font-bold bg-clip-text text-transparent bg-gradient-to-b from-neutral-50 to-neutral-400">Choose Your Productivity Plan</h2>
+                    <p className="mt-4 text-lg text-neutral-300">
                         Flexible weekly subscriptions designed for busy healthcare professionals.
                         <br />
                         No contracts • Immediate access • Start saving time today

@@ -23,7 +23,6 @@ const StickyHeaderCTA = () => {
                     <button className="border-2 border-white text-white font-bold py-2 px-4 rounded-full text-sm hover:bg-white hover:text-medical-blue transition-colors">
                         Choose Professional Plan
                     </button>
-                    <span className="text-xs text-gray-300 hidden sm:block">30-day guarantee</span>
                 </div>
             </div>
         </motion.div>

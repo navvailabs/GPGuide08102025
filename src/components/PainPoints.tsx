@@ -1,43 +1,45 @@
-import { Clock, Calendar, FileText, FileEdit, Zap, Users, X, Check } from 'lucide-react';
+import { Clock, Calendar, FileText, FileEdit, Zap, Users } from 'lucide-react';
 import { motion } from 'framer-motion';
 import SectionGradientBackground from './ui/SectionGradientBackground';
+import { GlassCrossIcon } from './ui/GlassCrossIcon';
+import { GlassCheckIcon } from './ui/GlassCheckIcon';
 
 const painPointsData = [
   {
     icon: Clock,
-    title: `"I work until 9 PM finishing notes."`,
+    title: "“I work until 9 PM finishing notes.”",
     pain: "Family time sacrificed for paperwork.",
-    gain: "GPGuide saves you an average of 1.5 hours per day."
+    gain: "GPGuide saves up to 1.5 hours per day by drafting your care plan notes and MBS documentation."
   },
   {
     icon: Calendar,
-    title: `"My practice is always running behind."`,
-    pain: "Patient satisfaction drops with long wait times.",
-    gain: "Streamline consultations with instant templates."
+    title: "“My practice is always running behind.”",
+    pain: "Long wait times, reduced patient satisfaction.",
+    gain: "Streamline consultations with ready-to-review templates and prefilled forms."
   },
   {
     icon: FileText,
-    title: `"I struggle to keep up with guidelines."`,
-    pain: "Risk of outdated or non-compliant care.",
-    gain: "Access evidence-based Australian guidelines."
+    title: "“I struggle to keep up with guidelines.”",
+    pain: "Risk of outdated or non-compliant documentation.",
+    gain: "Instant access to evidence-based Australian guidelines integrated into your workflow."
   },
   {
     icon: FileEdit,
-    title: `"My documentation feels incomplete."`,
+    title: "“My documentation feels incomplete.”",
     pain: "Increased medicolegal risk and stress.",
-    gain: "Generate comprehensive, defensible notes in seconds."
+    gain: "Generate clear, comprehensive, and defensible draft notes in seconds."
   },
   {
     icon: Zap,
-    title: `"I'm experiencing burnout and fatigue."`,
-    pain: "Losing passion for medicine due to admin load.",
-    gain: "Focus on patient care, not paperwork, and reignite your passion."
+    title: "“I’m experiencing burnout and fatigue.”",
+    pain: "Losing passion for medicine under admin load.",
+    gain: "Refocus on patient care — not paperwork — and reignite your purpose."
   },
   {
     icon: Users,
-    title: `"My practice struggles with consistency."`,
-    pain: "Variable quality of care plans across practitioners.",
-    gain: "Standardise excellence with shared templates for your whole team."
+    title: "“My practice struggles with consistency.”",
+    pain: "Variable quality of care plans between clinicians.",
+    gain: "Standardise excellence with shared, guideline-aligned templates for your team."
   }
 ];
 
@@ -53,9 +55,9 @@ const PainPoints = () => {
                     viewport={{ once: true, amount: 0.5 }}
                     transition={{ duration: 0.5 }}
                 >
-                    <h2 className="text-3xl md:text-4xl font-bold text-white tracking-tight">The Hidden Cost of the Documentation Burden</h2>
-                    <p className="mt-4 text-lg text-gray-300">
-                      Follow the journey from administrative drain to clinical efficiency, and see how GPGuide restores the balance.
+                    <h2 className="text-3xl md:text-4xl font-bold tracking-tight bg-clip-text text-transparent bg-gradient-to-b from-neutral-50 to-neutral-400">The Hidden Cost of GP Documentation</h2>
+                    <p className="mt-4 text-lg text-neutral-300">
+                      Every hour spent on admin is an hour lost to patient care. GPGuide helps Australian GPs reclaim their time, improve compliance, and restore work–life balance.
                     </p>
                 </motion.div>
 
@@ -95,16 +97,20 @@ const PainPoints = () => {
                                                     <Icon className="text-cyan-300 w-7 h-7" strokeWidth={1.5} />
                                                 </div>
                                                 <div>
-                                                    <h3 className="text-lg font-bold leading-tight text-white mb-3">
+                                                    <h3 className="text-lg font-bold leading-tight mb-3 bg-clip-text text-transparent bg-gradient-to-b from-neutral-50 to-neutral-400">
                                                         {point.title}
                                                     </h3>
-                                                    <ul className="space-y-2.5 text-sm">
-                                                        <li className="flex items-start">
-                                                            <X className="h-4 w-4 text-red-400 mr-2.5 mt-0.5 flex-shrink-0" strokeWidth={3} />
+                                                    <ul className="space-y-3 text-sm">
+                                                        <li className="flex items-start gap-2.5">
+                                                            <div className="mt-0.5 flex-shrink-0">
+                                                              <GlassCrossIcon />
+                                                            </div>
                                                             <p className="text-gray-400">{point.pain}</p>
                                                         </li>
-                                                        <li className="flex items-start">
-                                                            <Check className="h-4 w-4 text-green-400 mr-2.5 mt-0.5 flex-shrink-0" strokeWidth={3} />
+                                                        <li className="flex items-start gap-2.5">
+                                                            <div className="mt-0.5 flex-shrink-0">
+                                                              <GlassCheckIcon />
+                                                            </div>
                                                             <p className="font-semibold text-gray-200">{point.gain}</p>
                                                         </li>
                                                     </ul>

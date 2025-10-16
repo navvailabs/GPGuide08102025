@@ -35,9 +35,9 @@ const Value = () => {
                         viewport={{ once: true, amount: 0.5 }}
                         transition={{ duration: 0.6, delay: 0.2 }}
                     >
-                        <h3 className="text-3xl font-bold text-white">Stay Ahead of the Curve</h3>
-                        <p className="mt-2 text-gray-300">Join the 500+ GPs already transforming their practice efficiency.</p>
-                        <p className="mt-4 font-semibold">While other GPs struggle with documentation burden:</p>
+                        <h3 className="text-3xl font-bold bg-clip-text text-transparent bg-gradient-to-b from-neutral-50 to-neutral-400">Stay Ahead of the Curve</h3>
+                        <p className="mt-2 text-neutral-300">Join the 500+ GPs already transforming their practice efficiency.</p>
+                        <p className="mt-4 font-semibold text-neutral-300">While other GPs struggle with documentation burden:</p>
                         <ul className="mt-4 space-y-3">
                             <li className="flex items-start"><CheckCircle className="h-5 w-5 text-success-green mr-3 mt-0.5 flex-shrink-0" /> You'll finish notes during lunch breaks.</li>
                             <li className="flex items-start"><CheckCircle className="h-5 w-5 text-success-green mr-3 mt-0.5 flex-shrink-0" /> You'll have consistent, professional templates.</li>

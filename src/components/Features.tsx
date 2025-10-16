@@ -40,8 +40,8 @@ const Features = () => {
                     viewport={{ once: true, amount: 0.5 }}
                     transition={{ duration: 0.5 }}
                 >
-                    <h2 className="text-mobile-h2 md:text-desktop-h2 font-bold text-white">Everything You Need for Practice Excellence</h2>
-                    <p className="mt-4 text-lg text-gray-300">
+                    <h2 className="text-mobile-h2 md:text-desktop-h2 font-bold bg-clip-text text-transparent bg-gradient-to-b from-neutral-50 to-neutral-400">Everything You Need for Practice Excellence</h2>
+                    <p className="mt-4 text-lg text-neutral-300">
                         Comprehensive tools designed specifically for Australian GPs.
                     </p>
                 </motion.div>
@@ -60,7 +60,7 @@ const Features = () => {
                                 <div className="absolute -inset-2 bg-cyan-400/20 rounded-full blur-md animate-pulse"></div>
                                 <feature.icon className="relative w-8 h-8 text-cyan-300" />
                             </div>
-                            <h3 className="text-2xl font-bold text-white">{feature.title}</h3>
+                            <h3 className="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-b from-neutral-50 to-neutral-400">{feature.title}</h3>
                             <p className="mt-2 text-gray-300 flex-grow">{feature.description}</p>
                             <ul className="mt-6 space-y-4">
                                 {feature.points.map(point => (
@@ -81,7 +81,7 @@ const Features = () => {
                     viewport={{ once: true, amount: 0.5 }}
                     transition={{ duration: 0.5, delay: 0.3 }}
                 >
-                    <h3 className="text-3xl font-bold text-white mb-8">Transform Your Practice Starting Today</h3>
+                    <h3 className="text-3xl font-bold mb-8 bg-clip-text text-transparent bg-gradient-to-b from-neutral-50 to-neutral-400">Transform Your Practice Starting Today</h3>
                     <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-8">
                         {achievements.map((item) => (
                             <div key={item.title} className="glass-card p-6 text-center">
