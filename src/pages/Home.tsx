@@ -17,7 +17,8 @@ import FinalCTA from '@/components/FinalCTA.tsx';
 import Contact from '@/components/Contact.tsx';
 import Footer from '@/components/Footer.tsx';
 import StickyHeaderCTA from '@/components/StickyHeaderCTA.tsx';
-import RadialGradientBackground from '@/components/ui/RadialGradientBackground.tsx';
+import { AuroraBackground } from '@/components/ui/aurora-background.tsx';
+import FlowingGradientBackground from '@/components/ui/FlowingGradientBackground.tsx';
 
 function HomePage() {
   const [showStickyCTA, setShowStickyCTA] = useState(false);
@@ -40,32 +41,34 @@ function HomePage() {
   }, []);
 
   return (
-    <div className="bg-transparent overflow-x-hidden relative">
-      <RadialGradientBackground />
-      <div className="relative z-10">
-        <Header />
-        <AnimatePresence>
-          {showStickyCTA && <StickyHeaderCTA />}
-        </AnimatePresence>
-        
-        <main>
-          <Hero />
-          <PainPoints />
-          <Showcase />
-          <VideoDemo />
-          <HowItWorks />
-          <Pricing />
-          <Testimonials />
-          <Features />
-          <Trust />
-          <Value />
-          <FAQ />
-          <FinalCTA />
-          <Contact />
-        </main>
-        
-        <Footer />
-      </div>
+    <div className="overflow-x-hidden">
+      <FlowingGradientBackground />
+      <AuroraBackground transparentBase={true}>
+        <div className="relative z-10">
+          <Header />
+          <AnimatePresence>
+            {showStickyCTA && <StickyHeaderCTA />}
+          </AnimatePresence>
+          
+          <main>
+            <Hero />
+            <PainPoints />
+            <Showcase />
+            <VideoDemo />
+            <HowItWorks />
+            <Pricing />
+            <Testimonials />
+            <Features />
+            <Trust />
+            <Value />
+            <FAQ />
+            <FinalCTA />
+            <Contact />
+          </main>
+          
+          <Footer />
+        </div>
+      </AuroraBackground>
     </div>
   );
 }

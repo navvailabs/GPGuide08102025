@@ -1,7 +1,6 @@
 import { motion } from 'framer-motion';
 import { Zap, ShieldCheck, FileText, DollarSign, CheckCircle } from 'lucide-react';
 import { TextShimmer } from './ui/text-shimmer';
-import { AuroraBackground } from './ui/aurora-background';
 
 const Hero = () => {
     const features = [
@@ -12,7 +11,7 @@ const Hero = () => {
     ];
 
     return (
-        <AuroraBackground as="section" className="w-full font-body text-text-secondary dark:text-gray-300">
+        <section className="relative w-full font-body text-text-secondary dark:text-gray-300">
             <div className="absolute top-0 left-0 w-full h-[120vh] bg-transparent transform -skew-y-6 -translate-y-24" style={{ zIndex: 0 }}></div>
             
             <main className="relative z-10 px-6 pt-16 pb-8 sm:pt-24 sm:pb-12 lg:px-8">
@@ -114,7 +113,7 @@ const Hero = () => {
                     </div>
                 </div>
             </main>
-        </AuroraBackground>
+        </section>
     );
 };
 
