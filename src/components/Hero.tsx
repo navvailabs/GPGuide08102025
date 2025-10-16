@@ -11,10 +11,8 @@ const Hero = () => {
     ];
 
     return (
-        <section className="relative w-full overflow-hidden font-body text-text-secondary dark:text-gray-300">
-            <div className="absolute top-0 left-0 w-full h-[120vh] bg-transparent transform -skew-y-6 -translate-y-24" style={{ zIndex: 0 }}></div>
-            
-            <main className="relative z-10 px-6 pt-16 pb-8 sm:pt-24 sm:pb-12 lg:px-8">
+        <section className="relative w-full font-body text-text-secondary dark:text-gray-300">
+            <div className="relative z-10 px-6 pt-16 pb-8 sm:pt-24 sm:pb-12 lg:px-8">
                 <div className="max-w-screen-xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
                     
                     <div className="lg:col-span-6 flex flex-col items-start text-left">
@@ -112,7 +110,7 @@ const Hero = () => {
                         </p>
                     </div>
                 </div>
-            </main>
+            </div>
         </section>
     );
 };

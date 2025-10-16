@@ -17,7 +17,7 @@ import FinalCTA from '@/components/FinalCTA.tsx';
 import Contact from '@/components/Contact.tsx';
 import Footer from '@/components/Footer.tsx';
 import StickyHeaderCTA from '@/components/StickyHeaderCTA.tsx';
-import RadialGradientBackground from '@/components/ui/RadialGradientBackground.tsx';
+import { AuroraBackground } from '@/components/ui/aurora-background';
 
 function HomePage() {
   const [showStickyCTA, setShowStickyCTA] = useState(false);
@@ -40,8 +40,7 @@ function HomePage() {
   }, []);
 
   return (
-    <div className="bg-transparent overflow-x-hidden relative">
-      <RadialGradientBackground />
+    <AuroraBackground showRadialGradient={false} className="bg-medical-blue overflow-x-hidden">
       <div className="relative z-10">
         <Header />
         <AnimatePresence>
@@ -66,7 +65,7 @@ function HomePage() {
         
         <Footer />
       </div>
-    </div>
+    </AuroraBackground>
   );
 }
 
