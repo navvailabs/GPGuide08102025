@@ -4,40 +4,40 @@ const FlowingGradientBackground = () => {
     const { brightness } = useBrightness();
     return (
       <div 
-        className="fixed inset-0 -z-10 overflow-hidden"
-        style={{ filter: `brightness(${brightness})`, transition: 'filter 0.3s ease-in-out' }}
+        className="fixed inset-0 -z-10 overflow-hidden bg-slate-900"
+        style={{ 
+            filter: `brightness(${brightness})`, 
+            transition: 'filter 0.3s ease-in-out',
+            transform: 'translateZ(0)'
+        }}
       >
-        <div className="absolute inset-0 bg-medical-blue" />
+        {/* First Animated Gradient (Blue Glow) */}
         <div 
-          className="absolute top-[-50vh] left-[-50vw] w-[200vw] h-[200vh] bg-[radial-gradient(circle_at_center,_rgba(15,110,110,0.4)_0%,_rgba(10,37,64,0.4)_30%,_rgba(10,37,64,0)_70%)]"
+          className="absolute inset-0"
           style={{
-            animation: 'flow 25s linear infinite',
+            background: 'radial-gradient(circle at center, rgba(76, 128, 201, 0.3) 0%, rgba(10, 37, 64, 0) 70%)',
+            animation: 'flow 40s linear infinite',
+            transformOrigin: 'center center',
           }}
         />
+        {/* Second Animated Gradient (Purple Glow) */}
         <div 
-          className="absolute bottom-[-50vh] right-[-50vw] w-[200vw] h-[200vh] bg-[radial-gradient(circle_at_center,_rgba(212,175,55,0.2)_0%,_rgba(10,37,64,0)_60%)]"
+          className="absolute inset-0"
           style={{
-            animation: 'flow-reverse 20s linear infinite',
+            background: 'radial-gradient(circle at center, rgba(168, 120, 228, 0.2) 0%, rgba(10, 37, 64, 0) 60%)',
+            animation: 'flow-reverse 35s linear infinite',
+            transformOrigin: 'center center',
           }}
         />
-        <style>
-          {`
-            @keyframes flow {
-              0% { transform: translate(0, 0) rotate(0deg); }
-              25% { transform: translate(10vw, -10vh) rotate(90deg); }
-              50% { transform: translate(-10vw, 10vh) rotate(180deg); }
-              75% { transform: translate(5vw, 5vh) rotate(270deg); }
-              100% { transform: translate(0, 0) rotate(360deg); }
-            }
-            @keyframes flow-reverse {
-              0% { transform: translate(0, 0) rotate(0deg); }
-              25% { transform: translate(-8vw, 12vh) rotate(-90deg); }
-              50% { transform: translate(12vw, -8vh) rotate(-180deg); }
-              75% { transform: translate(-5vw, -5vh) rotate(-270deg); }
-              100% { transform: translate(0, 0) rotate(-360deg); }
-            }
-          `}
-        </style>
+
+        {/* Noise Overlay */}
+        <div
+            className="absolute inset-0 opacity-[0.02] mix-blend-soft-light pointer-events-none"
+            style={{
+                backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")`,
+                backgroundSize: '400px 400px',
+            }}
+        />
       </div>
     );
   };

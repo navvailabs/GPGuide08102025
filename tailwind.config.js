@@ -20,6 +20,7 @@ export default {
   theme: {
     extend: {
       colors: {
+        'dark-slate': '#0d1117',
         // Existing Marketing Colors
         'premium-gold': '#F59E0B',
         'success-green': '#10B981',
