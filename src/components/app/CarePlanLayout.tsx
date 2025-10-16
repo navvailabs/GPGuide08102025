@@ -17,19 +17,6 @@ const CarePlanLayout = ({ children, activeView, setActiveView }: CarePlanLayoutP
     const [isDesktopSidebarCollapsed, setIsDesktopSidebarCollapsed] = useState(false);
     const [isMobileSidebarOpen, setIsMobileSidebarOpen] = useState(false);
 
-    const handleContentClick = () => {
-        // Only collapse on desktop if it's currently open
-        if (!isDesktopSidebarCollapsed) {
-            setIsDesktopSidebarCollapsed(true);
-        }
-    };
-
-    const handleDesktopItemClick = () => {
-        if (!isDesktopSidebarCollapsed) {
-            setIsDesktopSidebarCollapsed(true);
-        }
-    };
-
     return (
         <div className="font-display text-foreground-dark bg-transparent min-h-screen">
             <RadialGradientBackground />
@@ -41,14 +28,12 @@ const CarePlanLayout = ({ children, activeView, setActiveView }: CarePlanLayoutP
                     setIsMobileOpen={setIsMobileSidebarOpen}
                     activeView={activeView}
                     setActiveView={setActiveView}
-                    onDesktopItemClick={handleDesktopItemClick}
                 />
                 <div 
                     className={cn(
                         "flex-1 flex flex-col w-full transition-all duration-300 ease-in-out",
                         isDesktopSidebarCollapsed ? "md:ml-20" : "md:ml-80"
                     )}
-                    onClick={handleContentClick}
                 >
                     <AppHeader onMenuClick={() => setIsMobileSidebarOpen(true)} />
                     <main className="flex-grow container mx-auto px-4 sm:px-6 lg:px-8 py-8 md:py-12">

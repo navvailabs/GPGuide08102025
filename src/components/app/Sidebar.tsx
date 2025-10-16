@@ -11,8 +11,8 @@ const carePlanItems = [
 ];
 
 const toolItems = [
-    { name: 'DEXA Scan', view: 'dexa-scan-tool' as const, icon: Bone, color: 'text-amber-400', glowColor: 'bg-amber-400/30' },
-    { name: 'MEDD Assist', view: 'medd-assist-tool' as const, icon: Calculator, color: 'text-teal-400', glowColor: 'bg-teal-400/30' },
+    { name: 'DEXA Scan Interpreter', view: 'dexa-scan-tool' as const, icon: Bone, color: 'text-amber-400', glowColor: 'bg-amber-400/30' },
+    { name: 'Opioid MEDD Assist Tool', view: 'medd-assist-tool' as const, icon: Calculator, color: 'text-teal-400', glowColor: 'bg-teal-400/30' },
 ];
 
 const formItems = [
@@ -144,10 +144,9 @@ interface SidebarProps {
     setIsMobileOpen: (isOpen: boolean) => void;
     activeView: ActiveView;
     setActiveView: (view: ActiveView) => void;
-    onDesktopItemClick: () => void;
 }
 
-const Sidebar = ({ isDesktopCollapsed, isMobileOpen, setIsMobileOpen, activeView, setActiveView, onDesktopItemClick }: SidebarProps) => {
+const Sidebar = ({ isDesktopCollapsed, isMobileOpen, setIsMobileOpen, activeView, setActiveView }: SidebarProps) => {
     return (
         <>
             {/* Desktop Sidebar */}
@@ -191,7 +190,6 @@ const Sidebar = ({ isDesktopCollapsed, isMobileOpen, setIsMobileOpen, activeView
                         isCollapsed={isDesktopCollapsed} 
                         activeView={activeView} 
                         setActiveView={setActiveView} 
-                        onLinkClick={onDesktopItemClick} 
                     />
                 </div>
             </motion.div>
