@@ -2,6 +2,7 @@ import { motion } from 'framer-motion';
 import { useTheme } from '@/contexts/ThemeContext';
 import { cn } from '@/lib/utils';
 import InspiredCard from '../ui/InspiredCard';
+import { StyledPillInput } from '../ui/StyledPillInput';
 
 interface ConditionsSectionProps {
     conditions: string;
@@ -55,13 +56,7 @@ const ConditionsSection = ({ conditions, setConditions }: ConditionsSectionProps
                         "block text-sm font-medium mb-2",
                         theme === 'light' ? 'text-gray-600' : 'text-gray-300'
                     )} htmlFor="conditions-input">Enter chronic conditions</label>
-                    <input
-                        className={cn(
-                            "form-input w-full rounded-lg placeholder:text-gray-400",
-                            theme === 'light' 
-                                ? 'bg-gray-100 border-transparent text-gray-800 focus:bg-white focus:ring-2 focus:ring-blue-500 focus:border-transparent'
-                                : 'border-white/20 bg-black/20 text-white focus:ring-2 focus:ring-primary focus:border-primary dark:placeholder:text-gray-500'
-                        )}
+                    <StyledPillInput
                         id="conditions-input"
                         placeholder="e.g., Type 2 Diabetes, Hypertension"
                         value={conditions}

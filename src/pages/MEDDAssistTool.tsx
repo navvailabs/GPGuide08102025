@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Sparkles, RefreshCw, Loader2, Copy, Check, AlertTriangle, ExternalLink, Calculator } from 'lucide-react';
 import { cn } from '@/lib/utils';
+import { StyledTextarea } from '@/components/ui/StyledTextarea';
 
 // Simplified Australian Opioid Conversion Factors
 // Source: Adapted from various Australian guidelines, e.g., ANZCA FPM. For educational purposes.
@@ -148,12 +149,12 @@ const MEDDAssistTool = ({ medicationInput, setMedicationInput, result, setResult
                 <motion.section variants={sectionVariants}>
                     <div className="bg-white dark:bg-[#1A1B1E]/85 backdrop-blur-lg border border-gray-200 dark:border-white/10 rounded-2xl p-6 shadow-lg dark:shadow-2xl">
                         <label className="block text-sm font-medium mb-2 text-gray-600 dark:text-gray-300" htmlFor="medication-input">Opioid Medications & Doses</label>
-                        <textarea
+                        <StyledTextarea
                             id="medication-input"
                             value={medicationInput}
                             onChange={(e) => setMedicationInput(e.target.value)}
                             placeholder="Enter one medication per line, e.g.,&#10;Oxycodone 10mg BD&#10;Targin 20/10 twice daily&#10;Fentanyl patch 25mcg/hr"
-                            className="form-textarea w-full rounded-lg border-gray-300 dark:border-white/20 bg-gray-50 dark:bg-black/20 focus:ring-2 focus:ring-primary focus:border-primary placeholder:text-gray-400 dark:placeholder:text-gray-500 text-gray-900 dark:text-white font-mono text-sm"
+                            className="font-mono text-sm"
                             rows={5}
                         />
                     </div>

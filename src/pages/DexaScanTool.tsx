@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Sparkles, RefreshCw, Loader2, Copy, Check } from 'lucide-react';
 import { cn } from '@/lib/utils';
+import { StyledPillInput } from '@/components/ui/StyledPillInput';
+import { StyledTextarea } from '@/components/ui/StyledTextarea';
 
 interface DexaInputs {
     age: string;
@@ -110,13 +112,12 @@ const DexaScanTool = ({ inputs, setInputs, summary, setSummary }: DexaScanToolPr
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                             <div>
                                 <label className="block text-sm font-medium mb-2 text-gray-600 dark:text-gray-300" htmlFor="age-input">Patient Age</label>
-                                <input
+                                <StyledPillInput
                                     id="age-input"
                                     type="number"
                                     value={inputs.age}
                                     onChange={(e) => setInputs(prev => ({...prev, age: e.target.value}))}
                                     placeholder="e.g., 72"
-                                    className="form-input w-full rounded-lg border-gray-300 dark:border-white/20 bg-gray-50 dark:bg-black/20 focus:ring-2 focus:ring-primary focus:border-primary placeholder:text-gray-400 dark:placeholder:text-gray-500 text-gray-900 dark:text-white"
                                 />
                             </div>
                             <div>
@@ -163,14 +164,13 @@ const DexaScanTool = ({ inputs, setInputs, summary, setSummary }: DexaScanToolPr
                 <motion.section variants={sectionVariants}>
                     <div className="bg-white dark:bg-[#1A1B1E]/85 backdrop-blur-lg border border-gray-200 dark:border-white/10 rounded-2xl p-6 shadow-lg dark:shadow-2xl">
                         <label className="block text-sm font-medium mb-2 text-gray-600 dark:text-gray-300" htmlFor="notes-textarea">Additional Clinical Notes</label>
-                        <textarea
+                        <StyledTextarea
                             id="notes-textarea"
                             value={inputs.notes}
                             onChange={(e) => setInputs(prev => ({...prev, notes: e.target.value}))}
-                            className="form-textarea w-full rounded-lg border-gray-300 dark:border-white/20 bg-gray-50 dark:bg-black/20 focus:ring-2 focus:ring-primary focus:border-primary placeholder:text-gray-400 dark:placeholder:text-gray-500 text-gray-900 dark:text-white"
                             placeholder="Add any other relevant details..."
                             rows={3}
-                        ></textarea>
+                        />
                     </div>
                 </motion.section>
 

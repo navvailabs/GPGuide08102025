@@ -1,6 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Sparkles, RefreshCw } from 'lucide-react';
+import { StyledTextarea } from '@/components/ui/StyledTextarea';
 
 interface MentalHealthCarePlanProps {
     presentation: string;
@@ -62,12 +63,11 @@ const MentalHealthCarePlan = ({
                 <motion.section variants={sectionVariants}>
                     <div className="bg-white dark:bg-[#1A1B1E]/85 backdrop-blur-lg border border-gray-200 dark:border-white/10 rounded-2xl p-6 shadow-lg dark:shadow-2xl">
                         <label className="block text-sm font-medium mb-2 text-gray-600 dark:text-gray-300" htmlFor="mh-presentation">Patient Presentation</label>
-                        <textarea
+                        <StyledTextarea
                             id="mh-presentation"
                             value={presentation}
                             onChange={(e) => setPresentation(e.target.value)}
                             placeholder="e.g., Low mood, anxiety, poor sleep..."
-                            className="form-textarea w-full rounded-lg border-gray-300 dark:border-white/20 bg-gray-50 dark:bg-black/20 focus:ring-2 focus:ring-primary focus:border-primary placeholder:text-gray-400 dark:placeholder:text-gray-500 text-gray-900 dark:text-white"
                             rows={3}
                         />
                     </div>
@@ -76,12 +76,11 @@ const MentalHealthCarePlan = ({
                 <motion.section variants={sectionVariants}>
                     <div className="bg-white dark:bg-[#1A1B1E]/85 backdrop-blur-lg border border-gray-200 dark:border-white/10 rounded-2xl p-6 shadow-lg dark:shadow-2xl">
                         <label className="block text-sm font-medium mb-2 text-gray-600 dark:text-gray-300" htmlFor="mh-history">Relevant History</label>
-                        <textarea
+                        <StyledTextarea
                             id="mh-history"
                             value={history}
                             onChange={(e) => setHistory(e.target.value)}
                             placeholder="e.g., Past mental health history, family history, social situation..."
-                            className="form-textarea w-full rounded-lg border-gray-300 dark:border-white/20 bg-gray-50 dark:bg-black/20 focus:ring-2 focus:ring-primary focus:border-primary placeholder:text-gray-400 dark:placeholder:text-gray-500 text-gray-900 dark:text-white"
                             rows={3}
                         />
                     </div>
@@ -90,12 +89,11 @@ const MentalHealthCarePlan = ({
                 <motion.section variants={sectionVariants}>
                     <div className="bg-white dark:bg-[#1A1B1E]/85 backdrop-blur-lg border border-gray-200 dark:border-white/10 rounded-2xl p-6 shadow-lg dark:shadow-2xl">
                         <label className="block text-sm font-medium mb-2 text-gray-600 dark:text-gray-300" htmlFor="mh-goals">Management Goals</label>
-                        <textarea
+                        <StyledTextarea
                             id="mh-goals"
                             value={goals}
                             onChange={(e) => setGoals(e.target.value)}
                             placeholder="e.g., Referral to psychologist, psychoeducation, medication review..."
-                            className="form-textarea w-full rounded-lg border-gray-300 dark:border-white/20 bg-gray-50 dark:bg-black/20 focus:ring-2 focus:ring-primary focus:border-primary placeholder:text-gray-400 dark:placeholder:text-gray-500 text-gray-900 dark:text-white"
                             rows={3}
                         />
                     </div>

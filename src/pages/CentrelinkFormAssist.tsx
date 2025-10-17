@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Sparkles, RefreshCw, Loader2, Copy, Check } from 'lucide-react';
 import { cn } from '@/lib/utils';
+import { StyledTextarea } from '@/components/ui/StyledTextarea';
 
 const sectionVariants = {
     hidden: { opacity: 0, y: 20 },
@@ -112,12 +113,11 @@ const CentrelinkFormAssist = () => {
                 <motion.section variants={sectionVariants}>
                     <div className="bg-white dark:bg-[#1A1B1E]/85 backdrop-blur-lg border border-gray-200 dark:border-white/10 rounded-2xl p-6 shadow-lg dark:shadow-2xl">
                         <label className="block text-sm font-medium mb-2 text-gray-600 dark:text-gray-300" htmlFor="clinical-info-textarea">Clinical information</label>
-                        <textarea
+                        <StyledTextarea
                             id="clinical-info-textarea"
                             value={clinicalInformation}
                             onChange={(e) => setClinicalInformation(e.target.value)}
                             placeholder="Enter diagnosis, presenting symptoms, and relevant clinical findings..."
-                            className="form-textarea w-full rounded-lg border-gray-300 dark:border-white/20 bg-gray-50 dark:bg-black/20 focus:ring-2 focus:ring-primary focus:border-primary placeholder:text-gray-400 dark:placeholder:text-gray-500 text-gray-900 dark:text-white"
                             rows={3}
                         />
                         <div className="mt-4">
@@ -140,12 +140,11 @@ const CentrelinkFormAssist = () => {
                 <motion.section variants={sectionVariants}>
                     <div className="bg-white dark:bg-[#1A1B1E]/85 backdrop-blur-lg border border-gray-200 dark:border-white/10 rounded-2xl p-6 shadow-lg dark:shadow-2xl">
                         <label className="block text-sm font-medium mb-2 text-gray-600 dark:text-gray-300" htmlFor="functional-impact-textarea">Functional Impact</label>
-                        <textarea
+                        <StyledTextarea
                             id="functional-impact-textarea"
                             value={functionalImpact}
                             onChange={(e) => setFunctionalImpact(e.target.value)}
                             placeholder="Describe impact on daily activities, work capacity, etc."
-                            className="form-textarea w-full rounded-lg border-gray-300 dark:border-white/20 bg-gray-50 dark:bg-black/20 focus:ring-2 focus:ring-primary focus:border-primary placeholder:text-gray-400 dark:placeholder:text-gray-500 text-gray-900 dark:text-white"
                             rows={4}
                         />
                         <div className="mt-4">
@@ -168,12 +167,11 @@ const CentrelinkFormAssist = () => {
                 <motion.section variants={sectionVariants}>
                     <div className="bg-white dark:bg-[#1A1B1E]/85 backdrop-blur-lg border border-gray-200 dark:border-white/10 rounded-2xl p-6 shadow-lg dark:shadow-2xl">
                         <label className="block text-sm font-medium mb-2 text-gray-600 dark:text-gray-300" htmlFor="treatment-plan-textarea">Treatment Plan & Prognosis</label>
-                        <textarea
+                        <StyledTextarea
                             id="treatment-plan-textarea"
                             value={treatmentPlan}
                             onChange={(e) => setTreatmentPlan(e.target.value)}
                             placeholder="Outline current treatments, referrals, and expected prognosis..."
-                            className="form-textarea w-full rounded-lg border-gray-300 dark:border-white/20 bg-gray-50 dark:bg-black/20 focus:ring-2 focus:ring-primary focus:border-primary placeholder:text-gray-400 dark:placeholder:text-gray-500 text-gray-900 dark:text-white"
                             rows={3}
                         />
                         <div className="mt-4">

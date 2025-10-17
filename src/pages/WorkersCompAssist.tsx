@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Sparkles, RefreshCw, Loader2, Copy, Check } from 'lucide-react';
 import { cn } from '@/lib/utils';
+import { StyledTextarea } from '@/components/ui/StyledTextarea';
 
 const sectionVariants = {
     hidden: { opacity: 0, y: 20 },
@@ -81,12 +82,11 @@ const WorkersCompAssist = () => {
                 <motion.section variants={sectionVariants}>
                     <div className="bg-white dark:bg-[#1A1B1E]/85 backdrop-blur-lg border border-gray-200 dark:border-white/10 rounded-2xl p-6 shadow-lg dark:shadow-2xl">
                         <label className="block text-sm font-medium mb-2 text-gray-600 dark:text-gray-300" htmlFor="injury-details-textarea">Injury Details & Diagnosis</label>
-                        <textarea
+                        <StyledTextarea
                             id="injury-details-textarea"
                             value={injuryDetails}
                             onChange={(e) => setInjuryDetails(e.target.value)}
                             placeholder="e.g., Right shoulder rotator cuff strain from lifting heavy box on [Date]..."
-                            className="form-textarea w-full rounded-lg border-gray-300 dark:border-white/20 bg-gray-50 dark:bg-black/20 focus:ring-2 focus:ring-primary focus:border-primary placeholder:text-gray-400 dark:placeholder:text-gray-500 text-gray-900 dark:text-white"
                             rows={3}
                         />
                         <div className="mt-4">
@@ -109,12 +109,11 @@ const WorkersCompAssist = () => {
                 <motion.section variants={sectionVariants}>
                     <div className="bg-white dark:bg-[#1A1B1E]/85 backdrop-blur-lg border border-gray-200 dark:border-white/10 rounded-2xl p-6 shadow-lg dark:shadow-2xl">
                         <label className="block text-sm font-medium mb-2 text-gray-600 dark:text-gray-300" htmlFor="work-capacity-textarea">Work Capacity</label>
-                        <textarea
+                        <StyledTextarea
                             id="work-capacity-textarea"
                             value={workCapacity}
                             onChange={(e) => setWorkCapacity(e.target.value)}
                             placeholder="e.g., Fit for suitable duties. Avoid lifting >5kg with right arm. Can perform sedentary tasks..."
-                            className="form-textarea w-full rounded-lg border-gray-300 dark:border-white/20 bg-gray-50 dark:bg-black/20 focus:ring-2 focus:ring-primary focus:border-primary placeholder:text-gray-400 dark:placeholder:text-gray-500 text-gray-900 dark:text-white"
                             rows={4}
                         />
                     </div>
@@ -123,12 +122,11 @@ const WorkersCompAssist = () => {
                 <motion.section variants={sectionVariants}>
                     <div className="bg-white dark:bg-[#1A1B1E]/85 backdrop-blur-lg border border-gray-200 dark:border-white/10 rounded-2xl p-6 shadow-lg dark:shadow-2xl">
                         <label className="block text-sm font-medium mb-2 text-gray-600 dark:text-gray-300" htmlFor="wc-treatment-plan-textarea">Treatment Plan</label>
-                        <textarea
+                        <StyledTextarea
                             id="wc-treatment-plan-textarea"
                             value={treatmentPlan}
                             onChange={(e) => setTreatmentPlan(e.target.value)}
                             placeholder="e.g., Analgesia, physiotherapy referral, review in 2 weeks..."
-                            className="form-textarea w-full rounded-lg border-gray-300 dark:border-white/20 bg-gray-50 dark:bg-black/20 focus:ring-2 focus:ring-primary focus:border-primary placeholder:text-gray-400 dark:placeholder:text-gray-500 text-gray-900 dark:text-white"
                             rows={3}
                         />
                     </div>
