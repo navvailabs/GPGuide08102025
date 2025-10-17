@@ -9,7 +9,9 @@ const suggestedGoals = [
     "Achieve HbA1c ≤7.0% within 6 months",
     "Achieve blood pressure <140/90 mmHg within 3 months",
     "Reduce total cholesterol to <4.0 mmol/L in 6 months",
-    "Achieve 5-10% body weight reduction over 6 months"
+    "Achieve 5-10% body weight reduction over 6 months",
+    "Improve functional mobility and posture within 3 months",
+    "Reduce pain score by 30% within 3 months through physiotherapy"
 ];
 
 const sectionVariants = {
@@ -25,7 +27,7 @@ const GoalsSection = ({ goals, setGoals }: GoalsSectionProps) => {
 
     return (
         <motion.section variants={sectionVariants}>
-            <h3 className="text-2xl font-bold mb-6 text-white">Patient Goals (SMART Goals)</h3>
+            <h3 className="text-2xl font-bold mb-6 text-white">SMART Goals</h3>
             <div className="bg-[#1F2023]/70 backdrop-blur-lg border border-white/10 rounded-2xl p-6 shadow-2xl">
                 <label className="block text-sm font-medium mb-2 text-gray-300" htmlFor="goals-textarea">Enter personalized goals</label>
                 <textarea
@@ -36,16 +38,19 @@ const GoalsSection = ({ goals, setGoals }: GoalsSectionProps) => {
                     placeholder="Describe a specific, measurable, achievable, relevant, and time-bound goal..."
                     rows={5}
                 ></textarea>
-                <div className="mt-4 flex flex-wrap gap-2">
-                    {suggestedGoals.map(goal => (
-                        <button
-                            key={goal}
-                            onClick={() => handleAddShortcut(goal)}
-                            className="text-sm text-left font-medium bg-black/20 hover:bg-black/40 px-3 py-1 rounded-full transition-colors text-gray-300"
-                        >
-                            {goal}
-                        </button>
-                    ))}
+                <div className="mt-4">
+                    <p className="text-xs text-gray-400 mb-2">Suggestions:</p>
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
+                        {suggestedGoals.map(goal => (
+                            <button
+                                key={goal}
+                                onClick={() => handleAddShortcut(goal)}
+                                className="text-sm font-medium bg-black/20 hover:bg-black/40 px-3 py-2 rounded-lg transition-colors text-gray-300 text-left"
+                            >
+                                {goal}
+                            </button>
+                        ))}
+                    </div>
                 </div>
             </div>
         </motion.section>

@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion';
 import { Sparkles, RefreshCw, Loader2 } from 'lucide-react';
 import ConditionsSection from '@/components/care-plan/ConditionsSection';
+import AlliedHealthSection from '@/components/care-plan/AlliedHealthSection';
 import GoalsSection from '@/components/care-plan/GoalsSection';
 import PreviewSection from '@/components/care-plan/PreviewSection';
 import React, { useState } from 'react';
@@ -9,6 +10,8 @@ import axios from 'axios';
 interface GPCarePlanProps {
     conditions: string;
     setConditions: React.Dispatch<React.SetStateAction<string>>;
+    alliedHealth: string;
+    setAlliedHealth: React.Dispatch<React.SetStateAction<string>>;
     goals: string;
     setGoals: React.Dispatch<React.SetStateAction<string>>;
     carePlanHtml: string | null;
@@ -18,6 +21,8 @@ interface GPCarePlanProps {
 const GPCarePlan = ({
     conditions,
     setConditions,
+    alliedHealth,
+    setAlliedHealth,
     goals,
     setGoals,
     carePlanHtml,
@@ -31,6 +36,7 @@ const GPCarePlan = ({
 
         const payload = {
             conditions,
+            alliedHealth,
             goals,
         };
         const webhookUrl = 'https://gpccm.app.n8n.cloud/webhook/Careplan';
@@ -107,6 +113,7 @@ const GPCarePlan = ({
 
     const handleReset = () => {
         setConditions('');
+        setAlliedHealth('');
         setGoals('');
         setCarePlanHtml(null);
     };
@@ -132,6 +139,7 @@ const GPCarePlan = ({
             <div className="space-y-12">
                 <ConditionsSection conditions={conditions} setConditions={setConditions} />
                 <GoalsSection goals={goals} setGoals={setGoals} />
+                <AlliedHealthSection alliedHealth={alliedHealth} setAlliedHealth={setAlliedHealth} />
 
                 <motion.div 
                     variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } }}

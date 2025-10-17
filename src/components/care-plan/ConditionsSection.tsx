@@ -55,16 +55,19 @@ const ConditionsSection = ({ conditions, setConditions }: ConditionsSectionProps
                         />
                     </div>
                 </div>
-                <div className="mt-4 flex flex-wrap gap-2">
-                    {commonConditions.map(c => (
-                        <button
-                            key={c}
-                            onClick={() => handleAddShortcut(c)}
-                            className="text-sm font-medium bg-black/20 hover:bg-black/40 px-3 py-1 rounded-full transition-colors text-gray-300"
-                        >
-                            {c}
-                        </button>
-                    ))}
+                <div className="mt-4">
+                    <p className="text-xs text-gray-400 mb-2">Suggestions:</p>
+                    <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-2">
+                        {commonConditions.map(c => (
+                            <button
+                                key={c}
+                                onClick={() => handleAddShortcut(c)}
+                                className="text-sm font-medium bg-black/20 hover:bg-black/40 px-3 py-2 rounded-lg transition-colors text-gray-300 text-center"
+                            >
+                                {c}
+                            </button>
+                        ))}
+                    </div>
                 </div>
             </div>
         </motion.section>

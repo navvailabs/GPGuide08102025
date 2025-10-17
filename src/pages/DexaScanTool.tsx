@@ -141,13 +141,13 @@ const DexaScanTool = ({ inputs, setInputs, summary, setSummary }: DexaScanToolPr
                 <motion.section variants={sectionVariants}>
                     <div className="bg-[#1F2023]/70 backdrop-blur-lg border border-white/10 rounded-2xl p-6 shadow-2xl">
                         <h3 className="text-xl font-bold mb-4 text-white">Clinical Indications (MBS Criteria)</h3>
-                        <div className="flex flex-wrap gap-2">
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
                             {commonIndications.map(indication => (
                                 <button
                                     key={indication}
                                     onClick={() => handleIndicationToggle(indication)}
                                     className={cn(
-                                        'text-sm font-medium px-3 py-1.5 rounded-full transition-all duration-200 border',
+                                        'text-sm font-medium px-3 py-2 rounded-lg transition-all duration-200 border text-left',
                                         inputs.indications.includes(indication)
                                             ? 'bg-premium-gold/20 border-premium-gold text-premium-gold'
                                             : 'bg-black/20 border-white/10 hover:bg-black/40 text-gray-300'

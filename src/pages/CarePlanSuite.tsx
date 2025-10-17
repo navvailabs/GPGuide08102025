@@ -26,6 +26,7 @@ const CarePlanSuite = () => {
     // State for GPCarePlan
     const [gpConditions, setGpConditions] = useState<string>('');
     const [gpGoals, setGpGoals] = useState<string>('');
+    const [gpAlliedHealth, setGpAlliedHealth] = useState<string>('');
     const [gpCarePlanHtml, setGpCarePlanHtml] = useState<string | null>(null);
 
     // State for MentalHealthCarePlan
@@ -53,6 +54,8 @@ const CarePlanSuite = () => {
                 return <GPCarePlan
                     conditions={gpConditions}
                     setConditions={setGpConditions}
+                    alliedHealth={gpAlliedHealth}
+                    setAlliedHealth={setGpAlliedHealth}
                     goals={gpGoals}
                     setGoals={setGpGoals}
                     carePlanHtml={gpCarePlanHtml}
@@ -91,6 +94,8 @@ const CarePlanSuite = () => {
                 return <GPCarePlan
                     conditions={gpConditions}
                     setConditions={setGpConditions}
+                    alliedHealth={gpAlliedHealth}
+                    setAlliedHealth={setGpAlliedHealth}
                     goals={gpGoals}
                     setGoals={setGpGoals}
                     carePlanHtml={gpCarePlanHtml}
