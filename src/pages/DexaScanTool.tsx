@@ -105,7 +105,7 @@ const DexaScanTool = ({ inputs, setInputs, summary, setSummary }: DexaScanToolPr
 
             <div className="space-y-8">
                 <motion.section variants={sectionVariants}>
-                    <div className="bg-[#1F2023]/70 backdrop-blur-lg border border-white/10 rounded-2xl p-6 shadow-2xl">
+                    <div className="bg-[#1A1B1E]/85 backdrop-blur-lg border border-white/10 rounded-2xl p-6 shadow-2xl">
                         <h3 className="text-xl font-bold mb-4 text-white">Patient Details</h3>
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                             <div>
@@ -139,7 +139,7 @@ const DexaScanTool = ({ inputs, setInputs, summary, setSummary }: DexaScanToolPr
                 </motion.section>
 
                 <motion.section variants={sectionVariants}>
-                    <div className="bg-[#1F2023]/70 backdrop-blur-lg border border-white/10 rounded-2xl p-6 shadow-2xl">
+                    <div className="bg-[#1A1B1E]/85 backdrop-blur-lg border border-white/10 rounded-2xl p-6 shadow-2xl">
                         <h3 className="text-xl font-bold mb-4 text-white">Clinical Indications (MBS Criteria)</h3>
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
                             {commonIndications.map(indication => (
@@ -161,7 +161,7 @@ const DexaScanTool = ({ inputs, setInputs, summary, setSummary }: DexaScanToolPr
                 </motion.section>
 
                 <motion.section variants={sectionVariants}>
-                    <div className="bg-[#1F2023]/70 backdrop-blur-lg border border-white/10 rounded-2xl p-6 shadow-2xl">
+                    <div className="bg-[#1A1B1E]/85 backdrop-blur-lg border border-white/10 rounded-2xl p-6 shadow-2xl">
                         <label className="block text-sm font-medium mb-2 text-gray-300" htmlFor="notes-textarea">Additional Clinical Notes</label>
                         <textarea
                             id="notes-textarea"
@@ -223,7 +223,7 @@ const DexaScanTool = ({ inputs, setInputs, summary, setSummary }: DexaScanToolPr
                                 <span>{isCopied ? 'Copied!' : 'Copy'}</span>
                             </button>
                         </div>
-                        <div className="bg-[#1F2023]/70 backdrop-blur-lg border border-white/10 rounded-2xl p-6 shadow-2xl text-gray-300">
+                        <div className="bg-[#1A1B1E]/85 backdrop-blur-lg border border-white/10 rounded-2xl p-6 shadow-2xl text-gray-300">
                             <p>{summary}</p>
                         </div>
                     </motion.div>

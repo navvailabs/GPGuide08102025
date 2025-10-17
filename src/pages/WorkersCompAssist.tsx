@@ -8,6 +8,15 @@ const sectionVariants = {
     visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: "easeOut" } }
 };
 
+const quickDiagnoses = [
+    "Acute lumbar strain with muscle spasm",
+    "Major depressive disorder, moderate severity",
+    "Rotator cuff tendinopathy",
+    "Acute exacerbation of chronic anxiety disorder",
+    "Post-operative recovery",
+    "Cervical spondylosis with radiculopathy"
+];
+
 const WorkersCompAssist = () => {
     const [injuryDetails, setInjuryDetails] = useState('');
     const [workCapacity, setWorkCapacity] = useState('');
@@ -15,6 +24,13 @@ const WorkersCompAssist = () => {
     const [summary, setSummary] = useState<string | null>(null);
     const [isLoading, setIsLoading] = useState(false);
     const [isCopied, setIsCopied] = useState(false);
+
+    const handleAddDiagnosis = (diagnosisToAdd: string) => {
+        setInjuryDetails(prev => {
+            if (!prev.trim()) return diagnosisToAdd;
+            return `${prev.trim()}\n${diagnosisToAdd}`;
+        });
+    };
 
     const handleGenerateSummary = () => {
         setIsLoading(true);
@@ -63,7 +79,7 @@ const WorkersCompAssist = () => {
 
             <div className="space-y-8">
                 <motion.section variants={sectionVariants}>
-                    <div className="bg-[#1F2023]/70 backdrop-blur-lg border border-white/10 rounded-2xl p-6 shadow-2xl">
+                    <div className="bg-[#1A1B1E]/85 backdrop-blur-lg border border-white/10 rounded-2xl p-6 shadow-2xl">
                         <label className="block text-sm font-medium mb-2 text-gray-300" htmlFor="injury-details-textarea">Injury Details & Diagnosis</label>
                         <textarea
                             id="injury-details-textarea"
@@ -73,11 +89,25 @@ const WorkersCompAssist = () => {
                             className="form-textarea w-full rounded-lg border-white/20 bg-black/20 focus:ring-2 focus:ring-primary focus:border-primary placeholder:text-gray-500 text-white"
                             rows={3}
                         />
+                        <div className="mt-4">
+                            <p className="text-xs text-gray-400 mb-2">Suggestions:</p>
+                            <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
+                                {quickDiagnoses.map(diagnosis => (
+                                    <button
+                                        key={diagnosis}
+                                        onClick={() => handleAddDiagnosis(diagnosis)}
+                                        className="text-sm font-medium bg-black/20 hover:bg-black/40 px-3 py-2 rounded-lg transition-colors text-gray-300 text-left"
+                                    >
+                                        {diagnosis}
+                                    </button>
+                                ))}
+                            </div>
+                        </div>
                     </div>
                 </motion.section>
 
                 <motion.section variants={sectionVariants}>
-                    <div className="bg-[#1F2023]/70 backdrop-blur-lg border border-white/10 rounded-2xl p-6 shadow-2xl">
+                    <div className="bg-[#1A1B1E]/85 backdrop-blur-lg border border-white/10 rounded-2xl p-6 shadow-2xl">
                         <label className="block text-sm font-medium mb-2 text-gray-300" htmlFor="work-capacity-textarea">Work Capacity</label>
                         <textarea
                             id="work-capacity-textarea"
@@ -91,7 +121,7 @@ const WorkersCompAssist = () => {
                 </motion.section>
 
                 <motion.section variants={sectionVariants}>
-                    <div className="bg-[#1F2023]/70 backdrop-blur-lg border border-white/10 rounded-2xl p-6 shadow-2xl">
+                    <div className="bg-[#1A1B1E]/85 backdrop-blur-lg border border-white/10 rounded-2xl p-6 shadow-2xl">
                         <label className="block text-sm font-medium mb-2 text-gray-300" htmlFor="wc-treatment-plan-textarea">Treatment Plan</label>
                         <textarea
                             id="wc-treatment-plan-textarea"
@@ -135,7 +165,7 @@ const WorkersCompAssist = () => {
                                 <span>{isCopied ? 'Copied!' : 'Copy'}</span>
                             </button>
                         </div>
-                        <div className="bg-[#1F2023]/70 backdrop-blur-lg border border-white/10 rounded-2xl p-6 shadow-2xl text-gray-300">
+                        <div className="bg-[#1A1B1E]/85 backdrop-blur-lg border border-white/10 rounded-2xl p-6 shadow-2xl text-gray-300">
                             <p>{summary}</p>
                         </div>
                     </motion.div>

@@ -60,7 +60,7 @@ const MentalHealthCarePlan = ({
 
             <div className="space-y-8">
                 <motion.section variants={sectionVariants}>
-                    <div className="bg-[#1F2023]/70 backdrop-blur-lg border border-white/10 rounded-2xl p-6 shadow-2xl">
+                    <div className="bg-[#1A1B1E]/85 backdrop-blur-lg border border-white/10 rounded-2xl p-6 shadow-2xl">
                         <label className="block text-sm font-medium mb-2 text-gray-300" htmlFor="mh-presentation">Patient Presentation</label>
                         <textarea
                             id="mh-presentation"
@@ -74,7 +74,7 @@ const MentalHealthCarePlan = ({
                 </motion.section>
 
                 <motion.section variants={sectionVariants}>
-                    <div className="bg-[#1F2023]/70 backdrop-blur-lg border border-white/10 rounded-2xl p-6 shadow-2xl">
+                    <div className="bg-[#1A1B1E]/85 backdrop-blur-lg border border-white/10 rounded-2xl p-6 shadow-2xl">
                         <label className="block text-sm font-medium mb-2 text-gray-300" htmlFor="mh-history">Relevant History</label>
                         <textarea
                             id="mh-history"
@@ -88,7 +88,7 @@ const MentalHealthCarePlan = ({
                 </motion.section>
 
                 <motion.section variants={sectionVariants}>
-                    <div className="bg-[#1F2023]/70 backdrop-blur-lg border border-white/10 rounded-2xl p-6 shadow-2xl">
+                    <div className="bg-[#1A1B1E]/85 backdrop-blur-lg border border-white/10 rounded-2xl p-6 shadow-2xl">
                         <label className="block text-sm font-medium mb-2 text-gray-300" htmlFor="mh-goals">Management Goals</label>
                         <textarea
                             id="mh-goals"
@@ -129,7 +129,7 @@ const MentalHealthCarePlan = ({
                     className="border-t border-white/10 pt-8 mt-12"
                 >
                     <h3 className="text-2xl font-bold mb-6 text-white">Generated Plan Preview</h3>
-                    <div className="bg-[#1F2023]/70 backdrop-blur-lg border border-white/10 rounded-2xl p-6 shadow-2xl text-gray-300 space-y-4">
+                    <div className="bg-[#1A1B1E]/85 backdrop-blur-lg border border-white/10 rounded-2xl p-6 shadow-2xl text-gray-300 space-y-4">
                         <p>A preview for the Mental Health Care Plan will be shown here once implemented.</p>
                         <div><strong className="text-white">Presentation:</strong> {presentation || 'N/A'}</div>
                         <div><strong className="text-white">History:</strong> {history || 'N/A'}</div>

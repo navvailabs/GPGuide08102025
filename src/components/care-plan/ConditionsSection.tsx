@@ -42,7 +42,7 @@ const ConditionsSection = ({ conditions, setConditions }: ConditionsSectionProps
     return (
         <motion.section variants={sectionVariants}>
             <h3 className="text-2xl font-bold mb-6 text-white">Current Conditions</h3>
-            <div className="bg-[#1F2023]/70 backdrop-blur-lg border border-white/10 rounded-2xl p-6 shadow-2xl">
+            <div className="bg-[#1A1B1E]/85 backdrop-blur-lg border border-white/10 rounded-2xl p-6 shadow-2xl">
                 <div className="grid grid-cols-1 gap-4 items-end">
                     <div>
                         <label className="block text-sm font-medium mb-2 text-gray-300" htmlFor="conditions-input">Enter chronic conditions</label>

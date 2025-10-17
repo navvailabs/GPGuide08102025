@@ -146,7 +146,7 @@ const MEDDAssistTool = ({ medicationInput, setMedicationInput, result, setResult
 
             <div className="space-y-8">
                 <motion.section variants={sectionVariants}>
-                    <div className="bg-[#1F2023]/70 backdrop-blur-lg border border-white/10 rounded-2xl p-6 shadow-2xl">
+                    <div className="bg-[#1A1B1E]/85 backdrop-blur-lg border border-white/10 rounded-2xl p-6 shadow-2xl">
                         <label className="block text-sm font-medium mb-2 text-gray-300" htmlFor="medication-input">Opioid Medications & Doses</label>
                         <textarea
                             id="medication-input"
@@ -190,7 +190,7 @@ const MEDDAssistTool = ({ medicationInput, setMedicationInput, result, setResult
                                 <span>{isCopied ? 'Copied!' : 'Copy'}</span>
                             </button>
                         </div>
-                        <div className="bg-[#1F2023]/70 backdrop-blur-lg border border-white/10 rounded-2xl p-6 shadow-2xl space-y-6">
+                        <div className="bg-[#1A1B1E]/85 backdrop-blur-lg border border-white/10 rounded-2xl p-6 shadow-2xl space-y-6">
                             <div className="text-center">
                                 <p className="text-sm text-gray-400">Total MEDD</p>
                                 <p className={`text-5xl font-bold ${getRiskLevel(result.totalMEDD).color}`}>{result.totalMEDD.toFixed(1)} <span className="text-2xl font-medium">mg</span></p>

@@ -139,7 +139,7 @@
   }
 
   .care-plan-container {
-    @apply bg-[#1F2023]/70 backdrop-blur-lg border border-white/10 rounded-2xl p-6 md:p-8 shadow-2xl space-y-8 overflow-x-auto;
+    @apply bg-[#1A1B1E]/85 backdrop-blur-lg border border-white/10 rounded-2xl p-6 md:p-8 shadow-2xl space-y-8 overflow-x-auto;
     color: #e8f3f5; /* Base text color for inheritance */
   }
 
