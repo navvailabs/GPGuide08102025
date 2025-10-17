@@ -8,6 +8,32 @@ const sectionVariants = {
     visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: "easeOut" } }
 };
 
+const quickDiagnoses = [
+    "Acute lumbar strain with muscle spasm",
+    "Major depressive disorder, moderate severity",
+    "Rotator cuff tendinopathy",
+    "Acute exacerbation of chronic anxiety disorder",
+    "Post-operative recovery",
+    "Cervical spondylosis with radiculopathy"
+];
+
+const quickFunctionalImpacts = [
+    "Cannot sit >20 mins, standing limited to 15 mins, unable to lift >5kg, driving difficult",
+    "Poor concentration, social withdrawal, unable to manage work deadlines, sleep disturbance",
+    "Unable to reach overhead, difficulty with keyboard use, pain limits sustained tasks",
+    "Panic attacks in workplace, avoidance of public spaces, difficulty leaving home",
+    "Post-surgical pain, wound healing restrictions, no heavy lifting for 6 weeks",
+    "Severe fatigue limiting daily activities to <4 hours, frequent rest required"
+];
+
+const quickTreatments = [
+    "Currently: NSAIDs, heat therapy. Planned: Physio 2x/week. Expected recovery: 3-4 weeks",
+    "Currently: Rest, modified duties. Planned: Exercise physiology. Expected: 6-8 weeks recovery",
+    "Currently: CBT weekly. Crisis plan in place. Review 2 weeks",
+    "Post-op Day 5, wound care, analgesia. RTW 4-6 weeks",
+    "Supportive care, rest, fluids. Expected resolution 7-10 days"
+];
+
 const CentrelinkFormAssist = () => {
     const [diagnosis, setDiagnosis] = useState('');
     const [functionalImpact, setFunctionalImpact] = useState('');
@@ -15,6 +41,27 @@ const CentrelinkFormAssist = () => {
     const [summary, setSummary] = useState<string | null>(null);
     const [isLoading, setIsLoading] = useState(false);
     const [isCopied, setIsCopied] = useState(false);
+
+    const handleAddDiagnosis = (diagnosisToAdd: string) => {
+        setDiagnosis(prev => {
+            if (!prev.trim()) return diagnosisToAdd;
+            return `${prev.trim()}\n${diagnosisToAdd}`;
+        });
+    };
+
+    const handleAddFunctionalImpact = (impactToAdd: string) => {
+        setFunctionalImpact(prev => {
+            if (!prev.trim()) return impactToAdd;
+            return `${prev.trim()}\n${impactToAdd}`;
+        });
+    };
+
+    const handleAddTreatment = (treatmentToAdd: string) => {
+        setTreatmentPlan(prev => {
+            if (!prev.trim()) return treatmentToAdd;
+            return `${prev.trim()}\n${treatmentToAdd}`;
+        });
+    };
 
     const handleGenerateSummary = () => {
         setIsLoading(true);
@@ -73,6 +120,20 @@ const CentrelinkFormAssist = () => {
                             className="form-textarea w-full rounded-lg border-white/20 bg-black/20 focus:ring-2 focus:ring-primary focus:border-primary placeholder:text-gray-500 text-white"
                             rows={2}
                         />
+                        <div className="mt-4">
+                            <p className="text-xs text-gray-400 mb-2">Suggestions:</p>
+                            <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
+                                {quickDiagnoses.map(diag => (
+                                    <button
+                                        key={diag}
+                                        onClick={() => handleAddDiagnosis(diag)}
+                                        className="text-sm font-medium bg-black/20 hover:bg-black/40 px-3 py-2 rounded-lg transition-colors text-gray-300 text-left"
+                                    >
+                                        {diag}
+                                    </button>
+                                ))}
+                            </div>
+                        </div>
                     </div>
                 </motion.section>
 
@@ -87,6 +148,20 @@ const CentrelinkFormAssist = () => {
                             className="form-textarea w-full rounded-lg border-white/20 bg-black/20 focus:ring-2 focus:ring-primary focus:border-primary placeholder:text-gray-500 text-white"
                             rows={4}
                         />
+                        <div className="mt-4">
+                            <p className="text-xs text-gray-400 mb-2">Suggestions:</p>
+                            <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
+                                {quickFunctionalImpacts.map(impact => (
+                                    <button
+                                        key={impact}
+                                        onClick={() => handleAddFunctionalImpact(impact)}
+                                        className="text-sm font-medium bg-black/20 hover:bg-black/40 px-3 py-2 rounded-lg transition-colors text-gray-300 text-left"
+                                    >
+                                        {impact}
+                                    </button>
+                                ))}
+                            </div>
+                        </div>
                     </div>
                 </motion.section>
 
@@ -101,6 +176,20 @@ const CentrelinkFormAssist = () => {
                             className="form-textarea w-full rounded-lg border-white/20 bg-black/20 focus:ring-2 focus:ring-primary focus:border-primary placeholder:text-gray-500 text-white"
                             rows={3}
                         />
+                        <div className="mt-4">
+                            <p className="text-xs text-gray-400 mb-2">Suggestions:</p>
+                            <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
+                                {quickTreatments.map(treatment => (
+                                    <button
+                                        key={treatment}
+                                        onClick={() => handleAddTreatment(treatment)}
+                                        className="text-sm font-medium bg-black/20 hover:bg-black/40 px-3 py-2 rounded-lg transition-colors text-gray-300 text-left"
+                                    >
+                                        {treatment}
+                                    </button>
+                                ))}
+                            </div>
+                        </div>
                     </div>
                 </motion.section>
 
