@@ -18,7 +18,7 @@ const CarePlanLayout = ({ children, activeView, setActiveView }: CarePlanLayoutP
     const [isMobileSidebarOpen, setIsMobileSidebarOpen] = useState(false);
 
     return (
-        <div className="font-display text-foreground-dark bg-transparent min-h-screen">
+        <div className="font-display text-gray-800 dark:text-foreground-dark min-h-screen">
             <RadialGradientBackground />
             <div className="relative flex min-h-screen">
                 <Sidebar
@@ -58,11 +58,11 @@ const CarePlanLayout = ({ children, activeView, setActiveView }: CarePlanLayoutP
                             e.stopPropagation(); // Prevent the main content click handler from firing
                             setIsDesktopSidebarCollapsed(!isDesktopSidebarCollapsed);
                         }} 
-                        className="w-7 h-7 rounded-full bg-black/50 backdrop-blur-md border border-white/20 flex items-center justify-center text-white hover:bg-black/70 fixed top-5 z-40"
+                        className="w-7 h-7 rounded-full bg-gray-200/80 dark:bg-black/50 backdrop-blur-md border border-gray-300 dark:border-white/20 flex items-center justify-center text-gray-800 dark:text-white hover:bg-gray-300 dark:hover:bg-black/70 fixed top-5 z-40"
                         aria-label={isDesktopSidebarCollapsed ? 'Expand sidebar' : 'Collapse sidebar'}
                         initial={false}
                         animate={{ left: isDesktopSidebarCollapsed ? '4.125rem' : '19.125rem' }}
-                        whileHover={{ scale: 1.15, backgroundColor: 'rgba(0,0,0,0.7)' }}
+                        whileHover={{ scale: 1.15 }}
                         whileTap={{ scale: 0.95 }}
                         transition={{ type: 'spring', stiffness: 400, damping: 25 }}
                     >

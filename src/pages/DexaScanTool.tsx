@@ -99,36 +99,36 @@ const DexaScanTool = ({ inputs, setInputs, summary, setSummary }: DexaScanToolPr
                 variants={sectionVariants}
                 className="mb-10 text-center"
             >
-                <h2 className="text-3xl md:text-4xl font-bold tracking-tight text-white">DEXA Scan Referral Summary</h2>
-                <p className="mt-3 text-base text-gray-400">Generate a concise summary for DEXA scan referrals based on Australian guidelines.</p>
+                <h2 className="text-3xl md:text-4xl font-bold tracking-tight text-gray-900 dark:text-white">DEXA Scan Referral Summary</h2>
+                <p className="mt-3 text-base text-gray-500 dark:text-gray-400">Generate a concise summary for DEXA scan referrals based on Australian guidelines.</p>
             </motion.div>
 
             <div className="space-y-8">
                 <motion.section variants={sectionVariants}>
-                    <div className="bg-[#1F2023]/70 backdrop-blur-lg border border-white/10 rounded-2xl p-6 shadow-2xl">
-                        <h3 className="text-xl font-bold mb-4 text-white">Patient Details</h3>
+                    <div className="bg-white dark:bg-[#1A1B1E]/85 backdrop-blur-lg border border-gray-200 dark:border-white/10 rounded-2xl p-6 shadow-lg dark:shadow-2xl">
+                        <h3 className="text-xl font-bold mb-4 text-gray-900 dark:text-white">Patient Details</h3>
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                             <div>
-                                <label className="block text-sm font-medium mb-2 text-gray-300" htmlFor="age-input">Patient Age</label>
+                                <label className="block text-sm font-medium mb-2 text-gray-600 dark:text-gray-300" htmlFor="age-input">Patient Age</label>
                                 <input
                                     id="age-input"
                                     type="number"
                                     value={inputs.age}
                                     onChange={(e) => setInputs(prev => ({...prev, age: e.target.value}))}
                                     placeholder="e.g., 72"
-                                    className="form-input w-full rounded-lg border-white/20 bg-black/20 focus:ring-2 focus:ring-primary focus:border-primary placeholder:text-gray-500 text-white"
+                                    className="form-input w-full rounded-lg border-gray-300 dark:border-white/20 bg-gray-50 dark:bg-black/20 focus:ring-2 focus:ring-primary focus:border-primary placeholder:text-gray-400 dark:placeholder:text-gray-500 text-gray-900 dark:text-white"
                                 />
                             </div>
                             <div>
-                                <label className="block text-sm font-medium mb-2 text-gray-300">Patient Gender</label>
-                                <div className="flex gap-2 bg-black/20 p-1 rounded-lg">
+                                <label className="block text-sm font-medium mb-2 text-gray-600 dark:text-gray-300">Patient Gender</label>
+                                <div className="flex gap-2 bg-gray-100 dark:bg-black/20 p-1 rounded-lg">
                                     {(['Female', 'Male', 'Other'] as const).map(gender => (
                                         <button
                                             key={gender}
                                             onClick={() => setInputs(prev => ({...prev, gender}))}
                                             className={cn(
                                                 'flex-1 px-3 py-1.5 text-sm font-medium rounded-md transition-colors',
-                                                inputs.gender === gender ? 'bg-white text-black' : 'text-gray-300 hover:bg-white/10'
+                                                inputs.gender === gender ? 'bg-white dark:bg-black text-black dark:text-white' : 'text-gray-600 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-white/10'
                                             )}
                                         >{gender}</button>
                                     ))}
@@ -139,8 +139,8 @@ const DexaScanTool = ({ inputs, setInputs, summary, setSummary }: DexaScanToolPr
                 </motion.section>
 
                 <motion.section variants={sectionVariants}>
-                    <div className="bg-[#1F2023]/70 backdrop-blur-lg border border-white/10 rounded-2xl p-6 shadow-2xl">
-                        <h3 className="text-xl font-bold mb-4 text-white">Clinical Indications (MBS Criteria)</h3>
+                    <div className="bg-white dark:bg-[#1A1B1E]/85 backdrop-blur-lg border border-gray-200 dark:border-white/10 rounded-2xl p-6 shadow-lg dark:shadow-2xl">
+                        <h3 className="text-xl font-bold mb-4 text-gray-900 dark:text-white">Clinical Indications (MBS Criteria)</h3>
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
                             {commonIndications.map(indication => (
                                 <button
@@ -149,8 +149,8 @@ const DexaScanTool = ({ inputs, setInputs, summary, setSummary }: DexaScanToolPr
                                     className={cn(
                                         'text-sm font-medium px-3 py-2 rounded-lg transition-all duration-200 border text-left',
                                         inputs.indications.includes(indication)
-                                            ? 'bg-premium-gold/20 border-premium-gold text-premium-gold'
-                                            : 'bg-black/20 border-white/10 hover:bg-black/40 text-gray-300'
+                                            ? 'bg-premium-gold/10 dark:bg-premium-gold/20 border-premium-gold text-premium-gold'
+                                            : 'bg-gray-100 dark:bg-black/20 border-gray-200 dark:border-white/10 hover:bg-gray-200 dark:hover:bg-black/40 text-gray-700 dark:text-gray-300'
                                     )}
                                 >
                                     {indication}
@@ -161,13 +161,13 @@ const DexaScanTool = ({ inputs, setInputs, summary, setSummary }: DexaScanToolPr
                 </motion.section>
 
                 <motion.section variants={sectionVariants}>
-                    <div className="bg-[#1F2023]/70 backdrop-blur-lg border border-white/10 rounded-2xl p-6 shadow-2xl">
-                        <label className="block text-sm font-medium mb-2 text-gray-300" htmlFor="notes-textarea">Additional Clinical Notes</label>
+                    <div className="bg-white dark:bg-[#1A1B1E]/85 backdrop-blur-lg border border-gray-200 dark:border-white/10 rounded-2xl p-6 shadow-lg dark:shadow-2xl">
+                        <label className="block text-sm font-medium mb-2 text-gray-600 dark:text-gray-300" htmlFor="notes-textarea">Additional Clinical Notes</label>
                         <textarea
                             id="notes-textarea"
                             value={inputs.notes}
                             onChange={(e) => setInputs(prev => ({...prev, notes: e.target.value}))}
-                            className="form-textarea w-full rounded-lg border-white/20 bg-black/20 focus:ring-2 focus:ring-primary focus:border-primary placeholder:text-gray-500 text-white"
+                            className="form-textarea w-full rounded-lg border-gray-300 dark:border-white/20 bg-gray-50 dark:bg-black/20 focus:ring-2 focus:ring-primary focus:border-primary placeholder:text-gray-400 dark:placeholder:text-gray-500 text-gray-900 dark:text-white"
                             placeholder="Add any other relevant details..."
                             rows={3}
                         ></textarea>
@@ -181,7 +181,7 @@ const DexaScanTool = ({ inputs, setInputs, summary, setSummary }: DexaScanToolPr
                     <button
                         onClick={handleGenerateSummary}
                         disabled={isLoading || !inputs.age}
-                        className="w-full sm:w-auto flex items-center justify-center gap-2 h-12 px-6 bg-white text-black font-bold rounded-lg shadow-lg hover:bg-opacity-90 transition-all transform hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed disabled:scale-100"
+                        className="w-full sm:w-auto flex items-center justify-center gap-2 h-12 px-6 bg-gray-900 dark:bg-white text-white dark:text-black font-bold rounded-lg shadow-lg hover:bg-opacity-90 transition-all transform hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed disabled:scale-100"
                     >
                         {isLoading ? (
                             <>
@@ -198,7 +198,7 @@ const DexaScanTool = ({ inputs, setInputs, summary, setSummary }: DexaScanToolPr
                     <button
                         onClick={handleReset}
                         disabled={isLoading}
-                        className="w-full sm:w-auto flex items-center justify-center gap-2 h-12 px-6 bg-white/10 hover:bg-white/20 text-white font-semibold rounded-lg transition-colors disabled:opacity-70 disabled:cursor-not-allowed"
+                        className="w-full sm:w-auto flex items-center justify-center gap-2 h-12 px-6 bg-gray-100 dark:bg-white/10 hover:bg-gray-200 dark:hover:bg-white/20 text-gray-800 dark:text-white font-semibold rounded-lg transition-colors disabled:opacity-70 disabled:cursor-not-allowed"
                     >
                         <RefreshCw className="h-5 w-5" />
                         Reset
@@ -208,14 +208,14 @@ const DexaScanTool = ({ inputs, setInputs, summary, setSummary }: DexaScanToolPr
                 {summary && (
                     <motion.div 
                         variants={sectionVariants} 
-                        className="border-t border-white/10 pt-8 mt-12"
+                        className="border-t border-gray-200 dark:border-white/10 pt-8 mt-12"
                     >
                         <div className="flex justify-between items-center mb-4">
-                            <h3 className="text-2xl font-bold text-white">Generated Summary</h3>
+                            <h3 className="text-2xl font-bold text-gray-900 dark:text-white">Generated Summary</h3>
                             <button
                                 onClick={handleCopy}
                                 className={cn(
-                                    'flex items-center justify-center gap-2 h-9 px-3 bg-black/20 hover:bg-black/40 font-semibold rounded-lg transition-all text-gray-300 text-sm',
+                                    'flex items-center justify-center gap-2 h-9 px-3 bg-gray-100 dark:bg-black/20 hover:bg-gray-200 dark:hover:bg-black/40 font-semibold rounded-lg transition-all text-gray-700 dark:text-gray-300 text-sm',
                                     isCopied && 'text-success-green'
                                 )}
                             >
@@ -223,7 +223,7 @@ const DexaScanTool = ({ inputs, setInputs, summary, setSummary }: DexaScanToolPr
                                 <span>{isCopied ? 'Copied!' : 'Copy'}</span>
                             </button>
                         </div>
-                        <div className="bg-[#1F2023]/70 backdrop-blur-lg border border-white/10 rounded-2xl p-6 shadow-2xl text-gray-300">
+                        <div className="bg-white dark:bg-[#1A1B1E]/85 backdrop-blur-lg border border-gray-200 dark:border-white/10 rounded-2xl p-6 shadow-lg dark:shadow-2xl text-gray-600 dark:text-gray-300">
                             <p>{summary}</p>
                         </div>
                     </motion.div>

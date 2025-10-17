@@ -132,8 +132,8 @@ const GPCarePlan = ({
                 variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } }}
                 className="mb-10 text-center"
             >
-                <h2 className="text-3xl md:text-4xl font-bold tracking-tight text-white">GP Chronic Condition Management Plan</h2>
-                <p className="mt-3 text-base text-gray-400">Based on content from Australian clinical guidelines</p>
+                <h2 className="text-3xl md:text-4xl font-bold tracking-tight text-gray-900 dark:text-white">GP Chronic Condition Management Plan</h2>
+                <p className="mt-3 text-base text-gray-500 dark:text-gray-400">Based on content from Australian clinical guidelines</p>
             </motion.div>
 
             <div className="space-y-12">
@@ -148,7 +148,7 @@ const GPCarePlan = ({
                     <button
                         onClick={handleGeneratePreview}
                         disabled={isLoading || !conditions.trim() || !goals.trim()}
-                        className="w-full sm:w-auto flex items-center justify-center gap-2 h-12 px-6 bg-white text-black font-bold rounded-lg shadow-lg hover:bg-opacity-90 transition-all transform hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed disabled:scale-100"
+                        className="w-full sm:w-auto flex items-center justify-center gap-2 h-12 px-6 bg-gray-900 dark:bg-white text-white dark:text-black font-bold rounded-lg shadow-lg hover:bg-opacity-90 transition-all transform hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed disabled:scale-100"
                     >
                         {isLoading ? (
                             <>
@@ -165,7 +165,7 @@ const GPCarePlan = ({
                     <button
                         onClick={handleReset}
                         disabled={isLoading}
-                        className="w-full sm:w-auto flex items-center justify-center gap-2 h-12 px-6 bg-white/10 hover:bg-white/20 text-white font-semibold rounded-lg transition-colors disabled:opacity-70 disabled:cursor-not-allowed"
+                        className="w-full sm:w-auto flex items-center justify-center gap-2 h-12 px-6 bg-gray-100 dark:bg-white/10 hover:bg-gray-200 dark:hover:bg-white/20 text-gray-800 dark:text-white font-semibold rounded-lg transition-colors disabled:opacity-70 disabled:cursor-not-allowed"
                     >
                         <RefreshCw className="h-5 w-5" />
                         Reset

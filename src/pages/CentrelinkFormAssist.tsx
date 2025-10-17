@@ -8,21 +8,68 @@ const sectionVariants = {
     visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: "easeOut" } }
 };
 
+const quickClinicalInfo = [
+    "Acute lumbar strain with muscle spasm",
+    "Major depressive disorder, moderate severity",
+    "Rotator cuff tendinopathy",
+    "Acute exacerbation of chronic anxiety disorder",
+    "Post-operative recovery",
+    "Cervical spondylosis with radiculopathy"
+];
+
+const quickFunctionalImpacts = [
+    "Cannot sit >20 mins, standing limited to 15 mins, unable to lift >5kg, driving difficult",
+    "Poor concentration, social withdrawal, unable to manage work deadlines, sleep disturbance",
+    "Unable to reach overhead, difficulty with keyboard use, pain limits sustained tasks",
+    "Panic attacks in workplace, avoidance of public spaces, difficulty leaving home",
+    "Post-surgical pain, wound healing restrictions, no heavy lifting for 6 weeks",
+    "Severe fatigue limiting daily activities to <4 hours, frequent rest required"
+];
+
+const quickTreatments = [
+    "Currently: NSAIDs, heat therapy. Planned: Physio 2x/week. Expected recovery: 3-4 weeks",
+    "Currently: Rest, modified duties. Planned: Exercise physiology. Expected: 6-8 weeks recovery",
+    "Currently: CBT weekly. Crisis plan in place. Review 2 weeks",
+    "Post-op Day 5, wound care, analgesia. RTW 4-6 weeks",
+    "Supportive care, rest, fluids. Expected resolution 7-10 days"
+];
+
 const CentrelinkFormAssist = () => {
-    const [diagnosis, setDiagnosis] = useState('');
+    const [clinicalInformation, setClinicalInformation] = useState('');
     const [functionalImpact, setFunctionalImpact] = useState('');
     const [treatmentPlan, setTreatmentPlan] = useState('');
     const [summary, setSummary] = useState<string | null>(null);
     const [isLoading, setIsLoading] = useState(false);
     const [isCopied, setIsCopied] = useState(false);
 
+    const handleAddClinicalInfo = (infoToAdd: string) => {
+        setClinicalInformation(prev => {
+            if (!prev.trim()) return infoToAdd;
+            return `${prev.trim()}\n${infoToAdd}`;
+        });
+    };
+
+    const handleAddFunctionalImpact = (impactToAdd: string) => {
+        setFunctionalImpact(prev => {
+            if (!prev.trim()) return impactToAdd;
+            return `${prev.trim()}\n${impactToAdd}`;
+        });
+    };
+
+    const handleAddTreatment = (treatmentToAdd: string) => {
+        setTreatmentPlan(prev => {
+            if (!prev.trim()) return treatmentToAdd;
+            return `${prev.trim()}\n${treatmentToAdd}`;
+        });
+    };
+
     const handleGenerateSummary = () => {
         setIsLoading(true);
         setSummary(null);
 
         setTimeout(() => {
-            let summaryText = `This patient is diagnosed with ${diagnosis || '[Diagnosis]'}. `;
-            summaryText += `Functionally, this impacts them by: ${functionalImpact || '[Functional Impact]'}. `;
+            let summaryText = `Clinical information: ${clinicalInformation || '[Clinical Information]'}. `;
+            summaryText += `Functionally, this impacts the patient by: ${functionalImpact || '[Functional Impact]'}. `;
             summaryText += `The current treatment plan includes: ${treatmentPlan || '[Treatment Plan]'}. `;
             summaryText += `This information is provided to assist with their Centrelink claim (SU415).`;
             
@@ -32,7 +79,7 @@ const CentrelinkFormAssist = () => {
     };
 
     const handleReset = () => {
-        setDiagnosis('');
+        setClinicalInformation('');
         setFunctionalImpact('');
         setTreatmentPlan('');
         setSummary(null);
@@ -57,58 +104,100 @@ const CentrelinkFormAssist = () => {
             className="max-w-4xl mx-auto"
         >
             <motion.div variants={sectionVariants} className="mb-10 text-center">
-                <h2 className="text-3xl md:text-4xl font-bold tracking-tight text-white">Centrelink SU415 Form Assist</h2>
-                <p className="mt-3 text-base text-gray-400">Generate key statements for the Centrelink Medical Certificate (SU415).</p>
+                <h2 className="text-3xl md:text-4xl font-bold tracking-tight text-gray-900 dark:text-white">Centrelink SU415 Form Assist</h2>
+                <p className="mt-3 text-base text-gray-500 dark:text-gray-400">Generate key statements for the Centrelink Medical Certificate (SU415).</p>
             </motion.div>
 
             <div className="space-y-8">
                 <motion.section variants={sectionVariants}>
-                    <div className="bg-[#1F2023]/70 backdrop-blur-lg border border-white/10 rounded-2xl p-6 shadow-2xl">
-                        <label className="block text-sm font-medium mb-2 text-gray-300" htmlFor="diagnosis-textarea">Diagnosis</label>
+                    <div className="bg-white dark:bg-[#1A1B1E]/85 backdrop-blur-lg border border-gray-200 dark:border-white/10 rounded-2xl p-6 shadow-lg dark:shadow-2xl">
+                        <label className="block text-sm font-medium mb-2 text-gray-600 dark:text-gray-300" htmlFor="clinical-info-textarea">Clinical information</label>
                         <textarea
-                            id="diagnosis-textarea"
-                            value={diagnosis}
-                            onChange={(e) => setDiagnosis(e.target.value)}
-                            placeholder="List all relevant diagnoses..."
-                            className="form-textarea w-full rounded-lg border-white/20 bg-black/20 focus:ring-2 focus:ring-primary focus:border-primary placeholder:text-gray-500 text-white"
-                            rows={2}
+                            id="clinical-info-textarea"
+                            value={clinicalInformation}
+                            onChange={(e) => setClinicalInformation(e.target.value)}
+                            placeholder="Enter diagnosis, presenting symptoms, and relevant clinical findings..."
+                            className="form-textarea w-full rounded-lg border-gray-300 dark:border-white/20 bg-gray-50 dark:bg-black/20 focus:ring-2 focus:ring-primary focus:border-primary placeholder:text-gray-400 dark:placeholder:text-gray-500 text-gray-900 dark:text-white"
+                            rows={3}
                         />
+                        <div className="mt-4">
+                            <p className="text-xs text-gray-500 dark:text-gray-400 mb-2">Suggestions:</p>
+                            <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
+                                {quickClinicalInfo.map(info => (
+                                    <button
+                                        key={info}
+                                        onClick={() => handleAddClinicalInfo(info)}
+                                        className="text-sm font-medium bg-gray-100 dark:bg-black/20 hover:bg-gray-200 dark:hover:bg-black/40 px-3 py-2 rounded-lg transition-colors text-gray-700 dark:text-gray-300 text-left"
+                                    >
+                                        {info}
+                                    </button>
+                                ))}
+                            </div>
+                        </div>
                     </div>
                 </motion.section>
 
                 <motion.section variants={sectionVariants}>
-                    <div className="bg-[#1F2023]/70 backdrop-blur-lg border border-white/10 rounded-2xl p-6 shadow-2xl">
-                        <label className="block text-sm font-medium mb-2 text-gray-300" htmlFor="functional-impact-textarea">Functional Impact</label>
+                    <div className="bg-white dark:bg-[#1A1B1E]/85 backdrop-blur-lg border border-gray-200 dark:border-white/10 rounded-2xl p-6 shadow-lg dark:shadow-2xl">
+                        <label className="block text-sm font-medium mb-2 text-gray-600 dark:text-gray-300" htmlFor="functional-impact-textarea">Functional Impact</label>
                         <textarea
                             id="functional-impact-textarea"
                             value={functionalImpact}
                             onChange={(e) => setFunctionalImpact(e.target.value)}
                             placeholder="Describe impact on daily activities, work capacity, etc."
-                            className="form-textarea w-full rounded-lg border-white/20 bg-black/20 focus:ring-2 focus:ring-primary focus:border-primary placeholder:text-gray-500 text-white"
+                            className="form-textarea w-full rounded-lg border-gray-300 dark:border-white/20 bg-gray-50 dark:bg-black/20 focus:ring-2 focus:ring-primary focus:border-primary placeholder:text-gray-400 dark:placeholder:text-gray-500 text-gray-900 dark:text-white"
                             rows={4}
                         />
+                        <div className="mt-4">
+                            <p className="text-xs text-gray-500 dark:text-gray-400 mb-2">Suggestions:</p>
+                            <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
+                                {quickFunctionalImpacts.map(impact => (
+                                    <button
+                                        key={impact}
+                                        onClick={() => handleAddFunctionalImpact(impact)}
+                                        className="text-sm font-medium bg-gray-100 dark:bg-black/20 hover:bg-gray-200 dark:hover:bg-black/40 px-3 py-2 rounded-lg transition-colors text-gray-700 dark:text-gray-300 text-left"
+                                    >
+                                        {impact}
+                                    </button>
+                                ))}
+                            </div>
+                        </div>
                     </div>
                 </motion.section>
 
                 <motion.section variants={sectionVariants}>
-                    <div className="bg-[#1F2023]/70 backdrop-blur-lg border border-white/10 rounded-2xl p-6 shadow-2xl">
-                        <label className="block text-sm font-medium mb-2 text-gray-300" htmlFor="treatment-plan-textarea">Treatment Plan & Prognosis</label>
+                    <div className="bg-white dark:bg-[#1A1B1E]/85 backdrop-blur-lg border border-gray-200 dark:border-white/10 rounded-2xl p-6 shadow-lg dark:shadow-2xl">
+                        <label className="block text-sm font-medium mb-2 text-gray-600 dark:text-gray-300" htmlFor="treatment-plan-textarea">Treatment Plan & Prognosis</label>
                         <textarea
                             id="treatment-plan-textarea"
                             value={treatmentPlan}
                             onChange={(e) => setTreatmentPlan(e.target.value)}
                             placeholder="Outline current treatments, referrals, and expected prognosis..."
-                            className="form-textarea w-full rounded-lg border-white/20 bg-black/20 focus:ring-2 focus:ring-primary focus:border-primary placeholder:text-gray-500 text-white"
+                            className="form-textarea w-full rounded-lg border-gray-300 dark:border-white/20 bg-gray-50 dark:bg-black/20 focus:ring-2 focus:ring-primary focus:border-primary placeholder:text-gray-400 dark:placeholder:text-gray-500 text-gray-900 dark:text-white"
                             rows={3}
                         />
+                        <div className="mt-4">
+                            <p className="text-xs text-gray-500 dark:text-gray-400 mb-2">Suggestions:</p>
+                            <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
+                                {quickTreatments.map(treatment => (
+                                    <button
+                                        key={treatment}
+                                        onClick={() => handleAddTreatment(treatment)}
+                                        className="text-sm font-medium bg-gray-100 dark:bg-black/20 hover:bg-gray-200 dark:hover:bg-black/40 px-3 py-2 rounded-lg transition-colors text-gray-700 dark:text-gray-300 text-left"
+                                    >
+                                        {treatment}
+                                    </button>
+                                ))}
+                            </div>
+                        </div>
                     </div>
                 </motion.section>
 
                 <motion.div variants={sectionVariants} className="flex flex-col sm:flex-row justify-center items-center gap-4 pt-6">
                     <button
                         onClick={handleGenerateSummary}
-                        disabled={isLoading || !diagnosis}
-                        className="w-full sm:w-auto flex items-center justify-center gap-2 h-12 px-6 bg-white text-black font-bold rounded-lg shadow-lg hover:bg-opacity-90 transition-all transform hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed disabled:scale-100"
+                        disabled={isLoading || !clinicalInformation}
+                        className="w-full sm:w-auto flex items-center justify-center gap-2 h-12 px-6 bg-gray-900 dark:bg-white text-white dark:text-black font-bold rounded-lg shadow-lg hover:bg-opacity-90 transition-all transform hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed disabled:scale-100"
                     >
                         {isLoading ? <Loader2 className="h-5 w-5 animate-spin" /> : <Sparkles className="h-5 w-5" />}
                         {isLoading ? 'Generating...' : 'Generate Summary'}
@@ -116,7 +205,7 @@ const CentrelinkFormAssist = () => {
                     <button
                         onClick={handleReset}
                         disabled={isLoading}
-                        className="w-full sm:w-auto flex items-center justify-center gap-2 h-12 px-6 bg-white/10 hover:bg-white/20 text-white font-semibold rounded-lg transition-colors disabled:opacity-70 disabled:cursor-not-allowed"
+                        className="w-full sm:w-auto flex items-center justify-center gap-2 h-12 px-6 bg-gray-100 dark:bg-white/10 hover:bg-gray-200 dark:hover:bg-white/20 text-gray-800 dark:text-white font-semibold rounded-lg transition-colors disabled:opacity-70 disabled:cursor-not-allowed"
                     >
                         <RefreshCw className="h-5 w-5" />
                         Reset
@@ -124,18 +213,18 @@ const CentrelinkFormAssist = () => {
                 </motion.div>
 
                 {summary && (
-                    <motion.div variants={sectionVariants} className="border-t border-white/10 pt-8 mt-12">
+                    <motion.div variants={sectionVariants} className="border-t border-gray-200 dark:border-white/10 pt-8 mt-12">
                         <div className="flex justify-between items-center mb-4">
-                            <h3 className="text-2xl font-bold text-white">Generated Summary</h3>
+                            <h3 className="text-2xl font-bold text-gray-900 dark:text-white">Generated Summary</h3>
                             <button
                                 onClick={handleCopy}
-                                className={cn('flex items-center justify-center gap-2 h-9 px-3 bg-black/20 hover:bg-black/40 font-semibold rounded-lg transition-all text-gray-300 text-sm', isCopied && 'text-success-green')}
+                                className={cn('flex items-center justify-center gap-2 h-9 px-3 bg-gray-100 dark:bg-black/20 hover:bg-gray-200 dark:hover:bg-black/40 font-semibold rounded-lg transition-all text-gray-700 dark:text-gray-300 text-sm', isCopied && 'text-success-green')}
                             >
                                 {isCopied ? <Check className="h-4 w-4" /> : <Copy className="h-4 w-4" />}
                                 <span>{isCopied ? 'Copied!' : 'Copy'}</span>
                             </button>
                         </div>
-                        <div className="bg-[#1F2023]/70 backdrop-blur-lg border border-white/10 rounded-2xl p-6 shadow-2xl text-gray-300">
+                        <div className="bg-white dark:bg-[#1A1B1E]/85 backdrop-blur-lg border border-gray-200 dark:border-white/10 rounded-2xl p-6 shadow-lg dark:shadow-2xl text-gray-600 dark:text-gray-300">
                             <p>{summary}</p>
                         </div>
                     </motion.div>

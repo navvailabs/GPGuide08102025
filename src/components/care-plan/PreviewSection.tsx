@@ -55,8 +55,8 @@ const CardCopyButton = ({ contentToCopy }: { contentToCopy: string }) => {
         <button
             onClick={handleCopy}
             className={cn(
-                "absolute top-4 right-4 z-10 flex items-center justify-center h-9 w-9 bg-black/30 hover:bg-black/50 backdrop-blur-sm font-semibold rounded-full transition-all text-gray-300 text-sm p-0",
-                isCopied && "text-success-green bg-green-500/20"
+                "absolute top-4 right-4 z-10 flex items-center justify-center h-9 w-9 bg-gray-100/50 dark:bg-black/30 hover:bg-gray-200/70 dark:hover:bg-black/50 backdrop-blur-sm font-semibold rounded-full transition-all text-gray-600 dark:text-gray-300 text-sm p-0",
+                isCopied && "text-success-green bg-green-500/10 dark:bg-green-500/20"
             )}
             aria-label={isCopied ? "Copied" : "Copy section"}
         >
@@ -80,11 +80,11 @@ const CardCopyButton = ({ contentToCopy }: { contentToCopy: string }) => {
 
 const ParsedTableToDocument = ({ tableHtml }: { tableHtml: string }) => {
     const cardAccents = useMemo(() => [
-        'border-sky-400/50',
-        'border-rose-400/50',
-        'border-amber-400/50',
-        'border-emerald-400/50',
-        'border-violet-400/50',
+        'border-sky-500/50 dark:border-sky-400/50',
+        'border-rose-500/50 dark:border-rose-400/50',
+        'border-amber-500/50 dark:border-amber-400/50',
+        'border-emerald-500/50 dark:border-emerald-400/50',
+        'border-violet-500/50 dark:border-violet-400/50',
     ], []);
 
     const parsedContent = useMemo(() => {
@@ -111,8 +111,8 @@ const ParsedTableToDocument = ({ tableHtml }: { tableHtml: string }) => {
                 if (textContent) {
                     return (
                         <div key={`section-title-${rowIndex}`} className="mt-8 mb-4 first:mt-0">
-                            <h4 className="text-xl font-bold text-white" dangerouslySetInnerHTML={{ __html: cells[0].innerHTML }} />
-                             <hr className="mt-2 border-white/10"/>
+                            <h4 className="text-xl font-bold text-gray-900 dark:text-white" dangerouslySetInnerHTML={{ __html: cells[0].innerHTML }} />
+                             <hr className="mt-2 border-gray-200 dark:border-white/10"/>
                         </div>
                     );
                 }
@@ -152,16 +152,16 @@ const ParsedTableToDocument = ({ tableHtml }: { tableHtml: string }) => {
                 >
                     <CardCopyButton contentToCopy={cardHtmlString} />
                     <div>
-                        <h4 className="text-lg font-bold text-white mb-3 pr-10" dangerouslySetInnerHTML={{ __html: topSection.header.trim().replace(/:$/, '') }} />
-                        <div className="prose prose-invert max-w-none text-gray-300 prose-p:my-0 prose-ul:my-0 prose-li:my-1" dangerouslySetInnerHTML={{ __html: topSection.content }} />
+                        <h4 className="text-lg font-bold text-gray-900 dark:text-white mb-3 pr-10" dangerouslySetInnerHTML={{ __html: topSection.header.trim().replace(/:$/, '') }} />
+                        <div className="prose dark:prose-invert max-w-none text-gray-600 dark:text-gray-300 prose-p:my-0 prose-ul:my-0 prose-li:my-1" dangerouslySetInnerHTML={{ __html: topSection.content }} />
                     </div>
 
                     {otherSections.length > 0 && (
                         <div className="mt-6 space-y-6">
                             {otherSections.map((pair, index) => (
                                 <div key={`other-pair-${rowIndex}-${index}`}>
-                                    <div className="text-sm font-semibold text-gray-100 mb-1" dangerouslySetInnerHTML={{ __html: pair.header.trim().replace(/:$/, '') }} />
-                                    <div className="prose prose-sm prose-invert max-w-none text-gray-300 prose-p:my-0 prose-ul:my-0 prose-li:my-1" dangerouslySetInnerHTML={{ __html: pair.content }} />
+                                    <div className="text-sm font-semibold text-gray-800 dark:text-gray-100 mb-1" dangerouslySetInnerHTML={{ __html: pair.header.trim().replace(/:$/, '') }} />
+                                    <div className="prose prose-sm dark:prose-invert max-w-none text-gray-600 dark:text-gray-300 prose-p:my-0 prose-ul:my-0 prose-li:my-1" dangerouslySetInnerHTML={{ __html: pair.content }} />
                                 </div>
                             ))}
                         </div>
@@ -180,8 +180,8 @@ const ParsedTableToDocument = ({ tableHtml }: { tableHtml: string }) => {
                          const cardHtmlString = `<h3>${cells[0].textContent?.trim().replace(/:$/, '') || 'Section'}</h3><div>${value}</div>`;
                          const contentBlock = (
                              <div key={`fallback-pair-${rowIndex}`}>
-                                <h4 className="text-lg font-bold text-white mb-2 pr-10" dangerouslySetInnerHTML={{ __html: label.trim().replace(/:$/, '') }} />
-                                <div className="prose prose-invert max-w-none text-gray-300 prose-p:my-0 prose-ul:my-0 prose-li:my-1" dangerouslySetInnerHTML={{ __html: value }} />
+                                <h4 className="text-lg font-bold text-gray-900 dark:text-white mb-2 pr-10" dangerouslySetInnerHTML={{ __html: label.trim().replace(/:$/, '') }} />
+                                <div className="prose dark:prose-invert max-w-none text-gray-600 dark:text-gray-300 prose-p:my-0 prose-ul:my-0 prose-li:my-1" dangerouslySetInnerHTML={{ __html: value }} />
                             </div>
                          );
                          return (
@@ -208,7 +208,7 @@ const ParsedTableToDocument = ({ tableHtml }: { tableHtml: string }) => {
                 return <div className="space-y-6">{fallbackSections}</div>;
             }
 
-            return <p className="text-gray-400">Could not parse table content into document view.</p>;
+            return <p className="text-gray-500 dark:text-gray-400">Could not parse table content into document view.</p>;
         }
 
         return <div className="space-y-6">{documentSections}</div>;
@@ -231,7 +231,7 @@ const DocumentView = ({ htmlString }: { htmlString: string }) => {
                 return (
                     <div
                         key={`other-${index}`}
-                        className="prose prose-invert max-w-none text-gray-300"
+                        className="prose dark:prose-invert max-w-none text-gray-600 dark:text-gray-300"
                         dangerouslySetInnerHTML={{ __html: part }}
                     />
                 );
@@ -282,7 +282,7 @@ const TableWithCopyButton = ({ tableHtml }: { tableHtml: string }) => {
                 <button
                     onClick={handleCopy}
                     className={cn(
-                        'flex items-center justify-center gap-2 h-9 px-3 bg-black/20 hover:bg-black/40 font-semibold rounded-lg transition-all text-gray-300 text-sm',
+                        'flex items-center justify-center gap-2 h-9 px-3 bg-gray-100 dark:bg-black/20 hover:bg-gray-200 dark:hover:bg-black/40 font-semibold rounded-lg transition-all text-gray-700 dark:text-gray-300 text-sm',
                         buttonText === 'Copied!' && 'text-success-green'
                     )}
                 >
@@ -360,17 +360,17 @@ const PreviewSection = ({ carePlanHtml }: PreviewSectionProps) => {
     };
 
     return (
-        <motion.div variants={sectionVariants} className="border-t border-white/10 pt-8 mt-12">
+        <motion.div variants={sectionVariants} className="border-t border-gray-200 dark:border-white/10 pt-8 mt-12">
             <div className="flex flex-col sm:flex-row justify-between sm:items-center gap-4 mb-6">
-                <h3 className="text-2xl font-bold text-white">Generated Plan Preview</h3>
-                <div className="flex items-center bg-black/20 p-1 rounded-lg self-start sm:self-center">
+                <h3 className="text-2xl font-bold text-gray-900 dark:text-white">Generated Plan Preview</h3>
+                <div className="flex items-center bg-gray-100 dark:bg-black/20 p-1 rounded-lg self-start sm:self-center">
                     <button
                         onClick={() => setViewMode('table')}
                         className={cn(
                             'flex items-center gap-2 px-3 py-1.5 text-sm font-medium rounded-md transition-colors',
                             viewMode === 'table'
-                                ? 'bg-white text-black'
-                                : 'text-gray-300 hover:bg-white/10'
+                                ? 'bg-white dark:bg-black text-black dark:text-white'
+                                : 'text-gray-600 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-white/10'
                         )}
                     >
                         <Table className="h-4 w-4" />
@@ -381,8 +381,8 @@ const PreviewSection = ({ carePlanHtml }: PreviewSectionProps) => {
                         className={cn(
                             'flex items-center gap-2 px-3 py-1.5 text-sm font-medium rounded-md transition-colors',
                             viewMode === 'document'
-                                ? 'bg-white text-black'
-                                : 'text-gray-300 hover:bg-white/10'
+                                ? 'bg-white dark:bg-black text-black dark:text-white'
+                                : 'text-gray-600 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-white/10'
                         )}
                     >
                         <FileText className="h-4 w-4" />
@@ -417,7 +417,7 @@ const PreviewSection = ({ carePlanHtml }: PreviewSectionProps) => {
             <div className="mt-8 flex flex-wrap justify-end gap-4">
                 <button
                     onClick={handleDownloadWord}
-                    className="flex items-center justify-center gap-2 h-10 px-4 bg-black/20 hover:bg-black/40 font-semibold rounded-lg transition-colors text-gray-300"
+                    className="flex items-center justify-center gap-2 h-10 px-4 bg-gray-100 dark:bg-black/20 hover:bg-gray-200 dark:hover:bg-black/40 font-semibold rounded-lg transition-colors text-gray-700 dark:text-gray-300"
                 >
                     <FileText className="h-4 w-4" />
                     Download as Word

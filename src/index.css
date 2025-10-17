@@ -139,8 +139,11 @@
   }
 
   .care-plan-container {
-    @apply bg-[#1F2023]/70 backdrop-blur-lg border border-white/10 rounded-2xl p-6 md:p-8 shadow-2xl space-y-8 overflow-x-auto;
-    color: #e8f3f5; /* Base text color for inheritance */
+    @apply bg-white dark:bg-[#1A1B1E]/85 backdrop-blur-lg border border-gray-200 dark:border-white/10 rounded-2xl p-6 md:p-8 shadow-lg dark:shadow-2xl space-y-8 overflow-x-auto;
+    color: #374151; /* Base text color for light theme */
+  }
+  .dark .care-plan-container {
+      color: #e8f3f5; /* Base text color for dark theme */
   }
 
   /*
@@ -170,15 +173,26 @@
   }
 
   .care-plan-container h2 {
-    @apply text-2xl md:text-3xl font-bold mb-4 pb-2 border-b border-white/10;
+    @apply text-2xl md:text-3xl font-bold mb-4 pb-2 border-b border-gray-200 dark:border-white/10;
+  }
+  .dark .care-plan-container h2 {
     color: white !important;
+  }
+  .care-plan-container h2 {
+    color: #111827 !important;
   }
 
   /* Adjusted font size for better hierarchy */
   .care-plan-container h3 {
     @apply text-xl font-semibold mb-3 flex items-center gap-x-2;
+  }
+  .dark .care-plan-container h3 {
     color: white !important;
   }
+  .care-plan-container h3 {
+    color: #111827 !important;
+  }
+
 
   .care-plan-container h3::before {
     content: '';
@@ -198,29 +212,47 @@
   }
 
   .care-plan-container thead {
+    background-color: rgba(243, 244, 246, 1) !important; /* bg-gray-100 */
+  }
+  .dark .care-plan-container thead {
     background-color: rgba(0, 0, 0, 0.3) !important;
   }
 
   .care-plan-container th {
-    @apply p-3 font-medium border border-white/10;
+    @apply p-3 font-medium border border-gray-200 dark:border-white/10;
+  }
+  .dark .care-plan-container th {
     color: white !important;
+  }
+  .care-plan-container th {
+    color: #1F2937 !important;
   }
 
   .care-plan-container td {
-    @apply p-3 align-top border border-white/10;
-    color: #D1D5DB !important; /* Equivalent to text-gray-300 */
+    @apply p-3 align-top border border-gray-200 dark:border-white/10;
+  }
+  .dark .care-plan-container td {
+    color: #D1D5DB !important; /* text-gray-300 */
+  }
+  .care-plan-container td {
+    color: #4B5563 !important; /* text-gray-600 */
   }
 
   .care-plan-container td ul {
     @apply list-disc list-outside pl-4 space-y-1.5;
   }
 
-  /* Re-apply intended backgrounds with !important to override the targeted reset */
   .care-plan-container tbody tr:nth-child(even) {
+    background-color: rgba(249, 250, 251, 1) !important; /* bg-gray-50 */
+  }
+  .dark .care-plan-container tbody tr:nth-child(even) {
     background-color: rgba(255, 255, 255, 0.05) !important;
   }
   
   .care-plan-container tbody tr:hover {
+    background-color: rgba(243, 244, 246, 1) !important; /* bg-gray-100 */
+  }
+  .dark .care-plan-container tbody tr:hover {
     background-color: rgba(255, 255, 255, 0.1) !important;
   }
 }

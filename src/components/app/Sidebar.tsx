@@ -6,18 +6,18 @@ import { cn } from '@/lib/utils';
 import type { ActiveView } from '@/pages/CarePlanSuite';
 
 const carePlanItems = [
-    { name: 'GP Care Plan', view: 'gp-care-plan' as const, icon: LayoutGrid, color: 'text-sky-400', glowColor: 'bg-sky-400/30' },
-    { name: 'Mental Health Care Plan', view: 'mental-health-care-plan' as const, icon: HeartPulse, color: 'text-rose-400', glowColor: 'bg-rose-400/30' },
+    { name: 'GP Care Plan', view: 'gp-care-plan' as const, icon: LayoutGrid, color: 'text-sky-500 dark:text-sky-400', glowColor: 'bg-sky-400/30' },
+    { name: 'Mental Health Care Plan', view: 'mental-health-care-plan' as const, icon: HeartPulse, color: 'text-rose-500 dark:text-rose-400', glowColor: 'bg-rose-400/30' },
 ];
 
 const toolItems = [
-    { name: 'DEXA Scan Interpreter', view: 'dexa-scan-tool' as const, icon: Bone, color: 'text-amber-400', glowColor: 'bg-amber-400/30' },
-    { name: 'Opioid MEDD Assist Tool', view: 'medd-assist-tool' as const, icon: Calculator, color: 'text-teal-400', glowColor: 'bg-teal-400/30' },
+    { name: 'DEXA Scan Interpreter', view: 'dexa-scan-tool' as const, icon: Bone, color: 'text-amber-500 dark:text-amber-400', glowColor: 'bg-amber-400/30' },
+    { name: 'Opioid MEDD Assist Tool', view: 'medd-assist-tool' as const, icon: Calculator, color: 'text-teal-500 dark:text-teal-400', glowColor: 'bg-teal-400/30' },
 ];
 
 const formItems = [
-    { name: 'Centrelink SU415', view: 'centrelink-form-assist' as const, icon: ClipboardList, color: 'text-green-400', glowColor: 'bg-green-400/30' },
-    { name: 'Workers Comp', view: 'workers-comp-assist' as const, icon: HardHat, color: 'text-orange-400', glowColor: 'bg-orange-400/30' },
+    { name: 'Centrelink SU415', view: 'centrelink-form-assist' as const, icon: ClipboardList, color: 'text-green-500 dark:text-green-400', glowColor: 'bg-green-400/30' },
+    { name: 'Workers Comp', view: 'workers-comp-assist' as const, icon: HardHat, color: 'text-orange-500 dark:text-orange-400', glowColor: 'bg-orange-400/30' },
 ];
 
 interface SidebarContentProps {
@@ -40,7 +40,7 @@ const SidebarContent = ({ isCollapsed, activeView, setActiveView, onLinkClick }:
                     }}
                     className={cn(
                         "w-full relative flex items-center p-3 rounded-lg transition-colors duration-200",
-                        activeView === item.view ? 'text-white' : 'text-gray-400 hover:bg-white/5 hover:text-white',
+                        activeView === item.view ? 'text-gray-900 dark:text-white' : 'text-gray-700 dark:text-gray-400 hover:bg-black/5 dark:hover:bg-white/5 hover:text-gray-900 dark:hover:text-white',
                         isCollapsed ? 'justify-center' : ''
                     )}
                     title={isCollapsed ? item.name : ''}
@@ -48,7 +48,7 @@ const SidebarContent = ({ isCollapsed, activeView, setActiveView, onLinkClick }:
                     {activeView === item.view && (
                         <motion.div
                             layoutId="active-sidebar-item-bg"
-                            className="absolute inset-0 bg-white/10 rounded-lg"
+                            className="absolute inset-0 bg-black/10 dark:bg-white/10 rounded-lg"
                             transition={{ type: 'spring', stiffness: 300, damping: 30 }}
                         />
                     )}
@@ -75,7 +75,7 @@ const SidebarContent = ({ isCollapsed, activeView, setActiveView, onLinkClick }:
                     }}
                     className={cn(
                         "w-full relative flex items-center p-3 rounded-lg transition-colors duration-200",
-                        activeView === item.view ? 'text-white' : 'text-gray-400 hover:bg-white/5 hover:text-white',
+                        activeView === item.view ? 'text-gray-900 dark:text-white' : 'text-gray-700 dark:text-gray-400 hover:bg-black/5 dark:hover:bg-white/5 hover:text-gray-900 dark:hover:text-white',
                         isCollapsed ? 'justify-center' : ''
                     )}
                     title={isCollapsed ? item.name : ''}
@@ -83,7 +83,7 @@ const SidebarContent = ({ isCollapsed, activeView, setActiveView, onLinkClick }:
                     {activeView === item.view && (
                         <motion.div
                             layoutId="active-sidebar-item-bg"
-                            className="absolute inset-0 bg-white/10 rounded-lg"
+                            className="absolute inset-0 bg-black/10 dark:bg-white/10 rounded-lg"
                             transition={{ type: 'spring', stiffness: 300, damping: 30 }}
                         />
                     )}
@@ -110,7 +110,7 @@ const SidebarContent = ({ isCollapsed, activeView, setActiveView, onLinkClick }:
                     }}
                     className={cn(
                         "w-full relative flex items-center p-3 rounded-lg transition-colors duration-200",
-                        activeView === item.view ? 'text-white' : 'text-gray-400 hover:bg-white/5 hover:text-white',
+                        activeView === item.view ? 'text-gray-900 dark:text-white' : 'text-gray-700 dark:text-gray-400 hover:bg-black/5 dark:hover:bg-white/5 hover:text-gray-900 dark:hover:text-white',
                         isCollapsed ? 'justify-center' : ''
                     )}
                     title={isCollapsed ? item.name : ''}
@@ -118,7 +118,7 @@ const SidebarContent = ({ isCollapsed, activeView, setActiveView, onLinkClick }:
                     {activeView === item.view && (
                         <motion.div
                             layoutId="active-sidebar-item-bg"
-                            className="absolute inset-0 bg-white/10 rounded-lg"
+                            className="absolute inset-0 bg-black/10 dark:bg-white/10 rounded-lg"
                             transition={{ type: 'spring', stiffness: 300, damping: 30 }}
                         />
                     )}
@@ -153,10 +153,10 @@ const Sidebar = ({ isDesktopCollapsed, isMobileOpen, setIsMobileOpen, activeView
             <motion.div
                 animate={{ width: isDesktopCollapsed ? '5rem' : '20rem' }}
                 transition={{ duration: 0.3, ease: 'easeInOut' }}
-                className="hidden md:flex flex-col fixed top-0 left-0 h-full bg-black/20 backdrop-blur-lg border-r border-white/10 z-30"
+                className="hidden md:flex flex-col fixed top-0 left-0 h-full bg-white/50 dark:bg-black/20 backdrop-blur-xl border-r border-gray-200 dark:border-white/10 z-30"
             >
                 <div className="flex flex-col h-full">
-                    <div className={cn("flex items-center p-4 border-b border-white/10 h-16 transition-all duration-300", isDesktopCollapsed ? 'justify-center' : 'justify-start px-5')}>
+                    <div className={cn("flex items-center p-4 border-b border-gray-200 dark:border-white/10 h-16 transition-all duration-300", isDesktopCollapsed ? 'justify-center' : 'justify-start px-5')}>
                         <AnimatePresence>
                         {!isDesktopCollapsed ? (
                             <motion.div
@@ -167,8 +167,8 @@ const Sidebar = ({ isDesktopCollapsed, isMobileOpen, setIsMobileOpen, activeView
                                 transition={{ duration: 0.2 }}
                             >
                                 <Link to="/" className="flex items-center space-x-2">
-                                    <BriefcaseMedical className="h-7 w-7 text-success-green" />
-                                    <span className="text-xl font-satoshi font-bold text-white">GPGuide</span>
+                                    <BriefcaseMedical className="h-7 w-7 text-medical-blue dark:text-success-green" />
+                                    <span className="text-xl font-satoshi font-bold text-gray-900 dark:text-white">GPGuide</span>
                                 </Link>
                             </motion.div>
                         ) : (
@@ -180,7 +180,7 @@ const Sidebar = ({ isDesktopCollapsed, isMobileOpen, setIsMobileOpen, activeView
                                 transition={{ duration: 0.2 }}
                             >
                                 <Link to="/">
-                                    <BriefcaseMedical className="h-7 w-7 text-success-green" />
+                                    <BriefcaseMedical className="h-7 w-7 text-medical-blue dark:text-success-green" />
                                 </Link>
                             </motion.div>
                         )}
@@ -211,14 +211,14 @@ const Sidebar = ({ isDesktopCollapsed, isMobileOpen, setIsMobileOpen, activeView
                             animate={{ x: 0 }}
                             exit={{ x: '-100%' }}
                             transition={{ duration: 0.3, ease: 'easeInOut' }}
-                            className="fixed top-0 left-0 h-full w-64 bg-black/50 backdrop-blur-xl border-r border-white/10 z-50 flex flex-col md:hidden"
+                            className="fixed top-0 left-0 h-full w-64 bg-white/80 dark:bg-black/50 backdrop-blur-xl border-r border-gray-200 dark:border-white/10 z-50 flex flex-col md:hidden"
                         >
-                             <div className="flex items-center justify-between p-4 border-b border-white/10 h-16">
+                             <div className="flex items-center justify-between p-4 border-b border-gray-200 dark:border-white/10 h-16">
                                 <Link to="/" className="flex items-center space-x-2">
-                                    <BriefcaseMedical className="h-7 w-7 text-success-green" />
-                                    <span className="text-xl font-satoshi font-bold text-white">GPGuide</span>
+                                    <BriefcaseMedical className="h-7 w-7 text-medical-blue dark:text-success-green" />
+                                    <span className="text-xl font-satoshi font-bold text-gray-900 dark:text-white">GPGuide</span>
                                 </Link>
-                                <button onClick={() => setIsMobileOpen(false)} className="text-gray-300 hover:text-white p-2">
+                                <button onClick={() => setIsMobileOpen(false)} className="text-gray-600 dark:text-gray-300 hover:text-black dark:hover:text-white p-2">
                                     <X />
                                 </button>
                             </div>

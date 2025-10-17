@@ -31,9 +31,9 @@ const BrightnessControl = () => {
             animate={{ y: 0, opacity: 1, scale: 1 }}
             exit={{ y: -10, opacity: 0, scale: 0.95 }}
             transition={{ duration: 0.2, ease: 'easeOut' }}
-            className="absolute top-full mt-3 right-1/2 translate-x-1/2 w-auto bg-black/30 backdrop-blur-md border border-white/10 rounded-full p-2 flex flex-col items-center gap-2"
+            className="absolute top-full mt-3 right-1/2 translate-x-1/2 w-auto bg-gray-200/50 dark:bg-black/30 backdrop-blur-md border border-gray-300/50 dark:border-white/10 rounded-full p-2 flex flex-col items-center gap-2"
           >
-              <Sun className="w-4 h-4 text-white/70" />
+              <Sun className="w-4 h-4 text-gray-700 dark:text-white/70" />
               <Slider
                   defaultValue={[brightness]}
                   value={[brightness]}
@@ -44,16 +44,18 @@ const BrightnessControl = () => {
                   orientation="vertical"
                   className="w-1.5 h-24"
               />
-              <Moon className="w-4 h-4 text-white/70" />
+              <Moon className="w-4 h-4 text-gray-700 dark:text-white/70" />
           </motion.div>
         )}
       </AnimatePresence>
 
       <motion.button
         onClick={() => setIsOpen(!isOpen)}
-        className="w-10 h-10 rounded-full bg-black/30 backdrop-blur-md border border-white/10 flex items-center justify-center text-white hover:bg-black/50 transition-colors"
+        className="w-10 h-10 rounded-full bg-gray-200/50 dark:bg-black/30 backdrop-blur-md border border-gray-300/50 dark:border-white/10 flex items-center justify-center text-gray-800 dark:text-white hover:bg-gray-300/50 dark:hover:bg-black/50 transition-colors"
         whileHover={{ scale: 1.1 }}
         whileTap={{ scale: 0.9 }}
+        aria-label="Adjust background brightness"
+        title="Adjust background brightness"
       >
         <Sun className="w-5 h-5" />
       </motion.button>
