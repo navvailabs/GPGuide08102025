@@ -1,4 +1,7 @@
 import { motion } from 'framer-motion';
+import { useTheme } from '@/contexts/ThemeContext';
+import { cn } from '@/lib/utils';
+import InspiredCard from '../ui/InspiredCard';
 
 interface AlliedHealthSectionProps {
     alliedHealth: string;
@@ -19,6 +22,7 @@ const sectionVariants = {
 };
 
 const AlliedHealthSection = ({ alliedHealth, setAlliedHealth }: AlliedHealthSectionProps) => {
+    const { theme } = useTheme();
 
     const handleAddQuickAction = (action: string) => {
         setAlliedHealth(prev => {
@@ -31,35 +35,52 @@ const AlliedHealthSection = ({ alliedHealth, setAlliedHealth }: AlliedHealthSect
 
     return (
         <motion.section variants={sectionVariants}>
-            <h3 className="text-2xl font-bold mb-6 text-gray-900 dark:text-white">Allied Health Professional Arrangements</h3>
-            <div className="bg-white dark:bg-[#1A1B1E]/85 backdrop-blur-lg border border-gray-200 dark:border-white/10 rounded-2xl p-6 shadow-lg dark:shadow-2xl">
-                <div className="grid grid-cols-1 gap-4 items-end">
-                    <div>
-                        <label className="block text-sm font-medium mb-2 text-gray-600 dark:text-gray-300" htmlFor="allied-health-input">Enter allied health referrals</label>
-                        <input
-                            className="form-input w-full rounded-lg border-gray-300 dark:border-white/20 bg-gray-50 dark:bg-black/20 focus:ring-2 focus:ring-primary focus:border-primary placeholder:text-gray-400 dark:placeholder:text-gray-500 text-gray-900 dark:text-white"
-                            id="allied-health-input"
-                            placeholder="e.g., Dietitian, Exercise Physiologist"
-                            value={alliedHealth}
-                            onChange={(e) => setAlliedHealth(e.target.value)}
-                        />
-                    </div>
+            <h3 className={cn(
+                "text-2xl font-satoshi font-bold mb-4",
+                theme === 'light' ? 'text-gray-900' : 'text-white'
+            )}>Allied Health Professional Arrangements</h3>
+            <InspiredCard>
+                <div>
+                    <label className={cn(
+                        "block text-sm font-medium mb-2",
+                        theme === 'light' ? 'text-gray-600' : 'text-gray-300'
+                    )} htmlFor="allied-health-input">Enter allied health referrals</label>
+                    <input
+                        className={cn(
+                            "form-input w-full rounded-lg placeholder:text-gray-400",
+                            theme === 'light' 
+                                ? 'bg-gray-100 border-transparent text-gray-800 focus:bg-white focus:ring-2 focus:ring-blue-500 focus:border-transparent'
+                                : 'border-white/20 bg-black/20 text-white focus:ring-2 focus:ring-primary focus:border-primary dark:placeholder:text-gray-500'
+                        )}
+                        id="allied-health-input"
+                        placeholder="e.g., Dietitian, Exercise Physiologist"
+                        value={alliedHealth}
+                        onChange={(e) => setAlliedHealth(e.target.value)}
+                    />
                 </div>
                 <div className="mt-4">
-                    <p className="text-xs text-gray-500 dark:text-gray-400 mb-2">Suggestions:</p>
+                    <p className={cn(
+                        "text-xs mb-2",
+                        theme === 'light' ? 'text-gray-500' : 'text-gray-400'
+                    )}>Suggestions:</p>
                     <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
                         {quickActions.map(action => (
                             <button
                                 key={action}
                                 onClick={() => handleAddQuickAction(action)}
-                                className="text-sm font-medium bg-gray-100 dark:bg-black/20 hover:bg-gray-200 dark:hover:bg-black/40 px-3 py-2 rounded-lg transition-colors text-gray-700 dark:text-gray-300 text-center"
+                                className={cn(
+                                    "text-sm font-medium px-3 py-2 rounded-lg transition-colors text-center",
+                                    theme === 'light'
+                                        ? 'bg-gray-100 hover:bg-gray-200 text-gray-700'
+                                        : 'bg-black/20 hover:bg-black/40 text-gray-300'
+                                )}
                             >
                                 {action}
                             </button>
                         ))}
                     </div>
                 </div>
-            </div>
+            </InspiredCard>
         </motion.section>
     );
 };

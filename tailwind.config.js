@@ -119,6 +119,7 @@ export default {
         'inner-light': 'inset 0 2px 4px 0 rgba(0,0,0,0.05)',
         'inner-dark': 'inset 0 2px 4px 0 rgba(0,0,0,0.2)',
         glow: "0 -16px 128px 0 hsla(var(--brand-foreground) / 0.5) inset, 0 -16px 32px 0 hsla(var(--brand) / 0.5) inset",
+        'inspired-light': '0px 4px 12px rgba(0,0,0,0.04)',
       },
       backgroundImage: {
         'primary-gradient': 'linear-gradient(to right, #0A2540, #0F6E6E)',

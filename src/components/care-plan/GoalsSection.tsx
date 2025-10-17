@@ -1,4 +1,7 @@
 import { motion } from 'framer-motion';
+import { useTheme } from '@/contexts/ThemeContext';
+import { cn } from '@/lib/utils';
+import InspiredCard from '../ui/InspiredCard';
 
 interface GoalsSectionProps {
     goals: string;
@@ -20,6 +23,7 @@ const sectionVariants = {
 };
 
 const GoalsSection = ({ goals, setGoals }: GoalsSectionProps) => {
+    const { theme } = useTheme();
 
     const handleAddShortcut = (goalToAdd: string) => {
         setGoals(prev => prev ? `${prev}\n${goalToAdd}` : goalToAdd);
@@ -27,32 +31,51 @@ const GoalsSection = ({ goals, setGoals }: GoalsSectionProps) => {
 
     return (
         <motion.section variants={sectionVariants}>
-            <h3 className="text-2xl font-bold mb-6 text-gray-900 dark:text-white">SMART Goals</h3>
-            <div className="bg-white dark:bg-[#1A1B1E]/85 backdrop-blur-lg border border-gray-200 dark:border-white/10 rounded-2xl p-6 shadow-lg dark:shadow-2xl">
-                <label className="block text-sm font-medium mb-2 text-gray-600 dark:text-gray-300" htmlFor="goals-textarea">Enter personalized goals</label>
+            <h3 className={cn(
+                "text-2xl font-satoshi font-bold mb-4",
+                theme === 'light' ? 'text-gray-900' : 'text-white'
+            )}>SMART Goals</h3>
+            <InspiredCard>
+                <label className={cn(
+                    "block text-sm font-medium mb-2",
+                    theme === 'light' ? 'text-gray-600' : 'text-gray-300'
+                )} htmlFor="goals-textarea">Enter personalized goals</label>
                 <textarea
                     id="goals-textarea"
                     value={goals}
                     onChange={(e) => setGoals(e.target.value)}
-                    className="form-textarea w-full rounded-lg border-gray-300 dark:border-white/20 bg-gray-50 dark:bg-black/20 focus:ring-2 focus:ring-primary focus:border-primary placeholder:text-gray-400 dark:placeholder:text-gray-500 text-gray-900 dark:text-white"
+                    className={cn(
+                        "form-textarea w-full rounded-lg placeholder:text-gray-400",
+                        theme === 'light' 
+                            ? 'bg-gray-100 border-transparent text-gray-800 focus:bg-white focus:ring-2 focus:ring-blue-500 focus:border-transparent'
+                            : 'border-white/20 bg-black/20 text-white focus:ring-2 focus:ring-primary focus:border-primary dark:placeholder:text-gray-500'
+                    )}
                     placeholder="Describe a specific, measurable, achievable, relevant, and time-bound goal..."
                     rows={5}
                 ></textarea>
                 <div className="mt-4">
-                    <p className="text-xs text-gray-500 dark:text-gray-400 mb-2">Suggestions:</p>
+                    <p className={cn(
+                        "text-xs mb-2",
+                        theme === 'light' ? 'text-gray-500' : 'text-gray-400'
+                    )}>Suggestions:</p>
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
                         {suggestedGoals.map(goal => (
                             <button
                                 key={goal}
                                 onClick={() => handleAddShortcut(goal)}
-                                className="text-sm font-medium bg-gray-100 dark:bg-black/20 hover:bg-gray-200 dark:hover:bg-black/40 px-3 py-2 rounded-lg transition-colors text-gray-700 dark:text-gray-300 text-left"
+                                className={cn(
+                                    "text-sm font-medium px-3 py-2 rounded-lg transition-colors text-left",
+                                    theme === 'light'
+                                        ? 'bg-gray-100 hover:bg-gray-200 text-gray-700'
+                                        : 'bg-black/20 hover:bg-black/40 text-gray-300'
+                                )}
                             >
                                 {goal}
                             </button>
                         ))}
                     </div>
                 </div>
-            </div>
+            </InspiredCard>
         </motion.section>
     );
 };
