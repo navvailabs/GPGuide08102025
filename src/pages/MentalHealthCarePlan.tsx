@@ -3,6 +3,9 @@ import { motion } from 'framer-motion';
 import { Sparkles, RefreshCw } from 'lucide-react';
 import { StyledTextarea } from '@/components/ui/StyledTextarea';
 import InspiredCard from '@/components/ui/InspiredCard';
+import { QuickActionButton } from '@/components/ui/QuickActionButton';
+import { cn } from '@/lib/utils';
+import { useTheme } from '@/contexts/ThemeContext';
 
 interface MentalHealthCarePlanProps {
     presentation: string;
@@ -20,6 +23,26 @@ const sectionVariants = {
     visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: "easeOut" } }
 };
 
+const suggestedPresentations = [
+    "Depression",
+    "Generalised Anxiety Disorder",
+    "Panic Disorder",
+    "PTSD",
+    "Adjustment Disorder",
+    "Perinatal Depression",
+    "Bipolar Disorder",
+    "OCD",
+    "Eating Disorder",
+    "Grief or Bereavement Reaction"
+];
+
+const suggestedGoals = [
+    "Improve mood by engaging in structured CBT sessions weekly",
+    "Reduce anxiety attacks from daily to once a week within 6 weeks",
+    "Improve sleep hygiene and achieve minimum 6 hrs sleep within 4 weeks",
+    "Increase social engagement by attending one community activity weekly"
+];
+
 const MentalHealthCarePlan = ({
     presentation,
     setPresentation,
@@ -30,6 +53,7 @@ const MentalHealthCarePlan = ({
     isPreviewGenerated,
     setIsPreviewGenerated
 }: MentalHealthCarePlanProps) => {
+    const { theme } = useTheme();
 
     const handleGeneratePreview = () => {
         setIsPreviewGenerated(true);
@@ -40,6 +64,19 @@ const MentalHealthCarePlan = ({
         setHistory('');
         setGoals('');
         setIsPreviewGenerated(false);
+    };
+
+    const handleAddPresentation = (presentationToAdd: string) => {
+        setPresentation(prev => {
+            if (!prev) return presentationToAdd;
+            const items = prev.split(',').map(item => item.trim()).filter(Boolean);
+            if (items.includes(presentationToAdd)) return prev;
+            return `${prev}, ${presentationToAdd}`;
+        });
+    };
+
+    const handleAddGoal = (goalToAdd: string) => {
+        setGoals(prev => prev ? `${prev}\n${goalToAdd}` : goalToAdd);
     };
 
     return (
@@ -63,14 +100,31 @@ const MentalHealthCarePlan = ({
             <div className="space-y-8">
                 <motion.section variants={sectionVariants}>
                     <InspiredCard>
-                        <label className="block text-sm font-medium mb-2 text-gray-600 dark:text-gray-300" htmlFor="mh-presentation">Patient Presentation</label>
+                        <label className="block text-sm font-medium mb-2 text-gray-600 dark:text-gray-300" htmlFor="mh-presentation">Clinical Details</label>
                         <StyledTextarea
                             id="mh-presentation"
                             value={presentation}
                             onChange={(e) => setPresentation(e.target.value)}
-                            placeholder="e.g., Low mood, anxiety, poor sleep..."
+                            placeholder="Low mood, anhedonia, decreased energy, early waking, loss of appetite, difficulty coping at work."
                             rows={3}
                         />
+                        <div className="mt-4">
+                            <p className={cn(
+                                "text-xs mb-2",
+                                theme === 'light' ? 'text-gray-500' : 'text-gray-400'
+                            )}>Suggestions:</p>
+                            <div className="flex flex-wrap gap-2">
+                                {suggestedPresentations.map(item => (
+                                    <QuickActionButton
+                                        key={item}
+                                        onClick={() => handleAddPresentation(item)}
+                                        className="justify-center"
+                                    >
+                                        {item}
+                                    </QuickActionButton>
+                                ))}
+                            </div>
+                        </div>
                     </InspiredCard>
                 </motion.section>
 
@@ -81,7 +135,7 @@ const MentalHealthCarePlan = ({
                             id="mh-history"
                             value={history}
                             onChange={(e) => setHistory(e.target.value)}
-                            placeholder="e.g., Past mental health history, family history, social situation..."
+                            placeholder="Past depression 2021, no hospital admissions. Family history mother with anxiety. Recent job loss. No suicidal ideation."
                             rows={3}
                         />
                     </InspiredCard>
@@ -95,8 +149,25 @@ const MentalHealthCarePlan = ({
                             value={goals}
                             onChange={(e) => setGoals(e.target.value)}
                             placeholder="e.g., Referral to psychologist, psychoeducation, medication review..."
-                            rows={3}
+                            rows={4}
                         />
+                        <div className="mt-4">
+                            <p className={cn(
+                                "text-xs mb-2",
+                                theme === 'light' ? 'text-gray-500' : 'text-gray-400'
+                            )}>Suggestions:</p>
+                            <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
+                                {suggestedGoals.map(goal => (
+                                    <QuickActionButton
+                                        key={goal}
+                                        onClick={() => handleAddGoal(goal)}
+                                        className="w-full justify-start text-left"
+                                    >
+                                        {goal}
+                                    </QuickActionButton>
+                                ))}
+                            </div>
+                        </div>
                     </InspiredCard>
                 </motion.section>
             </div>
@@ -130,7 +201,7 @@ const MentalHealthCarePlan = ({
                     <h3 className="text-2xl font-bold mb-6 text-gray-900 dark:text-white">Generated Plan Preview</h3>
                     <InspiredCard className="text-gray-600 dark:text-gray-300 space-y-4">
                         <p>A preview for the Mental Health Care Plan will be shown here once implemented.</p>
-                        <div><strong className="text-gray-800 dark:text-white">Presentation:</strong> {presentation || 'N/A'}</div>
+                        <div><strong className="text-gray-800 dark:text-white">Clinical Details:</strong> {presentation || 'N/A'}</div>
                         <div><strong className="text-gray-800 dark:text-white">History:</strong> {history || 'N/A'}</div>
                         <div><strong className="text-gray-800 dark:text-white">Goals:</strong> {goals || 'N/A'}</div>
                     </InspiredCard>
