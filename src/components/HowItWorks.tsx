@@ -103,7 +103,7 @@ const HowItWorks = () => {
                                 <Clock className="w-8 h-8 text-gray-400" />
                                 <h4 className="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-b from-neutral-50 to-neutral-400">Traditional Method</h4>
                             </div>
-                            <p className="text-5xl font-bold text-gray-400">45+ <span className="text-2xl font-medium align-baseline">mins</span></p>
+                            <p className="text-5xl font-bold text-gray-400">20+ <span className="text-2xl font-medium align-baseline">mins</span></p>
                             <p className="mt-2 text-gray-400">Manual research, writing, and formatting.</p>
                         </div>
 
@@ -120,7 +120,7 @@ const HowItWorks = () => {
                     
                     <div className="mt-8 pt-8 border-t border-white/10 text-center">
                         <p className="text-2xl font-bold text-white">
-                            Time Saved: <span className="text-gradient-gold">~39 minutes per complex care plan</span>
+                            Time Saved: <span className="text-gradient-gold">~20 minutes per complex care plan</span>
                         </p>
                     </div>
                 </motion.div>

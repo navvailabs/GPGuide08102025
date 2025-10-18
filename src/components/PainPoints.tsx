@@ -55,7 +55,7 @@ const PainPoints = () => {
                     viewport={{ once: true, amount: 0.5 }}
                     transition={{ duration: 0.5 }}
                 >
-                    <h2 className="text-3xl md:text-4xl font-bold tracking-tight bg-clip-text text-transparent bg-gradient-to-b from-neutral-50 to-neutral-400">The Hidden Cost of GP Documentation</h2>
+                    <h2 className="text-mobile-h2 md:text-desktop-h2 font-bold bg-clip-text text-transparent bg-gradient-to-b from-neutral-50 to-neutral-400">The Hidden Cost of GP Documentation</h2>
                     <p className="mt-4 text-lg text-neutral-300">
                       Every hour spent on admin is an hour lost to patient care. GPGuide helps Australian GPs reclaim their time, improve compliance, and restore work–life balance.
                     </p>
@@ -89,7 +89,7 @@ const PainPoints = () => {
                                     {/* Content Card */}
                                     <div className={`w-full pl-12 md:pl-0 ${isRightSide ? 'md:pl-[calc(50%+2.5rem)]' : 'md:pr-[calc(50%+2.5rem)]'}`}>
                                         <motion.div 
-                                            className="bg-black/40 backdrop-blur-lg border border-white/10 rounded-2xl p-6 transition-all duration-300 hover:border-cyan-400/50 hover:shadow-2xl hover:shadow-cyan-400/10"
+                                            className="bg-slate-800/50 backdrop-blur-xl border border-white/10 rounded-2xl p-6 shadow-[0_8px_32px_rgba(0,0,0,0.3),inset_0_1px_1px_rgba(255,255,255,0.07)] transition-all duration-300 hover:border-white/20 hover:bg-slate-800/60"
                                             whileHover={{ y: -5, scale: 1.02, transition: { type: 'spring', stiffness: 300 } }}
                                         >
                                             <div className="flex flex-col gap-4 text-left">
