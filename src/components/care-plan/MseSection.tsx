@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { FileText } from 'lucide-react';
+import { FileText, XCircle } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { useTheme } from '@/contexts/ThemeContext';
 import InspiredCard from '@/components/ui/InspiredCard';
@@ -120,11 +120,12 @@ const MseSection = ({ mseNotes, setMseNotes }: MseSectionProps) => {
                                 theme === 'light' ? 'text-gray-700' : 'text-gray-300'
                             )}>{domain}</h4>
                             <div className="flex flex-wrap gap-2">
-                                {options.map(option => (
+                                {options.map((option) => (
                                     <QuickActionButton
                                         key={option}
                                         onClick={() => handleSelect(domain, option)}
                                         className={cn(
+                                            'justify-center',
                                             isSelected(domain, option) && '!bg-premium-gold/10 dark:!bg-premium-gold/20 !border-premium-gold !text-premium-gold'
                                         )}
                                     >
@@ -137,13 +138,28 @@ const MseSection = ({ mseNotes, setMseNotes }: MseSectionProps) => {
                 </div>
 
                 <div>
-                    <label className={cn(
-                        "block text-sm font-medium mb-2 flex items-center gap-2",
-                        theme === 'light' ? 'text-gray-600' : 'text-gray-300'
-                    )}>
-                        <FileText className="h-4 w-4" />
-                        Clinical Notes
-                    </label>
+                    <div className="flex justify-between items-center mb-2">
+                        <label className={cn(
+                            "text-sm font-medium flex items-center gap-2",
+                            theme === 'light' ? 'text-gray-600' : 'text-gray-300'
+                        )}>
+                            <FileText className="h-4 w-4" />
+                            Clinical Notes
+                        </label>
+                        <button
+                            onClick={() => setMseNotes('')}
+                            className={cn(
+                                "flex items-center gap-1.5 text-xs font-semibold transition-colors disabled:opacity-50 disabled:cursor-not-allowed",
+                                theme === 'light' 
+                                    ? 'text-gray-500 hover:text-red-500' 
+                                    : 'text-gray-400 hover:text-red-400'
+                            )}
+                            disabled={!mseNotes}
+                        >
+                            <XCircle className="h-4 w-4" />
+                            Clear
+                        </button>
+                    </div>
                     <StyledTextarea
                         value={mseNotes}
                         onChange={(e) => setMseNotes(e.target.value)}

@@ -141,12 +141,12 @@ const MentalHealthCarePlan = ({
 
                 <motion.section variants={sectionVariants}>
                     <InspiredCard>
-                        <label className="block text-sm font-medium mb-2 text-gray-600 dark:text-gray-300" htmlFor="mh-assessment">Mental Status and Psychological Assessment</label>
+                        <label className="block text-sm font-medium mb-2 text-gray-600 dark:text-gray-300" htmlFor="mh-assessment">Psychological Assessment</label>
                         <StyledTextarea
                             id="mh-assessment"
                             value={assessment}
                             onChange={(e) => setAssessment(e.target.value)}
-                            placeholder="e.g., Appears tired, flat affect. Speech is slow. Denies suicidal ideation. K10 score: 32 (Very High)."
+                            placeholder="K10: 28 (High) | DASS-21: D14 M / A10 M / S20 S | PHQ-9: 17 (Mod Severe) | GAD-7: 15 (Severe) | AUDIT: 8 (Hazardous)"
                             rows={3}
                         />
                     </InspiredCard>
@@ -228,7 +228,7 @@ const MentalHealthCarePlan = ({
                     <InspiredCard className="text-gray-600 dark:text-gray-300 space-y-4">
                         <p>A preview for the Mental Health Care Plan will be shown here once implemented.</p>
                         <div><strong className="text-gray-800 dark:text-white">Clinical Details:</strong> {presentation || 'N/A'}</div>
-                        <div><strong className="text-gray-800 dark:text-white">Mental Status and Psychological Assessment:</strong> {assessment || 'N/A'}</div>
+                        <div><strong className="text-gray-800 dark:text-white">Psychological Assessment:</strong> {assessment || 'N/A'}</div>
                         <div><strong className="text-gray-800 dark:text-white">MSE:</strong> {mse || 'N/A'}</div>
                         <div><strong className="text-gray-800 dark:text-white">History:</strong> {history || 'N/A'}</div>
                         <div><strong className="text-gray-800 dark:text-white">Goals:</strong> {goals || 'N/A'}</div>
