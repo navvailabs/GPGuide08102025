@@ -21,7 +21,7 @@ interface MEDDResult {
 export type ActiveView = 'gp-care-plan' | 'mental-health-care-plan' | 'dexa-scan-tool' | 'centrelink-form-assist' | 'workers-comp-assist' | 'medd-assist-tool';
 
 const CarePlanSuite = () => {
-    const [activeView, setActiveView] = useState<ActiveView>('gp-care-plan');
+    const [activeView, setActiveView] = useState<ActiveView>('mental-health-care-plan');
 
     // State for GPCarePlan
     const [gpConditions, setGpConditions] = useState<string>('');
@@ -30,12 +30,12 @@ const CarePlanSuite = () => {
     const [gpCarePlanHtml, setGpCarePlanHtml] = useState<string | null>(null);
 
     // State for MentalHealthCarePlan
-    const [mhPresentation, setMhPresentation] = useState<string>('');
-    const [mhAssessment, setMhAssessment] = useState<string>('');
-    const [mhMse, setMhMse] = useState<string>('');
-    const [mhHistory, setMhHistory] = useState<string>('');
-    const [mhGoals, setMhGoals] = useState<string>('');
-    const [mhIsPreviewGenerated, setMhIsPreviewGenerated] = useState(false);
+    const [clinicalDetails, setClinicalDetails] = useState('');
+    const [psychologicalAssessment, setPsychologicalAssessment] = useState('');
+    const [mse, setMse] = useState('');
+    const [relevantHistory, setRelevantHistory] = useState('');
+    const [managementGoals, setManagementGoals] = useState('');
+    const [mhcpPreviewHtml, setMhcpPreviewHtml] = useState<string | null>(null);
 
     // State for DexaScanTool
     const [dexaInputs, setDexaInputs] = useState({
@@ -65,18 +65,18 @@ const CarePlanSuite = () => {
                 />;
             case 'mental-health-care-plan':
                 return <MentalHealthCarePlan 
-                    presentation={mhPresentation}
-                    setPresentation={setMhPresentation}
-                    assessment={mhAssessment}
-                    setAssessment={setMhAssessment}
-                    mse={mhMse}
-                    setMse={setMhMse}
-                    history={mhHistory}
-                    setHistory={setMhHistory}
-                    goals={mhGoals}
-                    setGoals={setMhGoals}
-                    isPreviewGenerated={mhIsPreviewGenerated}
-                    setIsPreviewGenerated={setMhIsPreviewGenerated}
+                    clinicalDetails={clinicalDetails}
+                    setClinicalDetails={setClinicalDetails}
+                    psychologicalAssessment={psychologicalAssessment}
+                    setPsychologicalAssessment={setPsychologicalAssessment}
+                    mse={mse}
+                    setMse={setMse}
+                    relevantHistory={relevantHistory}
+                    setRelevantHistory={setRelevantHistory}
+                    managementGoals={managementGoals}
+                    setManagementGoals={setManagementGoals}
+                    mhcpPreviewHtml={mhcpPreviewHtml}
+                    setMhcpPreviewHtml={setMhcpPreviewHtml}
                 />;
             case 'dexa-scan-tool':
                 return <DexaScanTool
