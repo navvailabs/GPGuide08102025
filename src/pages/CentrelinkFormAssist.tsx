@@ -4,6 +4,7 @@ import { Sparkles, RefreshCw, Loader2, Copy, Check } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { StyledTextarea } from '@/components/ui/StyledTextarea';
 import { QuickActionButton } from '@/components/ui/QuickActionButton';
+import InspiredCard from '@/components/ui/InspiredCard';
 
 const sectionVariants = {
     hidden: { opacity: 0, y: 20 },
@@ -112,7 +113,7 @@ const CentrelinkFormAssist = () => {
 
             <div className="space-y-8">
                 <motion.section variants={sectionVariants}>
-                    <div className="bg-white dark:bg-[#1A1B1E]/85 backdrop-blur-lg border border-gray-200 dark:border-white/10 rounded-2xl p-6 shadow-lg dark:shadow-2xl">
+                    <InspiredCard>
                         <label className="block text-sm font-medium mb-2 text-gray-600 dark:text-gray-300" htmlFor="clinical-info-textarea">Clinical information</label>
                         <StyledTextarea
                             id="clinical-info-textarea"
@@ -135,11 +136,11 @@ const CentrelinkFormAssist = () => {
                                 ))}
                             </div>
                         </div>
-                    </div>
+                    </InspiredCard>
                 </motion.section>
 
                 <motion.section variants={sectionVariants}>
-                    <div className="bg-white dark:bg-[#1A1B1E]/85 backdrop-blur-lg border border-gray-200 dark:border-white/10 rounded-2xl p-6 shadow-lg dark:shadow-2xl">
+                    <InspiredCard>
                         <label className="block text-sm font-medium mb-2 text-gray-600 dark:text-gray-300" htmlFor="functional-impact-textarea">Functional Impact</label>
                         <StyledTextarea
                             id="functional-impact-textarea"
@@ -162,11 +163,11 @@ const CentrelinkFormAssist = () => {
                                 ))}
                             </div>
                         </div>
-                    </div>
+                    </InspiredCard>
                 </motion.section>
 
                 <motion.section variants={sectionVariants}>
-                    <div className="bg-white dark:bg-[#1A1B1E]/85 backdrop-blur-lg border border-gray-200 dark:border-white/10 rounded-2xl p-6 shadow-lg dark:shadow-2xl">
+                    <InspiredCard>
                         <label className="block text-sm font-medium mb-2 text-gray-600 dark:text-gray-300" htmlFor="treatment-plan-textarea">Treatment Plan & Prognosis</label>
                         <StyledTextarea
                             id="treatment-plan-textarea"
@@ -189,7 +190,7 @@ const CentrelinkFormAssist = () => {
                                 ))}
                             </div>
                         </div>
-                    </div>
+                    </InspiredCard>
                 </motion.section>
 
                 <motion.div variants={sectionVariants} className="flex flex-col sm:flex-row justify-center items-center gap-4 pt-6">
@@ -223,9 +224,9 @@ const CentrelinkFormAssist = () => {
                                 <span>{isCopied ? 'Copied!' : 'Copy'}</span>
                             </button>
                         </div>
-                        <div className="bg-white dark:bg-[#1A1B1E]/85 backdrop-blur-lg border border-gray-200 dark:border-white/10 rounded-2xl p-6 shadow-lg dark:shadow-2xl text-gray-600 dark:text-gray-300">
+                        <InspiredCard className="text-gray-600 dark:text-gray-300">
                             <p>{summary}</p>
-                        </div>
+                        </InspiredCard>
                     </motion.div>
                 )}
             </div>

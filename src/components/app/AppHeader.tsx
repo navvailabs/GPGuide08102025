@@ -3,6 +3,7 @@ import { Home, Menu } from 'lucide-react';
 import { motion } from 'framer-motion';
 import BrightnessControl from '@/components/BrightnessControl';
 import ThemeToggle from '@/components/ThemeToggle';
+import { cn } from '@/lib/utils';
 
 interface AppHeaderProps {
   onMenuClick?: () => void;
@@ -10,9 +11,9 @@ interface AppHeaderProps {
 
 const AppHeader = ({ onMenuClick }: AppHeaderProps) => {
   return (
-    <header className="sticky top-0 z-20 bg-white/50 dark:bg-black/30 backdrop-blur-lg border-b border-gray-200 dark:border-white/10">
+    <header className="sticky top-0 z-20 bg-gray-100/90 dark:bg-[#16181C]/90 backdrop-blur-md border-b border-gray-200 dark:border-gray-800">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between md:justify-end h-16">
+        <div className="flex items-center justify-between md:justify-end h-12">
           <div className="md:hidden">
             {onMenuClick && (
               <button onClick={onMenuClick} className="text-gray-800 dark:text-white p-2 -ml-2">
@@ -30,7 +31,10 @@ const AppHeader = ({ onMenuClick }: AppHeaderProps) => {
             >
               <Link
                 to="/"
-                className="flex items-center gap-2 px-4 py-2 text-gray-800 dark:text-white border border-gray-400/50 dark:border-white/20 rounded-full font-semibold hover:bg-gray-200/50 dark:hover:bg-white/10 transition-all duration-300 text-sm"
+                className={cn(
+                  "flex items-center gap-2 px-3 py-1.5 text-sm font-medium rounded-lg transition-colors",
+                  "text-gray-600 dark:text-gray-400 hover:bg-gray-200/80 dark:hover:bg-white/10"
+                )}
               >
                 <Home className="w-4 h-4" />
                 Home

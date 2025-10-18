@@ -5,6 +5,7 @@ import { cn } from '@/lib/utils';
 import { StyledPillInput } from '@/components/ui/StyledPillInput';
 import { StyledTextarea } from '@/components/ui/StyledTextarea';
 import { QuickActionButton } from '@/components/ui/QuickActionButton';
+import InspiredCard from '@/components/ui/InspiredCard';
 
 interface DexaInputs {
     age: string;
@@ -108,7 +109,7 @@ const DexaScanTool = ({ inputs, setInputs, summary, setSummary }: DexaScanToolPr
 
             <div className="space-y-8">
                 <motion.section variants={sectionVariants}>
-                    <div className="bg-white dark:bg-[#1A1B1E]/85 backdrop-blur-lg border border-gray-200 dark:border-white/10 rounded-2xl p-6 shadow-lg dark:shadow-2xl">
+                    <InspiredCard>
                         <h3 className="text-xl font-bold mb-4 text-gray-900 dark:text-white">Patient Details</h3>
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                             <div>
@@ -137,11 +138,11 @@ const DexaScanTool = ({ inputs, setInputs, summary, setSummary }: DexaScanToolPr
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </InspiredCard>
                 </motion.section>
 
                 <motion.section variants={sectionVariants}>
-                    <div className="bg-white dark:bg-[#1A1B1E]/85 backdrop-blur-lg border border-gray-200 dark:border-white/10 rounded-2xl p-6 shadow-lg dark:shadow-2xl">
+                    <InspiredCard>
                         <h3 className="text-xl font-bold mb-4 text-gray-900 dark:text-white">Clinical Indications (MBS Criteria)</h3>
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
                             {commonIndications.map(indication => (
@@ -159,11 +160,11 @@ const DexaScanTool = ({ inputs, setInputs, summary, setSummary }: DexaScanToolPr
                                 </QuickActionButton>
                             ))}
                         </div>
-                    </div>
+                    </InspiredCard>
                 </motion.section>
 
                 <motion.section variants={sectionVariants}>
-                    <div className="bg-white dark:bg-[#1A1B1E]/85 backdrop-blur-lg border border-gray-200 dark:border-white/10 rounded-2xl p-6 shadow-lg dark:shadow-2xl">
+                    <InspiredCard>
                         <label className="block text-sm font-medium mb-2 text-gray-600 dark:text-gray-300" htmlFor="notes-textarea">Additional Clinical Notes</label>
                         <StyledTextarea
                             id="notes-textarea"
@@ -172,7 +173,7 @@ const DexaScanTool = ({ inputs, setInputs, summary, setSummary }: DexaScanToolPr
                             placeholder="Add any other relevant details..."
                             rows={3}
                         />
-                    </div>
+                    </InspiredCard>
                 </motion.section>
 
                 <motion.div
@@ -224,9 +225,9 @@ const DexaScanTool = ({ inputs, setInputs, summary, setSummary }: DexaScanToolPr
                                 <span>{isCopied ? 'Copied!' : 'Copy'}</span>
                             </button>
                         </div>
-                        <div className="bg-white dark:bg-[#1A1B1E]/85 backdrop-blur-lg border border-gray-200 dark:border-white/10 rounded-2xl p-6 shadow-lg dark:shadow-2xl text-gray-600 dark:text-gray-300">
+                        <InspiredCard className="text-gray-600 dark:text-gray-300">
                             <p>{summary}</p>
-                        </div>
+                        </InspiredCard>
                     </motion.div>
                 )}
             </div>

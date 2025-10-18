@@ -3,6 +3,7 @@ import { motion } from 'framer-motion';
 import { Sparkles, RefreshCw, Loader2, Copy, Check, AlertTriangle, ExternalLink, Calculator } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { StyledTextarea } from '@/components/ui/StyledTextarea';
+import InspiredCard from '@/components/ui/InspiredCard';
 
 // Simplified Australian Opioid Conversion Factors
 // Source: Adapted from various Australian guidelines, e.g., ANZCA FPM. For educational purposes.
@@ -147,7 +148,7 @@ const MEDDAssistTool = ({ medicationInput, setMedicationInput, result, setResult
 
             <div className="space-y-8">
                 <motion.section variants={sectionVariants}>
-                    <div className="bg-white dark:bg-[#1A1B1E]/85 backdrop-blur-lg border border-gray-200 dark:border-white/10 rounded-2xl p-6 shadow-lg dark:shadow-2xl">
+                    <InspiredCard>
                         <label className="block text-sm font-medium mb-2 text-gray-600 dark:text-gray-300" htmlFor="medication-input">Opioid Medications & Doses</label>
                         <StyledTextarea
                             id="medication-input"
@@ -157,7 +158,7 @@ const MEDDAssistTool = ({ medicationInput, setMedicationInput, result, setResult
                             className="font-mono text-sm"
                             rows={5}
                         />
-                    </div>
+                    </InspiredCard>
                 </motion.section>
 
                 <motion.div variants={sectionVariants} className="flex flex-col sm:flex-row justify-center items-center gap-4 pt-6">
@@ -191,7 +192,7 @@ const MEDDAssistTool = ({ medicationInput, setMedicationInput, result, setResult
                                 <span>{isCopied ? 'Copied!' : 'Copy'}</span>
                             </button>
                         </div>
-                        <div className="bg-white dark:bg-[#1A1B1E]/85 backdrop-blur-lg border border-gray-200 dark:border-white/10 rounded-2xl p-6 shadow-lg dark:shadow-2xl space-y-6">
+                        <InspiredCard className="space-y-6">
                             <div className="text-center">
                                 <p className="text-sm text-gray-500 dark:text-gray-400">Total MEDD</p>
                                 <p className={`text-5xl font-bold ${getRiskLevel(result.totalMEDD).color}`}>{result.totalMEDD.toFixed(1)} <span className="text-2xl font-medium">mg</span></p>
@@ -232,7 +233,7 @@ const MEDDAssistTool = ({ medicationInput, setMedicationInput, result, setResult
                                     View ANZCA FPM Guidelines <ExternalLink className="h-3 w-3" />
                                 </a>
                             </div>
-                        </div>
+                        </InspiredCard>
                     </motion.div>
                 )}
             </div>

@@ -55,10 +55,10 @@ const CarePlanLayout = ({ children, activeView, setActiveView }: CarePlanLayoutP
                 <div className="hidden md:block">
                     <motion.button 
                         onClick={(e) => {
-                            e.stopPropagation(); // Prevent the main content click handler from firing
+                            e.stopPropagation();
                             setIsDesktopSidebarCollapsed(!isDesktopSidebarCollapsed);
                         }} 
-                        className="w-7 h-7 rounded-full bg-gray-200/80 dark:bg-black/50 backdrop-blur-md border border-gray-300 dark:border-white/20 flex items-center justify-center text-gray-800 dark:text-white hover:bg-gray-300 dark:hover:bg-black/70 fixed top-5 z-40"
+                        className="w-7 h-7 rounded-full bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-700 shadow-md flex items-center justify-center text-gray-700 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-700 fixed top-2.5 z-40"
                         aria-label={isDesktopSidebarCollapsed ? 'Expand sidebar' : 'Collapse sidebar'}
                         initial={false}
                         animate={{ left: isDesktopSidebarCollapsed ? '4.125rem' : '19.125rem' }}

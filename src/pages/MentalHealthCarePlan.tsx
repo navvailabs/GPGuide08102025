@@ -2,6 +2,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { Sparkles, RefreshCw } from 'lucide-react';
 import { StyledTextarea } from '@/components/ui/StyledTextarea';
+import InspiredCard from '@/components/ui/InspiredCard';
 
 interface MentalHealthCarePlanProps {
     presentation: string;
@@ -61,7 +62,7 @@ const MentalHealthCarePlan = ({
 
             <div className="space-y-8">
                 <motion.section variants={sectionVariants}>
-                    <div className="bg-white dark:bg-[#1A1B1E]/85 backdrop-blur-lg border border-gray-200 dark:border-white/10 rounded-2xl p-6 shadow-lg dark:shadow-2xl">
+                    <InspiredCard>
                         <label className="block text-sm font-medium mb-2 text-gray-600 dark:text-gray-300" htmlFor="mh-presentation">Patient Presentation</label>
                         <StyledTextarea
                             id="mh-presentation"
@@ -70,11 +71,11 @@ const MentalHealthCarePlan = ({
                             placeholder="e.g., Low mood, anxiety, poor sleep..."
                             rows={3}
                         />
-                    </div>
+                    </InspiredCard>
                 </motion.section>
 
                 <motion.section variants={sectionVariants}>
-                    <div className="bg-white dark:bg-[#1A1B1E]/85 backdrop-blur-lg border border-gray-200 dark:border-white/10 rounded-2xl p-6 shadow-lg dark:shadow-2xl">
+                    <InspiredCard>
                         <label className="block text-sm font-medium mb-2 text-gray-600 dark:text-gray-300" htmlFor="mh-history">Relevant History</label>
                         <StyledTextarea
                             id="mh-history"
@@ -83,11 +84,11 @@ const MentalHealthCarePlan = ({
                             placeholder="e.g., Past mental health history, family history, social situation..."
                             rows={3}
                         />
-                    </div>
+                    </InspiredCard>
                 </motion.section>
 
                 <motion.section variants={sectionVariants}>
-                    <div className="bg-white dark:bg-[#1A1B1E]/85 backdrop-blur-lg border border-gray-200 dark:border-white/10 rounded-2xl p-6 shadow-lg dark:shadow-2xl">
+                    <InspiredCard>
                         <label className="block text-sm font-medium mb-2 text-gray-600 dark:text-gray-300" htmlFor="mh-goals">Management Goals</label>
                         <StyledTextarea
                             id="mh-goals"
@@ -96,7 +97,7 @@ const MentalHealthCarePlan = ({
                             placeholder="e.g., Referral to psychologist, psychoeducation, medication review..."
                             rows={3}
                         />
-                    </div>
+                    </InspiredCard>
                 </motion.section>
             </div>
 
@@ -127,12 +128,12 @@ const MentalHealthCarePlan = ({
                     className="border-t border-gray-200 dark:border-white/10 pt-8 mt-12"
                 >
                     <h3 className="text-2xl font-bold mb-6 text-gray-900 dark:text-white">Generated Plan Preview</h3>
-                    <div className="bg-white dark:bg-[#1A1B1E]/85 backdrop-blur-lg border border-gray-200 dark:border-white/10 rounded-2xl p-6 shadow-lg dark:shadow-2xl text-gray-600 dark:text-gray-300 space-y-4">
+                    <InspiredCard className="text-gray-600 dark:text-gray-300 space-y-4">
                         <p>A preview for the Mental Health Care Plan will be shown here once implemented.</p>
                         <div><strong className="text-gray-800 dark:text-white">Presentation:</strong> {presentation || 'N/A'}</div>
                         <div><strong className="text-gray-800 dark:text-white">History:</strong> {history || 'N/A'}</div>
                         <div><strong className="text-gray-800 dark:text-white">Goals:</strong> {goals || 'N/A'}</div>
-                    </div>
+                    </InspiredCard>
                 </motion.div>
             )}
         </motion.div>
