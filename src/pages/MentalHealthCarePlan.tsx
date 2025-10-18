@@ -10,6 +10,8 @@ import { useTheme } from '@/contexts/ThemeContext';
 interface MentalHealthCarePlanProps {
     presentation: string;
     setPresentation: React.Dispatch<React.SetStateAction<string>>;
+    assessment: string;
+    setAssessment: React.Dispatch<React.SetStateAction<string>>;
     history: string;
     setHistory: React.Dispatch<React.SetStateAction<string>>;
     goals: string;
@@ -46,6 +48,8 @@ const suggestedGoals = [
 const MentalHealthCarePlan = ({
     presentation,
     setPresentation,
+    assessment,
+    setAssessment,
     history,
     setHistory,
     goals,
@@ -61,6 +65,7 @@ const MentalHealthCarePlan = ({
 
     const handleReset = () => {
         setPresentation('');
+        setAssessment('');
         setHistory('');
         setGoals('');
         setIsPreviewGenerated(false);
@@ -125,6 +130,19 @@ const MentalHealthCarePlan = ({
                                 ))}
                             </div>
                         </div>
+                    </InspiredCard>
+                </motion.section>
+
+                <motion.section variants={sectionVariants}>
+                    <InspiredCard>
+                        <label className="block text-sm font-medium mb-2 text-gray-600 dark:text-gray-300" htmlFor="mh-assessment">Mental Status and Psychological Assessment</label>
+                        <StyledTextarea
+                            id="mh-assessment"
+                            value={assessment}
+                            onChange={(e) => setAssessment(e.target.value)}
+                            placeholder="e.g., Appears tired, flat affect. Speech is slow. Denies suicidal ideation. K10 score: 32 (Very High)."
+                            rows={3}
+                        />
                     </InspiredCard>
                 </motion.section>
 
@@ -202,6 +220,7 @@ const MentalHealthCarePlan = ({
                     <InspiredCard className="text-gray-600 dark:text-gray-300 space-y-4">
                         <p>A preview for the Mental Health Care Plan will be shown here once implemented.</p>
                         <div><strong className="text-gray-800 dark:text-white">Clinical Details:</strong> {presentation || 'N/A'}</div>
+                        <div><strong className="text-gray-800 dark:text-white">Mental Status and Psychological Assessment:</strong> {assessment || 'N/A'}</div>
                         <div><strong className="text-gray-800 dark:text-white">History:</strong> {history || 'N/A'}</div>
                         <div><strong className="text-gray-800 dark:text-white">Goals:</strong> {goals || 'N/A'}</div>
                     </InspiredCard>
