@@ -28,18 +28,40 @@ const sectionVariants = {
     visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: "easeOut" } }
 };
 
-const suggestedPresentations = [
-    "Depression",
-    "Generalised Anxiety Disorder",
-    "Panic Disorder",
-    "PTSD",
-    "Adjustment Disorder",
-    "Perinatal Depression",
-    "Bipolar Disorder",
-    "OCD",
-    "Eating Disorder",
-    "Grief or Bereavement Reaction"
-];
+const clinicalDetailsSuggestions = {
+    "🧠 Mood Symptoms": [
+        "Low mood",
+        "Loss of interest (anhedonia)",
+        "Feelings of hopelessness",
+        "Crying episodes",
+        "Irritability",
+    ],
+    "⚡ Anxiety Symptoms": [
+        "Excessive worry",
+        "Panic attacks",
+        "Restlessness",
+        "Racing thoughts",
+        "Tight chest / palpitations",
+    ],
+    "😴 Sleep & Energy": [
+        "Poor sleep / insomnia",
+        "Early morning waking",
+        "Low energy / fatigue",
+        "Poor concentration",
+    ],
+    "📉 Functional Impact": [
+        "Reduced ability to work/study",
+        "Social withdrawal",
+        "Avoidance behaviour",
+        "Difficulty coping with daily tasks",
+    ],
+    "🚨 Risk Symptoms": [
+        "Suicidal thoughts (no plan)",
+        "Passive suicidal ideation",
+        "Self-harm urges",
+        "No suicidal ideation",
+    ],
+};
 
 const suggestedGoals = [
     "Improve mood by engaging in structured CBT sessions weekly",
@@ -119,22 +141,26 @@ const MentalHealthCarePlan = ({
                             placeholder="Low mood, anhedonia, decreased energy, early waking, loss of appetite, difficulty coping at work."
                             rows={3}
                         />
-                        <div className="mt-4">
-                            <p className={cn(
-                                "text-xs mb-2",
-                                theme === 'light' ? 'text-gray-500' : 'text-gray-400'
-                            )}>Suggestions:</p>
-                            <div className="flex flex-wrap gap-2">
-                                {suggestedPresentations.map(item => (
-                                    <QuickActionButton
-                                        key={item}
-                                        onClick={() => handleAddPresentation(item)}
-                                        className="justify-center"
-                                    >
-                                        {item}
-                                    </QuickActionButton>
-                                ))}
-                            </div>
+                        <div className="mt-4 space-y-4">
+                            {Object.entries(clinicalDetailsSuggestions).map(([category, items]) => (
+                                <div key={category}>
+                                    <p className={cn(
+                                        "text-xs font-semibold mb-2",
+                                        theme === 'light' ? 'text-gray-500' : 'text-gray-400'
+                                    )}>{category}</p>
+                                    <div className="flex flex-wrap gap-2">
+                                        {items.map(item => (
+                                            <QuickActionButton
+                                                key={item}
+                                                onClick={() => handleAddPresentation(item)}
+                                                className="justify-center"
+                                            >
+                                                {item}
+                                            </QuickActionButton>
+                                        ))}
+                                    </div>
+                                </div>
+                            ))}
                         </div>
                     </InspiredCard>
                 </motion.section>
