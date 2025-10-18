@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion';
 import { Check } from 'lucide-react';
+import { cn } from '@/lib/utils';
 
 const Pricing = () => {
     const plans = [
@@ -70,14 +71,17 @@ const Pricing = () => {
                     {plans.map((plan, index) => (
                         <motion.div
                             key={plan.name}
-                            className={`relative border rounded-2xl p-8 flex flex-col ${plan.isPopular ? 'border-premium-gold bg-white shadow-2xl' : 'border-gray-200 bg-white shadow-lg'}`}
+                            className={cn(
+                                'relative flex flex-col p-8 rounded-[20px] bg-gray-100 shadow-clay-light transition-all duration-300',
+                                plan.isPopular ? 'border-2 border-premium-gold' : 'border-2 border-transparent'
+                            )}
                             initial={{ opacity: 0, y: 50 }}
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true, amount: 0.5 }}
                             transition={{ duration: 0.5, delay: index * 0.2 }}
                         >
                             {plan.isPopular && (
-                                <div className="absolute top-0 -translate-y-1/2 left-1/2 -translate-x-1/2 bg-premium-gold text-white px-4 py-1 rounded-full text-sm font-bold">
+                                <div className="absolute top-0 -translate-y-1/2 left-1/2 -translate-x-1/2 bg-gold-gradient text-white px-4 py-1 rounded-full text-sm font-bold">
                                     MOST POPULAR
                                 </div>
                             )}
@@ -137,7 +141,7 @@ const Pricing = () => {
                                 <button className={`w-full py-3 px-6 rounded-lg font-bold text-lg transition-transform duration-300 hover:scale-105 ${plan.isPopular ? 'bg-gold-gradient text-white' : 'bg-medical-blue text-white'}`}>
                                     {plan.cta}
                                 </button>
-                                <div className="mt-4 text-center text-sm text-gray-600 bg-gray-100 p-2 rounded-md">
+                                <div className="mt-4 text-center text-sm text-gray-600 bg-white border border-gray-200/80 p-2 rounded-md">
                                     <p className="font-semibold">{plan.roi}</p>
                                     <p>{plan.value}</p>
                                 </div>

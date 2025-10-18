@@ -36,7 +36,7 @@ const Hero = () => {
                                 HIGH YIELD GP
                             </span>
                             <br />
-                            <span className="bg-clip-text text-transparent bg-gradient-to-b from-premium-gold to-amber-600">
+                            <span className="text-gradient-gold">
                                 RESOURCE GUIDE
                             </span>
                         </h1>
@@ -71,33 +71,33 @@ const Hero = () => {
                         {/* Glowing background element */}
                         <div className="absolute -inset-1 bg-gradient-to-r from-cyan-400 to-blue-500 rounded-2xl blur-lg opacity-50 group-hover:opacity-80 transition-all duration-500 animate-tilt"></div>
                         
-                        {/* Main glassmorphism card */}
-                        <div className="relative w-full h-full bg-white/10 dark:bg-slate-900/30 backdrop-blur-xl rounded-2xl shadow-layered-xl border border-white/10 p-6">
-                            <div className="h-full flex flex-col border border-border-light/50 dark:border-border-dark/50 rounded-lg bg-surface-light/80 dark:bg-surface-dark/80 shadow-inner-light dark:shadow-inner-dark">
-                                <div className="flex items-center justify-between p-3 border-b border-border-light/50 dark:border-border-dark/50">
+                        {/* Main glassmorphism card - NOW LIGHT THEME */}
+                        <div className="relative w-full h-full bg-gray-50/80 backdrop-blur-xl rounded-2xl shadow-layered-xl border border-gray-200/50 p-6">
+                            <div className="h-full flex flex-col border border-gray-200 rounded-lg bg-white shadow-inner-light">
+                                <div className="flex items-center justify-between p-3 border-b border-gray-200">
                                     <div className="flex items-center gap-1.5">
                                         <span className="w-3 h-3 bg-red-400 rounded-full"></span>
                                         <span className="w-3 h-3 bg-yellow-400 rounded-full"></span>
                                         <span className="w-3 h-3 bg-green-400 rounded-full"></span>
                                     </div>
-                                    <p className="text-sm font-medium text-text-primary dark:text-gray-300">Template Generator</p>
+                                    <p className="text-sm font-medium text-gray-700">Template Generator</p>
                                     <div className="w-12"></div>
                                 </div>
                                 <div className="flex-1 p-4 @sm:p-6 space-y-4 overflow-y-auto">
-                                    <div className="bg-background-light/80 dark:bg-background-dark/80 p-4 rounded-lg shadow-layered">
-                                        <label className="block text-sm font-bold text-text-primary dark:text-white mb-2" htmlFor="patient-condition">Patient Condition</label>
-                                        <input className="w-full px-4 py-2 bg-surface-light dark:bg-surface-dark border border-border-light dark:border-border-dark rounded-md focus:ring-2 focus:ring-primary-gradient-start focus:border-transparent transition" id="patient-condition" type="text" defaultValue="Type 2 Diabetes Mellitus" />
+                                    <div className="bg-gray-100 p-4 rounded-lg shadow-layered">
+                                        <label className="block text-sm font-bold text-gray-800 mb-2" htmlFor="patient-condition">Patient Condition</label>
+                                        <input className="w-full px-4 py-2 bg-white border border-gray-300 rounded-md focus:ring-2 focus:ring-primary-gradient-start focus:border-transparent transition text-gray-900" id="patient-condition" type="text" defaultValue="Type 2 Diabetes Mellitus" />
                                     </div>
                                     
-                                    <div className="text-sm text-text-secondary dark:text-gray-400 px-1">
+                                    <div className="text-sm text-gray-500 px-1">
                                         <span className="font-medium">Process:</span> Input → <span className="text-accent-gold font-semibold">Generate</span> → Export
                                     </div>
                                     
-                                    <div className="bg-background-light/80 dark:bg-background-dark/80 p-4 rounded-lg shadow-layered flex flex-col items-center justify-center text-center h-40">
-                                        <TextShimmer className='font-mono text-sm [--base-color:theme(colors.text-secondary)] dark:[--base-color:theme(colors.gray.400)] [--base-gradient-color:theme(colors.text-primary)] dark:[--base-gradient-color:theme(colors.white)]' duration={1.5}>
+                                    <div className="bg-gray-100 p-4 rounded-lg shadow-layered flex flex-col items-center justify-center text-center h-40">
+                                        <TextShimmer className='font-mono text-sm [--base-color:theme(colors.gray.500)] [--base-gradient-color:theme(colors.gray.900)]' duration={1.5}>
                                             Generating template...
                                         </TextShimmer>
-                                        <p className="text-text-secondary dark:text-gray-500 text-xs mt-2 animate-pulse">
+                                        <p className="text-gray-500 text-xs mt-2 animate-pulse">
                                             Analyzing "Type 2 Diabetes Mellitus" input...
                                         </p>
                                     </div>
