@@ -77,7 +77,7 @@ const Pricing = () => {
                             transition={{ duration: 0.5, delay: index * 0.2 }}
                         >
                             {plan.isPopular && (
-                                <div className="absolute top-0 -translate-y-1/2 left-1/2 -translate-x-1/2 bg-premium-gold text-white px-4 py-1 rounded-full text-sm font-bold">
+                                <div className="absolute top-0 -translate-y-1/2 left-1/2 -translate-x-1/2 bg-gold-gradient text-white px-4 py-1 rounded-full text-sm font-bold">
                                     MOST POPULAR
                                 </div>
                             )}
