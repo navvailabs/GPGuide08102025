@@ -61,7 +61,10 @@
     @apply scroll-smooth;
   }
   body {
-    @apply bg-medical-blue text-trust-gray font-inter antialiased;
+    @apply bg-white text-gray-800 font-inter antialiased;
+  }
+  .dark body {
+    @apply bg-medical-blue text-trust-gray;
   }
   h1, h2, h3 {
     @apply font-satoshi font-bold;

@@ -1,7 +1,7 @@
-import { useEffect, useRef } from 'react';
+import { useEffect } from 'react';
 import { motion, useInView, useAnimate, animate } from 'framer-motion';
 import { Quote } from 'lucide-react';
-import SectionGradientBackground from './ui/SectionGradientBackground';
+import InspiredCard from './ui/InspiredCard';
 
 interface CounterProps {
   from: number;
@@ -62,8 +62,7 @@ const Testimonials = () => {
     ];
 
     return (
-        <section className="relative overflow-hidden py-20 sm:py-24">
-            <SectionGradientBackground />
+        <section className="relative overflow-hidden py-20 sm:py-24 bg-white dark:bg-medical-blue">
             <div className="relative z-10 container mx-auto px-4 sm:px-6 lg:px-8">
                 <motion.div
                     className="text-center max-w-3xl mx-auto mb-12"
@@ -72,8 +71,8 @@ const Testimonials = () => {
                     viewport={{ once: true, amount: 0.5 }}
                     transition={{ duration: 0.5 }}
                 >
-                    <h2 className="text-mobile-h2 md:text-desktop-h2 font-bold bg-clip-text text-transparent bg-gradient-to-b from-neutral-50 to-neutral-400">Real GPs, Real Results, Real Time Savings</h2>
-                    <p className="mt-4 text-lg text-neutral-300">
+                    <h2 className="text-mobile-h2 md:text-desktop-h2 font-bold text-gray-900 dark:bg-clip-text dark:text-transparent dark:bg-gradient-to-b dark:from-neutral-50 dark:to-neutral-400">Real GPs, Real Results, Real Time Savings</h2>
+                    <p className="mt-4 text-lg text-gray-600 dark:text-neutral-300">
                         Join 500+ Australian GPs who've transformed their practice efficiency.
                     </p>
                 </motion.div>
@@ -82,50 +81,55 @@ const Testimonials = () => {
                     {testimonials.map((testimonial, index) => (
                         <motion.div
                             key={testimonial.name}
-                            className="bg-black/30 backdrop-blur-lg border border-white/10 rounded-2xl p-8 flex flex-col"
                             initial={{ opacity: 0, y: 50 }}
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true, amount: 0.3 }}
                             transition={{ duration: 0.5, delay: index * 0.15 }}
                         >
-                            <Quote className="w-10 h-10 text-premium-gold/70 mb-4" />
-                            <p className="text-gray-200 mb-6 flex-grow">"{testimonial.quote}"</p>
-                            <div className="flex items-center space-x-4">
-                                <img src={testimonial.image} alt={testimonial.name} className="w-16 h-16 rounded-full border-2 border-premium-gold" />
-                                <div className="flex-1">
-                                    <h4 className="font-bold text-white">{testimonial.name}</h4>
-                                    <p className="text-sm text-gray-300">{testimonial.practice}</p>
-                                    <p className="text-xs text-gray-400 mt-1">{testimonial.details}</p>
+                            <InspiredCard className="p-8 flex flex-col h-full">
+                                <Quote className="w-10 h-10 text-premium-gold/70 mb-4" />
+                                <p className="text-gray-700 dark:text-gray-200 mb-6 flex-grow">"{testimonial.quote}"</p>
+                                <div className="flex items-center space-x-4">
+                                    <img src={testimonial.image} alt={testimonial.name} className="w-16 h-16 rounded-full border-2 border-premium-gold" />
+                                    <div className="flex-1">
+                                        <h4 className="font-bold text-gray-900 dark:text-white">{testimonial.name}</h4>
+                                        <p className="text-sm text-gray-600 dark:text-gray-300">{testimonial.practice}</p>
+                                        <p className="text-xs text-gray-500 dark:text-gray-400 mt-1">{testimonial.details}</p>
+                                    </div>
                                 </div>
-                            </div>
-                            <div className="mt-6 pt-6 border-t border-white/20 text-sm">
-                                <div className="bg-white/5 text-premium-gold font-semibold p-3 rounded-lg text-center">
-                                    {testimonial.stats}
+                                <div className="mt-6 pt-6 border-t border-gray-200 dark:border-white/20 text-sm">
+                                    <div className="bg-premium-gold/10 text-premium-gold font-semibold p-3 rounded-lg text-center">
+                                        {testimonial.stats}
+                                    </div>
                                 </div>
-                            </div>
+                            </InspiredCard>
                         </motion.div>
                     ))}
                 </div>
 
                 <motion.div
-                    className="mt-20 grid grid-cols-1 md:grid-cols-3 gap-8 text-center text-white bg-white/10 p-8 rounded-2xl"
+                    className="mt-20"
                     initial={{ opacity: 0, y: 30 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true, amount: 0.5 }}
                     transition={{ duration: 0.6 }}
                 >
-                    <div>
-                        <p className="text-5xl font-bold text-premium-gold"><Counter from={0} to={547} /></p>
-                        <p className="mt-2 text-gray-300">GPs Active This Week</p>
-                    </div>
-                    <div>
-                        <p className="text-5xl font-bold text-premium-gold"><Counter from={0} to={1247} /></p>
-                        <p className="mt-2 text-gray-300">Templates Generated Today</p>
-                    </div>
-                    <div>
-                        <p className="text-5xl font-bold text-premium-gold"><Counter from={0} to={6} />.2</p>
-                        <p className="mt-2 text-gray-300">Average Weekly Hours Saved</p>
-                    </div>
+                    <InspiredCard className="p-8">
+                        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-center text-gray-900 dark:text-white">
+                            <div>
+                                <p className="text-5xl font-bold text-premium-gold"><Counter from={0} to={547} /></p>
+                                <p className="mt-2 text-gray-600 dark:text-gray-300">GPs Active This Week</p>
+                            </div>
+                            <div>
+                                <p className="text-5xl font-bold text-premium-gold"><Counter from={0} to={1247} /></p>
+                                <p className="mt-2 text-gray-600 dark:text-gray-300">Templates Generated Today</p>
+                            </div>
+                            <div>
+                                <p className="text-5xl font-bold text-premium-gold"><Counter from={0} to={6} />.2</p>
+                                <p className="mt-2 text-gray-600 dark:text-gray-300">Average Weekly Hours Saved</p>
+                            </div>
+                        </div>
+                    </InspiredCard>
                 </motion.div>
             </div>
         </section>

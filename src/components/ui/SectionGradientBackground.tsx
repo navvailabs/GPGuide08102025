@@ -1,7 +1,5 @@
 const SectionGradientBackground = () => {
-  return (
-    <div className="absolute inset-0 bg-transparent" />
-  );
+  return null;
 };
 
 export default SectionGradientBackground;

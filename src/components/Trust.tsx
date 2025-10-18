@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion';
 import { ShieldCheck, CheckCircle } from 'lucide-react';
-import SectionGradientBackground from './ui/SectionGradientBackground';
+import InspiredCard from './ui/InspiredCard';
 
 const Trust = () => {
     const badges = [
@@ -20,8 +20,7 @@ const Trust = () => {
     ];
 
     return (
-        <section className="relative overflow-hidden py-20 sm:py-24">
-            <SectionGradientBackground />
+        <section className="relative overflow-hidden py-20 sm:py-24 bg-white dark:bg-medical-blue">
             <div className="relative z-10 container mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="grid lg:grid-cols-2 gap-12 items-center">
                     <motion.div
@@ -30,13 +29,13 @@ const Trust = () => {
                         viewport={{ once: true, amount: 0.5 }}
                         transition={{ duration: 0.6 }}
                     >
-                        <h2 className="text-3xl md:text-4xl font-bold bg-clip-text text-transparent bg-gradient-to-b from-neutral-50 to-neutral-400">Your Data Security is Our Priority</h2>
-                        <p className="mt-4 text-neutral-300">We are committed to the highest standards of data protection and privacy, ensuring your practice and patient information remains secure.</p>
+                        <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:bg-clip-text dark:text-transparent dark:bg-gradient-to-b dark:from-neutral-50 dark:to-neutral-400">Your Data Security is Our Priority</h2>
+                        <p className="mt-4 text-gray-600 dark:text-neutral-300">We are committed to the highest standards of data protection and privacy, ensuring your practice and patient information remains secure.</p>
                         <ul className="mt-6 space-y-3">
                             {securityPoints.map(point => (
                                 <li key={point} className="flex items-start">
                                     <CheckCircle className="h-5 w-5 text-success-green mr-3 mt-0.5 flex-shrink-0" />
-                                    <span className="text-gray-200">{point}</span>
+                                    <span className="text-gray-700 dark:text-gray-200">{point}</span>
                                 </li>
                             ))}
                         </ul>
@@ -49,15 +48,21 @@ const Trust = () => {
                         transition={{ duration: 0.6, delay: 0.2 }}
                     >
                         {badges.map((badge, index) => (
-                            <div key={index} className="glass-card flex items-center space-x-2 px-4 py-3 rounded-lg text-sm font-medium text-white">
+                            <InspiredCard key={index} className="flex items-center space-x-2 px-4 py-3">
                                 <ShieldCheck className="h-5 w-5 text-success-green" />
-                                <span>{badge.text}</span>
-                            </div>
+                                <span className="text-sm font-medium text-gray-800 dark:text-white">{badge.text}</span>
+                            </InspiredCard>
                         ))}
                         <div className="w-full flex justify-center space-x-4 mt-4">
-                            <div className="bg-white/20 p-3 rounded-lg text-white font-bold text-sm">ISO 27001</div>
-                            <div className="bg-white/20 p-3 rounded-lg text-white font-bold text-sm">Australian Made</div>
-                            <div className="bg-white/20 p-3 rounded-lg text-white font-bold text-sm">Privacy Compliant</div>
+                            <InspiredCard className="p-3">
+                                <span className="text-gray-800 dark:text-white font-bold text-sm">ISO 27001</span>
+                            </InspiredCard>
+                            <InspiredCard className="p-3">
+                                <span className="text-gray-800 dark:text-white font-bold text-sm">Australian Made</span>
+                            </InspiredCard>
+                             <InspiredCard className="p-3">
+                                <span className="text-gray-800 dark:text-white font-bold text-sm">Privacy Compliant</span>
+                            </InspiredCard>
                         </div>
                     </motion.div>
                 </div>
