@@ -6,12 +6,15 @@ import InspiredCard from '@/components/ui/InspiredCard';
 import { QuickActionButton } from '@/components/ui/QuickActionButton';
 import { cn } from '@/lib/utils';
 import { useTheme } from '@/contexts/ThemeContext';
+import MseSection from '@/components/care-plan/MseSection';
 
 interface MentalHealthCarePlanProps {
     presentation: string;
     setPresentation: React.Dispatch<React.SetStateAction<string>>;
     assessment: string;
     setAssessment: React.Dispatch<React.SetStateAction<string>>;
+    mse: string;
+    setMse: React.Dispatch<React.SetStateAction<string>>;
     history: string;
     setHistory: React.Dispatch<React.SetStateAction<string>>;
     goals: string;
@@ -50,6 +53,8 @@ const MentalHealthCarePlan = ({
     setPresentation,
     assessment,
     setAssessment,
+    mse,
+    setMse,
     history,
     setHistory,
     goals,
@@ -66,6 +71,7 @@ const MentalHealthCarePlan = ({
     const handleReset = () => {
         setPresentation('');
         setAssessment('');
+        setMse('');
         setHistory('');
         setGoals('');
         setIsPreviewGenerated(false);
@@ -146,6 +152,8 @@ const MentalHealthCarePlan = ({
                     </InspiredCard>
                 </motion.section>
 
+                <MseSection mseNotes={mse} setMseNotes={setMse} />
+
                 <motion.section variants={sectionVariants}>
                     <InspiredCard>
                         <label className="block text-sm font-medium mb-2 text-gray-600 dark:text-gray-300" htmlFor="mh-history">Relevant History</label>
@@ -221,6 +229,7 @@ const MentalHealthCarePlan = ({
                         <p>A preview for the Mental Health Care Plan will be shown here once implemented.</p>
                         <div><strong className="text-gray-800 dark:text-white">Clinical Details:</strong> {presentation || 'N/A'}</div>
                         <div><strong className="text-gray-800 dark:text-white">Mental Status and Psychological Assessment:</strong> {assessment || 'N/A'}</div>
+                        <div><strong className="text-gray-800 dark:text-white">MSE:</strong> {mse || 'N/A'}</div>
                         <div><strong className="text-gray-800 dark:text-white">History:</strong> {history || 'N/A'}</div>
                         <div><strong className="text-gray-800 dark:text-white">Goals:</strong> {goals || 'N/A'}</div>
                     </InspiredCard>

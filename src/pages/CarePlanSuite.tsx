@@ -32,6 +32,7 @@ const CarePlanSuite = () => {
     // State for MentalHealthCarePlan
     const [mhPresentation, setMhPresentation] = useState<string>('');
     const [mhAssessment, setMhAssessment] = useState<string>('');
+    const [mhMse, setMhMse] = useState<string>('');
     const [mhHistory, setMhHistory] = useState<string>('');
     const [mhGoals, setMhGoals] = useState<string>('');
     const [mhIsPreviewGenerated, setMhIsPreviewGenerated] = useState(false);
@@ -68,6 +69,8 @@ const CarePlanSuite = () => {
                     setPresentation={setMhPresentation}
                     assessment={mhAssessment}
                     setAssessment={setMhAssessment}
+                    mse={mhMse}
+                    setMse={setMhMse}
                     history={mhHistory}
                     setHistory={setMhHistory}
                     goals={mhGoals}
