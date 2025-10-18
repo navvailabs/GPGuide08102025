@@ -42,7 +42,7 @@ const GPCarePlan = ({
             alliedHealth,
             goals,
         };
-        const webhookUrl = 'https://gpccm.app.n8n.cloud/webhook/Careplan';
+        const webhookUrl = 'https://n8n.srv1072529.hstgr.cloud/webhook/Careplan';
 
         try {
             const response = await axios.post(webhookUrl, payload);
