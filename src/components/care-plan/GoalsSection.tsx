@@ -3,6 +3,7 @@ import { useTheme } from '@/contexts/ThemeContext';
 import { cn } from '@/lib/utils';
 import InspiredCard from '../ui/InspiredCard';
 import { StyledTextarea } from '../ui/StyledTextarea';
+import { QuickActionButton } from '@/components/ui/QuickActionButton';
 
 interface GoalsSectionProps {
     goals: string;
@@ -55,18 +56,13 @@ const GoalsSection = ({ goals, setGoals }: GoalsSectionProps) => {
                     )}>Suggestions:</p>
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
                         {suggestedGoals.map(goal => (
-                            <button
+                            <QuickActionButton
                                 key={goal}
                                 onClick={() => handleAddShortcut(goal)}
-                                className={cn(
-                                    "text-sm font-medium px-3 py-2 rounded-lg transition-colors text-left",
-                                    theme === 'light'
-                                        ? 'bg-gray-100 hover:bg-gray-200 text-gray-700'
-                                        : 'bg-black/20 hover:bg-black/40 text-gray-300'
-                                )}
+                                className="w-full justify-start text-left"
                             >
                                 {goal}
-                            </button>
+                            </QuickActionButton>
                         ))}
                     </div>
                 </div>

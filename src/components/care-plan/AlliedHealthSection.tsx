@@ -3,6 +3,7 @@ import { useTheme } from '@/contexts/ThemeContext';
 import { cn } from '@/lib/utils';
 import InspiredCard from '../ui/InspiredCard';
 import { StyledPillInput } from '../ui/StyledPillInput';
+import { QuickActionButton } from '@/components/ui/QuickActionButton';
 
 interface AlliedHealthSectionProps {
     alliedHealth: string;
@@ -58,20 +59,15 @@ const AlliedHealthSection = ({ alliedHealth, setAlliedHealth }: AlliedHealthSect
                         "text-xs mb-2",
                         theme === 'light' ? 'text-gray-500' : 'text-gray-400'
                     )}>Suggestions:</p>
-                    <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
+                    <div className="flex flex-wrap gap-2">
                         {quickActions.map(action => (
-                            <button
+                            <QuickActionButton
                                 key={action}
                                 onClick={() => handleAddQuickAction(action)}
-                                className={cn(
-                                    "text-sm font-medium px-3 py-2 rounded-lg transition-colors text-center",
-                                    theme === 'light'
-                                        ? 'bg-gray-100 hover:bg-gray-200 text-gray-700'
-                                        : 'bg-black/20 hover:bg-black/40 text-gray-300'
-                                )}
+                                className="justify-center"
                             >
                                 {action}
-                            </button>
+                            </QuickActionButton>
                         ))}
                     </div>
                 </div>

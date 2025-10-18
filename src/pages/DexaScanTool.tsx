@@ -4,6 +4,7 @@ import { Sparkles, RefreshCw, Loader2, Copy, Check } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { StyledPillInput } from '@/components/ui/StyledPillInput';
 import { StyledTextarea } from '@/components/ui/StyledTextarea';
+import { QuickActionButton } from '@/components/ui/QuickActionButton';
 
 interface DexaInputs {
     age: string;
@@ -122,13 +123,13 @@ const DexaScanTool = ({ inputs, setInputs, summary, setSummary }: DexaScanToolPr
                             </div>
                             <div>
                                 <label className="block text-sm font-medium mb-2 text-gray-600 dark:text-gray-300">Patient Gender</label>
-                                <div className="flex gap-2 bg-gray-100 dark:bg-black/20 p-1 rounded-lg">
+                                <div className="flex gap-2 bg-gray-100 dark:bg-black/20 p-1 rounded-full">
                                     {(['Female', 'Male', 'Other'] as const).map(gender => (
                                         <button
                                             key={gender}
                                             onClick={() => setInputs(prev => ({...prev, gender}))}
                                             className={cn(
-                                                'flex-1 px-3 py-1.5 text-sm font-medium rounded-md transition-colors',
+                                                'flex-1 px-3 py-1.5 text-sm font-medium rounded-full transition-colors',
                                                 inputs.gender === gender ? 'bg-white dark:bg-black text-black dark:text-white' : 'text-gray-600 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-white/10'
                                             )}
                                         >{gender}</button>
@@ -144,18 +145,18 @@ const DexaScanTool = ({ inputs, setInputs, summary, setSummary }: DexaScanToolPr
                         <h3 className="text-xl font-bold mb-4 text-gray-900 dark:text-white">Clinical Indications (MBS Criteria)</h3>
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
                             {commonIndications.map(indication => (
-                                <button
+                                <QuickActionButton
                                     key={indication}
                                     onClick={() => handleIndicationToggle(indication)}
                                     className={cn(
-                                        'text-sm font-medium px-3 py-2 rounded-lg transition-all duration-200 border text-left',
+                                        'w-full justify-start text-left',
                                         inputs.indications.includes(indication)
-                                            ? 'bg-premium-gold/10 dark:bg-premium-gold/20 border-premium-gold text-premium-gold'
-                                            : 'bg-gray-100 dark:bg-black/20 border-gray-200 dark:border-white/10 hover:bg-gray-200 dark:hover:bg-black/40 text-gray-700 dark:text-gray-300'
+                                            ? '!bg-premium-gold/10 dark:!bg-premium-gold/20 !border-premium-gold !text-premium-gold'
+                                            : ''
                                     )}
                                 >
                                     {indication}
-                                </button>
+                                </QuickActionButton>
                             ))}
                         </div>
                     </div>

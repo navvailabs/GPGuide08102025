@@ -3,6 +3,7 @@ import { motion } from 'framer-motion';
 import { Sparkles, RefreshCw, Loader2, Copy, Check } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { StyledTextarea } from '@/components/ui/StyledTextarea';
+import { QuickActionButton } from '@/components/ui/QuickActionButton';
 
 const sectionVariants = {
     hidden: { opacity: 0, y: 20 },
@@ -124,13 +125,13 @@ const CentrelinkFormAssist = () => {
                             <p className="text-xs text-gray-500 dark:text-gray-400 mb-2">Suggestions:</p>
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
                                 {quickClinicalInfo.map(info => (
-                                    <button
+                                    <QuickActionButton
                                         key={info}
                                         onClick={() => handleAddClinicalInfo(info)}
-                                        className="text-sm font-medium bg-gray-100 dark:bg-black/20 hover:bg-gray-200 dark:hover:bg-black/40 px-3 py-2 rounded-lg transition-colors text-gray-700 dark:text-gray-300 text-left"
+                                        className="w-full justify-start text-left"
                                     >
                                         {info}
-                                    </button>
+                                    </QuickActionButton>
                                 ))}
                             </div>
                         </div>
@@ -151,13 +152,13 @@ const CentrelinkFormAssist = () => {
                             <p className="text-xs text-gray-500 dark:text-gray-400 mb-2">Suggestions:</p>
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
                                 {quickFunctionalImpacts.map(impact => (
-                                    <button
+                                    <QuickActionButton
                                         key={impact}
                                         onClick={() => handleAddFunctionalImpact(impact)}
-                                        className="text-sm font-medium bg-gray-100 dark:bg-black/20 hover:bg-gray-200 dark:hover:bg-black/40 px-3 py-2 rounded-lg transition-colors text-gray-700 dark:text-gray-300 text-left"
+                                        className="w-full justify-start text-left"
                                     >
                                         {impact}
-                                    </button>
+                                    </QuickActionButton>
                                 ))}
                             </div>
                         </div>
@@ -178,13 +179,13 @@ const CentrelinkFormAssist = () => {
                             <p className="text-xs text-gray-500 dark:text-gray-400 mb-2">Suggestions:</p>
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
                                 {quickTreatments.map(treatment => (
-                                    <button
+                                    <QuickActionButton
                                         key={treatment}
                                         onClick={() => handleAddTreatment(treatment)}
-                                        className="text-sm font-medium bg-gray-100 dark:bg-black/20 hover:bg-gray-200 dark:hover:bg-black/40 px-3 py-2 rounded-lg transition-colors text-gray-700 dark:text-gray-300 text-left"
+                                        className="w-full justify-start text-left"
                                     >
                                         {treatment}
-                                    </button>
+                                    </QuickActionButton>
                                 ))}
                             </div>
                         </div>

@@ -3,6 +3,7 @@ import { motion } from 'framer-motion';
 import { Sparkles, RefreshCw, Loader2, Copy, Check } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { StyledTextarea } from '@/components/ui/StyledTextarea';
+import { QuickActionButton } from '@/components/ui/QuickActionButton';
 
 const sectionVariants = {
     hidden: { opacity: 0, y: 20 },
@@ -93,13 +94,13 @@ const WorkersCompAssist = () => {
                             <p className="text-xs text-gray-500 dark:text-gray-400 mb-2">Suggestions:</p>
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
                                 {quickDiagnoses.map(diagnosis => (
-                                    <button
+                                    <QuickActionButton
                                         key={diagnosis}
                                         onClick={() => handleAddDiagnosis(diagnosis)}
-                                        className="text-sm font-medium bg-gray-100 dark:bg-black/20 hover:bg-gray-200 dark:hover:bg-black/40 px-3 py-2 rounded-lg transition-colors text-gray-700 dark:text-gray-300 text-left"
+                                        className="w-full justify-start text-left"
                                     >
                                         {diagnosis}
-                                    </button>
+                                    </QuickActionButton>
                                 ))}
                             </div>
                         </div>
