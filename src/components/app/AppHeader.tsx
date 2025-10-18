@@ -4,14 +4,19 @@ import { motion } from 'framer-motion';
 import BrightnessControl from '@/components/BrightnessControl';
 import ThemeToggle from '@/components/ThemeToggle';
 import { cn } from '@/lib/utils';
+import { useTheme } from '@/contexts/ThemeContext';
 
 interface AppHeaderProps {
   onMenuClick?: () => void;
 }
 
 const AppHeader = ({ onMenuClick }: AppHeaderProps) => {
+  const { theme } = useTheme();
   return (
-    <header className="sticky top-0 z-20 bg-gray-100/90 dark:bg-[#16181C]/90 backdrop-blur-md border-b border-gray-200 dark:border-gray-800">
+    <header className={cn(
+        "sticky top-0 z-20 backdrop-blur-md border-b",
+        theme === 'light' ? 'bg-gray-50/80 border-gray-200' : 'bg-[#16181C]/80 border-gray-800'
+    )}>
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between md:justify-end h-12">
           <div className="md:hidden">

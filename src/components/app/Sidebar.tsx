@@ -4,161 +4,163 @@ import { LayoutGrid, HeartPulse, BriefcaseMedical, X, Bone, ClipboardList, HardH
 import { Link } from 'react-router-dom';
 import { cn } from '@/lib/utils';
 import type { ActiveView } from '@/pages/CarePlanSuite';
+import { useTheme } from '@/contexts/ThemeContext';
 
 const carePlanItems = [
-    { name: 'GP Care Plan', view: 'gp-care-plan' as const, icon: LayoutGrid, color: 'text-sky-500 dark:text-sky-400' },
-    { name: 'Mental Health Care Plan', view: 'mental-health-care-plan' as const, icon: HeartPulse, color: 'text-rose-500 dark:text-rose-400' },
+    { name: 'GP Care Plan', view: 'gp-care-plan' as const, icon: LayoutGrid, color: 'text-sky-400' },
+    { name: 'Mental Health Care Plan', view: 'mental-health-care-plan' as const, icon: HeartPulse, color: 'text-rose-400' },
 ];
 
 const toolItems = [
-    { name: 'DEXA Scan Interpreter', view: 'dexa-scan-tool' as const, icon: Bone, color: 'text-amber-500 dark:text-amber-400' },
-    { name: 'Opioid MEDD Assist Tool', view: 'medd-assist-tool' as const, icon: Calculator, color: 'text-teal-500 dark:text-teal-400' },
+    { name: 'DEXA Scan Interpreter', view: 'dexa-scan-tool' as const, icon: Bone, color: 'text-amber-400' },
+    { name: 'Opioid MEDD Assist Tool', view: 'medd-assist-tool' as const, icon: Calculator, color: 'text-teal-400' },
 ];
 
 const formItems = [
-    { name: 'Centrelink SU415', view: 'centrelink-form-assist' as const, icon: ClipboardList, color: 'text-green-500 dark:text-green-400' },
-    { name: 'Workers Comp', view: 'workers-comp-assist' as const, icon: HardHat, color: 'text-orange-500 dark:text-orange-400' },
+    { name: 'Centrelink SU415', view: 'centrelink-form-assist' as const, icon: ClipboardList, color: 'text-green-400' },
+    { name: 'Workers Comp', view: 'workers-comp-assist' as const, icon: HardHat, color: 'text-orange-400' },
 ];
 
 interface SidebarItemProps extends React.ComponentProps<'button'> {
     item: { name: string; view: ActiveView; icon: React.ElementType; color: string; };
-    isCollapsed: boolean;
     isActive: boolean;
 }
 
-const SidebarItem = ({ item, isCollapsed, isActive, ...props }: SidebarItemProps) => {
+const SidebarItem = ({ item, isActive, ...props }: SidebarItemProps) => {
+    const { theme } = useTheme();
     return (
-        <button
+        <motion.button
+            layout
             className={cn(
-                "w-full flex items-center p-3 my-0.5 rounded-lg transition-colors duration-200",
+                "w-full flex items-center p-3 rounded-lg transition-all duration-200 text-sm",
                 isActive
-                    ? 'bg-gray-200/70 dark:bg-white/10 text-gray-900 dark:text-white font-semibold'
-                    : 'text-gray-600 dark:text-gray-400 hover:bg-gray-200/50 dark:hover:bg-white/5',
-                isCollapsed ? 'justify-center' : ''
+                    ? theme === 'light'
+                        ? 'bg-gray-100 text-gray-900 shadow-[inset_0_1px_2px_rgba(0,0,0,0.05)] border border-black/5'
+                        : 'bg-black/30 dark:bg-white/10 text-white border border-white/20 shadow-[inset_0_1px_2px_rgba(0,0,0,0.4)]'
+                    : theme === 'light'
+                        ? 'text-gray-700 hover:bg-gray-100/60 hover:text-gray-900'
+                        : 'text-gray-400 hover:bg-black/10 dark:hover:bg-white/5 hover:text-white',
             )}
-            title={isCollapsed ? item.name : ''}
             {...props}
         >
             <item.icon className={cn("h-5 w-5 flex-shrink-0", item.color)} />
-            {!isCollapsed && <span className="ml-4 font-normal whitespace-nowrap">{item.name}</span>}
-        </button>
+            <span className={cn(
+                "whitespace-nowrap ml-3",
+                isActive ? "font-bold" : "font-medium"
+            )}>
+                {item.name}
+            </span>
+        </motion.button>
     );
 };
 
 
 interface SidebarContentProps {
-    isCollapsed: boolean;
     activeView: ActiveView;
     setActiveView: (view: ActiveView) => void;
     onLinkClick?: () => void;
 }
 
-const SidebarContent = ({ isCollapsed, activeView, setActiveView, onLinkClick }: SidebarContentProps) => (
-    <nav className="flex-1 px-3 py-6 space-y-6">
-        <div>
-            {!isCollapsed && <h3 className="px-3 mb-2 text-xs font-semibold tracking-wider text-gray-500 uppercase">Care Plans</h3>}
-            {carePlanItems.map(item => (
-                <SidebarItem
-                    key={item.name}
-                    item={item}
-                    isCollapsed={isCollapsed}
-                    isActive={activeView === item.view}
-                    onClick={() => {
-                        setActiveView(item.view);
-                        if (onLinkClick) onLinkClick();
-                    }}
-                />
-            ))}
-        </div>
-        <div>
-            {!isCollapsed && <h3 className="px-3 mb-2 text-xs font-semibold tracking-wider text-gray-500 uppercase">Tools</h3>}
-            {toolItems.map(item => (
-                 <SidebarItem
-                    key={item.name}
-                    item={item}
-                    isCollapsed={isCollapsed}
-                    isActive={activeView === item.view}
-                    onClick={() => {
-                        setActiveView(item.view);
-                        if (onLinkClick) onLinkClick();
-                    }}
-                />
-            ))}
-        </div>
-        <div>
-            {!isCollapsed && <h3 className="px-3 mb-2 text-xs font-semibold tracking-wider text-gray-500 uppercase">Forms</h3>}
-            {formItems.map(item => (
-                 <SidebarItem
-                    key={item.name}
-                    item={item}
-                    isCollapsed={isCollapsed}
-                    isActive={activeView === item.view}
-                    onClick={() => {
-                        setActiveView(item.view);
-                        if (onLinkClick) onLinkClick();
-                    }}
-                />
-            ))}
-        </div>
-    </nav>
-);
+const SidebarContent = ({ activeView, setActiveView, onLinkClick }: SidebarContentProps) => {
+    const { theme } = useTheme();
+
+    const renderItems = (items: typeof carePlanItems) => items.map(item => (
+        <SidebarItem
+            key={item.name}
+            item={item}
+            isActive={activeView === item.view}
+            onClick={() => {
+                setActiveView(item.view);
+                if (onLinkClick) onLinkClick();
+            }}
+        />
+    ));
+
+    return (
+        <nav className="flex-1 flex flex-col space-y-6 overflow-y-auto pr-1">
+            <div>
+                <h3 className={cn(
+                    "px-2 mb-2 text-xs font-semibold uppercase tracking-wider",
+                    theme === 'light' ? 'text-gray-500' : 'text-gray-400'
+                )}>Care Plans</h3>
+                <div className={cn(
+                    "rounded-2xl p-2 space-y-1",
+                    theme === 'light' 
+                        ? 'bg-white border border-gray-200/80 shadow-sm' 
+                        : 'bg-black/10 dark:bg-black/20'
+                )}>
+                    {renderItems(carePlanItems)}
+                </div>
+            </div>
+            <div>
+                <h3 className={cn(
+                    "px-2 mb-2 text-xs font-semibold uppercase tracking-wider",
+                    theme === 'light' ? 'text-gray-500' : 'text-gray-400'
+                )}>Tools</h3>
+                <div className={cn(
+                    "rounded-2xl p-2 space-y-1",
+                    theme === 'light' 
+                        ? 'bg-white border border-gray-200/80 shadow-sm' 
+                        : 'bg-black/10 dark:bg-black/20'
+                )}>
+                    {renderItems(toolItems)}
+                </div>
+            </div>
+            <div>
+                <h3 className={cn(
+                    "px-2 mb-2 text-xs font-semibold uppercase tracking-wider",
+                    theme === 'light' ? 'text-gray-500' : 'text-gray-400'
+                )}>Forms</h3>
+                <div className={cn(
+                    "rounded-2xl p-2 space-y-1",
+                    theme === 'light' 
+                        ? 'bg-white border border-gray-200/80 shadow-sm' 
+                        : 'bg-black/10 dark:bg-black/20'
+                )}>
+                    {renderItems(formItems)}
+                </div>
+            </div>
+        </nav>
+    );
+};
 
 interface SidebarProps {
-    isDesktopCollapsed: boolean;
-    setIsDesktopCollapsed: (isCollapsed: boolean) => void;
     isMobileOpen: boolean;
     setIsMobileOpen: (isOpen: boolean) => void;
     activeView: ActiveView;
     setActiveView: (view: ActiveView) => void;
 }
 
-const Sidebar = ({ isDesktopCollapsed, isMobileOpen, setIsMobileOpen, activeView, setActiveView }: SidebarProps) => {
+const Sidebar = ({ isMobileOpen, setIsMobileOpen, activeView, setActiveView }: SidebarProps) => {
+    const { theme } = useTheme();
     return (
         <>
             {/* Desktop Sidebar */}
-            <motion.div
-                animate={{ width: isDesktopCollapsed ? '5rem' : '20rem' }}
-                transition={{ duration: 0.3, ease: 'easeInOut' }}
-                className="hidden md:flex flex-col fixed top-0 left-0 h-full bg-gray-100/90 dark:bg-[#16181C]/90 backdrop-blur-md border-r border-gray-200 dark:border-gray-800 z-30"
+            <div
+                className="hidden md:flex flex-col fixed top-0 left-0 h-full z-30 w-80"
             >
-                <div className="flex flex-col h-full">
-                    <div className={cn("flex items-center p-4 border-b border-gray-200 dark:border-gray-800 h-12 transition-all duration-300", isDesktopCollapsed ? 'justify-center' : 'justify-start px-5')}>
-                        <AnimatePresence>
-                        {!isDesktopCollapsed ? (
-                            <motion.div
-                                key="full-logo"
-                                initial={{ opacity: 0 }}
-                                animate={{ opacity: 1 }}
-                                exit={{ opacity: 0 }}
-                                transition={{ duration: 0.2 }}
-                            >
-                                <Link to="/" className="flex items-center space-x-2">
-                                    <BriefcaseMedical className="h-7 w-7 text-medical-blue dark:text-success-green" />
-                                    <span className="text-xl font-satoshi font-bold text-gray-900 dark:text-white">GPGuide</span>
-                                </Link>
-                            </motion.div>
-                        ) : (
-                            <motion.div
-                                key="icon-logo"
-                                initial={{ opacity: 0 }}
-                                animate={{ opacity: 1 }}
-                                exit={{ opacity: 0 }}
-                                transition={{ duration: 0.2 }}
-                            >
-                                <Link to="/">
-                                    <BriefcaseMedical className="h-7 w-7 text-medical-blue dark:text-success-green" />
-                                </Link>
-                            </motion.div>
-                        )}
-                        </AnimatePresence>
+                <div className="flex flex-col h-full p-4">
+                    <div className={cn(
+                        "flex items-center border-b pb-4 mb-4 h-12 justify-start px-1",
+                        theme === 'light' ? 'border-gray-200' : 'border-white/10'
+                    )}>
+                        <Link to="/" className="flex items-center space-x-2">
+                            <BriefcaseMedical className={cn(
+                                "h-7 w-7",
+                                theme === 'light' ? 'text-medical-blue' : 'text-success-green'
+                            )} />
+                            <span className={cn(
+                                "text-xl font-satoshi font-bold",
+                                theme === 'light' ? 'text-gray-900' : 'text-white'
+                            )}>GPGuide</span>
+                        </Link>
                     </div>
                     <SidebarContent 
-                        isCollapsed={isDesktopCollapsed} 
                         activeView={activeView} 
                         setActiveView={setActiveView} 
                     />
                 </div>
-            </motion.div>
+            </div>
 
             {/* Mobile Sidebar */}
             <AnimatePresence>
@@ -169,7 +171,7 @@ const Sidebar = ({ isDesktopCollapsed, isMobileOpen, setIsMobileOpen, activeView
                             animate={{ opacity: 1 }}
                             exit={{ opacity: 0 }}
                             transition={{ duration: 0.3 }}
-                            className="fixed inset-0 bg-black/60 z-40 md:hidden"
+                            className="fixed inset-0 bg-black/60 backdrop-blur-sm z-40 md:hidden"
                             onClick={() => setIsMobileOpen(false)}
                         />
                         <motion.div
@@ -177,19 +179,21 @@ const Sidebar = ({ isDesktopCollapsed, isMobileOpen, setIsMobileOpen, activeView
                             animate={{ x: 0 }}
                             exit={{ x: '-100%' }}
                             transition={{ duration: 0.3, ease: 'easeInOut' }}
-                            className="fixed top-0 left-0 h-full w-64 bg-gray-100/90 dark:bg-[#16181C]/90 backdrop-blur-xl border-r border-gray-200 dark:border-gray-800 z-50 flex flex-col md:hidden"
+                            className="fixed top-0 left-0 h-full w-80 bg-gray-50 dark:bg-gray-900/80 backdrop-blur-lg border-r border-gray-200 dark:border-white/10 z-50 flex flex-col md:hidden p-4"
                         >
-                             <div className="flex items-center justify-between p-4 border-b border-gray-200 dark:border-gray-800 h-12">
+                             <div className={cn(
+                                 "flex items-center justify-between border-b pb-4 mb-4 h-12",
+                                 theme === 'light' ? 'border-gray-200' : 'border-white/10'
+                             )}>
                                 <Link to="/" className="flex items-center space-x-2">
-                                    <BriefcaseMedical className="h-7 w-7 text-medical-blue dark:text-success-green" />
-                                    <span className="text-xl font-satoshi font-bold text-gray-900 dark:text-white">GPGuide</span>
+                                    <BriefcaseMedical className={cn("h-7 w-7", theme === 'light' ? 'text-medical-blue' : 'text-success-green')} />
+                                    <span className={cn("text-xl font-satoshi font-bold", theme === 'light' ? 'text-gray-900' : 'text-white')}>GPGuide</span>
                                 </Link>
-                                <button onClick={() => setIsMobileOpen(false)} className="text-gray-600 dark:text-gray-300 hover:text-black dark:hover:text-white p-2">
+                                <button onClick={() => setIsMobileOpen(false)} className={cn("p-2", theme === 'light' ? 'text-gray-600 hover:text-gray-900' : 'text-gray-300 hover:text-white')}>
                                     <X />
                                 </button>
                             </div>
                             <SidebarContent 
-                                isCollapsed={false} 
                                 activeView={activeView} 
                                 setActiveView={setActiveView} 
                                 onLinkClick={() => setIsMobileOpen(false)} 
