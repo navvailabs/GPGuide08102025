@@ -12,10 +12,10 @@ const InspiredCard = ({ className, children, ...props }: InspiredCardProps) => {
   return (
     <div
       className={cn(
-        'rounded-2xl p-6 transition-all duration-300',
+        'rounded-[20px] p-6 transition-all duration-300',
         theme === 'light'
-          ? 'bg-white border border-gray-200/75 shadow-inspired-light'
-          : 'bg-[#1A1B1E]/85 backdrop-blur-lg border border-white/10 shadow-lg',
+          ? 'bg-gray-100 shadow-clay-light'
+          : 'bg-[#1A1B1E]/85 backdrop-blur-lg border border-white/10 shadow-clay-dark',
         className
       )}
       {...props}
