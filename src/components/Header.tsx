@@ -74,7 +74,7 @@ const Header = ({ variant = 'default' }: HeaderProps) => {
                 >
                   <Link
                     to="/login"
-                    className="px-6 py-2 text-white bg-premium-gold rounded-full font-semibold hover:bg-opacity-90 transition-all duration-300"
+                    className="px-6 py-2 text-white bg-gold-gradient rounded-full font-semibold transition-all duration-300 hover:scale-105"
                   >
                     Login
                   </Link>
@@ -130,7 +130,7 @@ const Header = ({ variant = 'default' }: HeaderProps) => {
                   </a>
                 )
               ))}
-              <Link to="/login" className="w-4/5 text-center px-6 py-3 text-white bg-premium-gold rounded-full font-semibold hover:bg-opacity-90 transition-all duration-300" onClick={() => setIsOpen(false)}>
+              <Link to="/login" className="w-4/5 text-center px-6 py-3 text-white bg-gold-gradient rounded-full font-semibold hover:bg-opacity-90 transition-all duration-300" onClick={() => setIsOpen(false)}>
                 Login
               </Link>
             </nav>

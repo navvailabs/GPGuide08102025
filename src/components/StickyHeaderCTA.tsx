@@ -17,7 +17,7 @@ const StickyHeaderCTA = () => {
                     Save <span className="text-premium-gold">5+ hours</span> weekly
                 </p>
                 <div className="flex items-center space-x-3">
-                    <button className="bg-premium-gold text-white font-bold py-2 px-4 rounded-full text-sm hover:scale-105 transition-transform">
+                    <button className="bg-gold-gradient text-white font-bold py-2 px-4 rounded-full text-sm hover:scale-105 transition-transform">
                         Start Essential Plan
                     </button>
                     <button className="border-2 border-white text-white font-bold py-2 px-4 rounded-full text-sm hover:bg-white hover:text-medical-blue transition-colors">
