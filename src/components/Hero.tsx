@@ -36,7 +36,7 @@ const Hero = () => {
                                 HIGH YIELD GP
                             </span>
                             <br />
-                            <span className="bg-clip-text text-transparent bg-gradient-to-b from-premium-gold to-amber-600">
+                            <span className="bg-clip-text text-transparent bg-gradient-to-r from-yellow-400 to-orange-500">
                                 RESOURCE GUIDE
                             </span>
                         </h1>
