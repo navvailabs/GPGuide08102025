@@ -122,6 +122,8 @@ export default {
         'inspired-light': '0px 4px 12px rgba(0,0,0,0.04)',
         'clay-light': 'rgba(0, 0, 0, 0.08) 0px 0.7px 0.7px -0.67px, rgba(0, 0, 0, 0.08) 0px 1.8px 1.8px -1.33px, rgba(0, 0, 0, 0.07) 0px 3.6px 3.6px -2px, rgba(0, 0, 0, 0.07) 0px 6.9px 6.9px -2.67px, rgba(0, 0, 0, 0.05) 0px 13.6px 13.6px -3.33px, rgba(0, 0, 0, 0.02) 0px 30px 30px -4px, rgb(255, 255, 255) 0px 3px 1px 0px inset',
         'clay-dark': '0px 15px 30px -10px rgba(0, 0, 0, 0.5), inset 0px 1px 1px rgba(255, 255, 255, 0.08), inset 0px -1px 1px rgba(0, 0, 0, 0.3)',
+        'clay-inset-light': 'rgba(0, 0, 0, 0.08) 0px 0.7px 0.7px -0.67px inset, rgba(0, 0, 0, 0.08) 0px 1.8px 1.8px -1.33px inset, rgba(0, 0, 0, 0.07) 0px 3.6px 3.6px -2px inset, rgba(0, 0, 0, 0.07) 0px 6.9px 6.9px -2.67px inset, rgba(0, 0, 0, 0.05) 0px 13.6px 13.6px -3.33px inset, rgba(0, 0, 0, 0.02) 0px 30px 30px -4px inset',
+        'clay-inset-dark': 'inset 0px 2px 4px rgba(0,0,0,0.6), inset 0px -1px 1px rgba(255,255,255,0.1)',
       },
       backgroundImage: {
         'primary-gradient': 'linear-gradient(to right, #0A2540, #0F6E6E)',

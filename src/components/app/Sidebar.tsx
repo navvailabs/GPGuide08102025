@@ -4,6 +4,7 @@ import { LayoutGrid, HeartPulse, BriefcaseMedical, X, Bone, ClipboardList, HardH
 import { Link } from 'react-router-dom';
 import { cn } from '@/lib/utils';
 import type { ActiveView } from '@/pages/CarePlanSuite';
+import { useTheme } from '@/contexts/ThemeContext';
 
 const carePlanItems = [
     { name: 'GP Care Plan', view: 'gp-care-plan' as const, icon: LayoutGrid, color: 'text-sky-500 dark:text-sky-400' },
@@ -20,28 +21,72 @@ const formItems = [
     { name: 'Workers Comp', view: 'workers-comp-assist' as const, icon: HardHat, color: 'text-orange-500 dark:text-orange-400' },
 ];
 
-interface SidebarItemProps extends React.ComponentProps<'button'> {
+interface NavItemProps extends React.ComponentProps<'button'> {
     item: { name: string; view: ActiveView; icon: React.ElementType; color: string; };
     isCollapsed: boolean;
     isActive: boolean;
 }
 
-const SidebarItem = ({ item, isCollapsed, isActive, ...props }: SidebarItemProps) => {
+const NavItem = ({ item, isCollapsed, isActive, ...props }: NavItemProps) => {
+    const { theme } = useTheme();
     return (
         <button
             className={cn(
-                "w-full flex items-center p-3 my-0.5 rounded-lg transition-colors duration-200",
+                "w-full flex items-center p-3 my-0.5 rounded-xl transition-all duration-300 group",
+                "focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-blue-500 dark:focus-visible:ring-offset-black",
                 isActive
-                    ? 'bg-gray-200/70 dark:bg-white/10 text-gray-900 dark:text-white font-semibold'
-                    : 'text-gray-600 dark:text-gray-400 hover:bg-gray-200/50 dark:hover:bg-white/5',
+                    ? (theme === 'light'
+                        ? 'bg-white text-gray-900 font-semibold shadow-md'
+                        : 'bg-[#2A2146]/80 backdrop-blur-sm text-white font-semibold shadow-lg border border-white/10')
+                    : (theme === 'light'
+                        ? 'text-gray-600 hover:bg-gray-200/60'
+                        : 'bg-white/5 text-gray-300 hover:bg-white/10 hover:text-white'),
                 isCollapsed ? 'justify-center' : ''
             )}
             title={isCollapsed ? item.name : ''}
             {...props}
         >
-            <item.icon className={cn("h-5 w-5 flex-shrink-0", item.color)} />
-            {!isCollapsed && <span className="ml-4 font-normal whitespace-nowrap">{item.name}</span>}
+            <item.icon className={cn(
+                "h-5 w-5 flex-shrink-0 transition-colors",
+                isActive ? item.color : (theme === 'light' ? 'text-gray-500' : 'text-gray-400 group-hover:text-gray-200')
+            )} />
+            <AnimatePresence>
+                {!isCollapsed && (
+                    <motion.span
+                        initial={{ width: 0, opacity: 0, marginLeft: 0 }}
+                        animate={{ width: 'auto', opacity: 1, marginLeft: '1rem' }}
+                        exit={{ width: 0, opacity: 0, marginLeft: 0 }}
+                        transition={{ duration: 0.2, ease: 'easeInOut' }}
+                        className="font-normal whitespace-nowrap overflow-hidden"
+                    >
+                        {item.name}
+                    </motion.span>
+                )}
+            </AnimatePresence>
         </button>
+    );
+};
+
+const NavGroup = ({ title, children, isCollapsed }: { title: string; children: React.ReactNode; isCollapsed: boolean }) => {
+    return (
+        <div>
+            <AnimatePresence>
+                {!isCollapsed && (
+                    <motion.h3
+                        initial={{ height: 0, opacity: 0 }}
+                        animate={{ height: 'auto', opacity: 1 }}
+                        exit={{ height: 0, opacity: 0 }}
+                        transition={{ duration: 0.2 }}
+                        className="px-3 pt-4 pb-2 text-xs font-semibold tracking-wider text-gray-500 dark:text-gray-400 uppercase overflow-hidden"
+                    >
+                        {title}
+                    </motion.h3>
+                )}
+            </AnimatePresence>
+            <div className="space-y-1">
+                {children}
+            </div>
+        </div>
     );
 };
 
@@ -54,11 +99,10 @@ interface SidebarContentProps {
 }
 
 const SidebarContent = ({ isCollapsed, activeView, setActiveView, onLinkClick }: SidebarContentProps) => (
-    <nav className="flex-1 px-3 py-6 space-y-6">
-        <div>
-            {!isCollapsed && <h3 className="px-3 mb-2 text-xs font-semibold tracking-wider text-gray-500 uppercase">Care Plans</h3>}
+    <div className="flex-1 px-3 py-6 space-y-6 overflow-y-auto">
+        <NavGroup title="Care Plans" isCollapsed={isCollapsed}>
             {carePlanItems.map(item => (
-                <SidebarItem
+                <NavItem
                     key={item.name}
                     item={item}
                     isCollapsed={isCollapsed}
@@ -69,11 +113,10 @@ const SidebarContent = ({ isCollapsed, activeView, setActiveView, onLinkClick }:
                     }}
                 />
             ))}
-        </div>
-        <div>
-            {!isCollapsed && <h3 className="px-3 mb-2 text-xs font-semibold tracking-wider text-gray-500 uppercase">Tools</h3>}
+        </NavGroup>
+        <NavGroup title="Tools" isCollapsed={isCollapsed}>
             {toolItems.map(item => (
-                 <SidebarItem
+                <NavItem
                     key={item.name}
                     item={item}
                     isCollapsed={isCollapsed}
@@ -84,11 +127,10 @@ const SidebarContent = ({ isCollapsed, activeView, setActiveView, onLinkClick }:
                     }}
                 />
             ))}
-        </div>
-        <div>
-            {!isCollapsed && <h3 className="px-3 mb-2 text-xs font-semibold tracking-wider text-gray-500 uppercase">Forms</h3>}
+        </NavGroup>
+        <NavGroup title="Forms" isCollapsed={isCollapsed}>
             {formItems.map(item => (
-                 <SidebarItem
+                <NavItem
                     key={item.name}
                     item={item}
                     isCollapsed={isCollapsed}
@@ -99,8 +141,8 @@ const SidebarContent = ({ isCollapsed, activeView, setActiveView, onLinkClick }:
                     }}
                 />
             ))}
-        </div>
-    </nav>
+        </NavGroup>
+    </div>
 );
 
 interface SidebarProps {
@@ -119,10 +161,10 @@ const Sidebar = ({ isDesktopCollapsed, isMobileOpen, setIsMobileOpen, activeView
             <motion.div
                 animate={{ width: isDesktopCollapsed ? '5rem' : '20rem' }}
                 transition={{ duration: 0.3, ease: 'easeInOut' }}
-                className="hidden md:flex flex-col fixed top-0 left-0 h-full bg-gray-100/90 dark:bg-[#16181C]/90 backdrop-blur-md border-r border-gray-200 dark:border-gray-800 z-30"
+                className="hidden md:flex flex-col fixed top-0 left-0 h-full z-30"
             >
                 <div className="flex flex-col h-full">
-                    <div className={cn("flex items-center p-4 border-b border-gray-200 dark:border-gray-800 h-12 transition-all duration-300", isDesktopCollapsed ? 'justify-center' : 'justify-start px-5')}>
+                    <div className={cn("flex items-center p-4 border-b border-gray-200/0 dark:border-gray-800/0 h-12 transition-all duration-300", isDesktopCollapsed ? 'justify-center' : 'justify-start px-5')}>
                         <AnimatePresence>
                         {!isDesktopCollapsed ? (
                             <motion.div
