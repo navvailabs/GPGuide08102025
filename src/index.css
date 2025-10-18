@@ -139,7 +139,7 @@
   }
 
   .care-plan-container {
-    @apply bg-white dark:bg-[#1A1B1E]/85 backdrop-blur-lg border border-gray-200/75 dark:border-white/10 rounded-2xl p-6 md:p-8 shadow-inspired-light dark:shadow-lg space-y-8 overflow-x-auto;
+    @apply bg-gray-100 dark:bg-[#1A1B1E]/85 backdrop-blur-lg border border-transparent dark:border-white/10 rounded-[20px] p-6 md:p-8 shadow-clay-light dark:shadow-clay-dark space-y-8 overflow-x-auto;
     color: #374151; /* Base text color for light theme */
   }
   .dark .care-plan-container {
