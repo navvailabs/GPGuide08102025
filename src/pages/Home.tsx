@@ -17,15 +17,12 @@ import FinalCTA from '@/components/FinalCTA.tsx';
 import Contact from '@/components/Contact.tsx';
 import Footer from '@/components/Footer.tsx';
 import StickyHeaderCTA from '@/components/StickyHeaderCTA.tsx';
-import { AuroraBackground } from '@/components/ui/aurora-background.tsx';
-import FlowingGradientBackground from '@/components/ui/FlowingGradientBackground.tsx';
 
 function HomePage() {
   const [showStickyCTA, setShowStickyCTA] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
-      // Show sticky CTA after scrolling past the hero section (approx 700px)
       if (window.scrollY > 700) {
         setShowStickyCTA(true);
       } else {
@@ -41,34 +38,29 @@ function HomePage() {
   }, []);
 
   return (
-    <div className="overflow-x-hidden">
-      <FlowingGradientBackground />
-      <AuroraBackground transparentBase={true}>
-        <div className="relative z-10">
-          <Header />
-          <AnimatePresence>
-            {showStickyCTA && <StickyHeaderCTA />}
-          </AnimatePresence>
-          
-          <main>
-            <Hero />
-            <PainPoints />
-            <Showcase />
-            <VideoDemo />
-            <HowItWorks />
-            <Pricing />
-            <Testimonials />
-            <Features />
-            <Trust />
-            <Value />
-            <FAQ />
-            <FinalCTA />
-            <Contact />
-          </main>
-          
-          <Footer />
-        </div>
-      </AuroraBackground>
+    <div className="overflow-x-hidden bg-white dark:bg-medical-blue">
+      <Header />
+      <AnimatePresence>
+        {showStickyCTA && <StickyHeaderCTA />}
+      </AnimatePresence>
+      
+      <main>
+        <Hero />
+        <PainPoints />
+        <Showcase />
+        <VideoDemo />
+        <HowItWorks />
+        <Pricing />
+        <Testimonials />
+        <Features />
+        <Trust />
+        <Value />
+        <FAQ />
+        <FinalCTA />
+        <Contact />
+      </main>
+      
+      <Footer />
     </div>
   );
 }

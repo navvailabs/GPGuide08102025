@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ChevronDown } from 'lucide-react';
+import InspiredCard from './ui/InspiredCard';
 
 const faqData = {
     "Subscription & Business": [
@@ -55,17 +56,17 @@ const AccordionItem = ({ q, a }: { q: string, a: string }) => {
     const [isOpen, setIsOpen] = useState(false);
 
     return (
-        <div className="border-b border-white/10 py-4 last:border-b-0">
+        <div className="border-b border-gray-200 dark:border-white/10 py-4 last:border-b-0">
             <button
                 onClick={() => setIsOpen(!isOpen)}
                 className="w-full flex justify-between items-center text-left"
             >
-                <span className="text-lg font-medium text-white">{q}</span>
+                <span className="text-lg font-medium text-gray-900 dark:text-white">{q}</span>
                 <motion.div
                     animate={{ rotate: isOpen ? 180 : 0 }}
                     transition={{ duration: 0.3 }}
                 >
-                    <ChevronDown className="h-6 w-6 text-gray-300" />
+                    <ChevronDown className="h-6 w-6 text-gray-500 dark:text-gray-300" />
                 </motion.div>
             </button>
             <AnimatePresence>
@@ -75,7 +76,7 @@ const AccordionItem = ({ q, a }: { q: string, a: string }) => {
                         animate={{ opacity: 1, height: 'auto', marginTop: '1rem' }}
                         exit={{ opacity: 0, height: 0, marginTop: 0 }}
                         transition={{ duration: 0.3 }}
-                        className="text-gray-300"
+                        className="text-gray-600 dark:text-gray-300"
                     >
                         {a}
                     </motion.div>
@@ -87,7 +88,7 @@ const AccordionItem = ({ q, a }: { q: string, a: string }) => {
 
 const FAQ = () => {
     return (
-        <section id="faq" className="py-20 sm:py-24">
+        <section id="faq" className="py-20 sm:py-24 bg-white dark:bg-medical-blue">
             <div className="container mx-auto px-4 sm:px-6 lg:px-8">
                 <motion.div
                     className="text-center max-w-3xl mx-auto mb-12"
@@ -96,8 +97,8 @@ const FAQ = () => {
                     viewport={{ once: true, amount: 0.5 }}
                     transition={{ duration: 0.5 }}
                 >
-                    <h2 className="text-mobile-h2 md:text-desktop-h2 font-bold bg-clip-text text-transparent bg-gradient-to-b from-neutral-50 to-neutral-400">Frequently Asked Questions</h2>
-                    <p className="mt-4 text-lg text-neutral-300">
+                    <h2 className="text-mobile-h2 md:text-desktop-h2 font-bold text-gray-900 dark:bg-clip-text dark:text-transparent dark:bg-gradient-to-b dark:from-neutral-50 dark:to-neutral-400">Frequently Asked Questions</h2>
+                    <p className="mt-4 text-lg text-gray-600 dark:text-neutral-300">
                         Everything you need to know about GPGuide.
                     </p>
                 </motion.div>
@@ -112,12 +113,12 @@ const FAQ = () => {
                             viewport={{ once: true, amount: 0.3 }}
                             transition={{ duration: 0.5 }}
                         >
-                            <h3 className="text-2xl font-bold mb-4 bg-clip-text text-transparent bg-gradient-to-b from-neutral-50 to-neutral-400">{category}</h3>
-                            <div className="bg-black/30 backdrop-blur-lg border border-white/10 rounded-2xl p-6">
+                            <h3 className="text-2xl font-bold mb-4 text-gray-900 dark:bg-clip-text dark:text-transparent dark:bg-gradient-to-b dark:from-neutral-50 dark:to-neutral-400">{category}</h3>
+                            <InspiredCard className="p-6">
                                 {items.map((item, index) => (
                                     <AccordionItem key={index} q={item.q} a={item.a} />
                                 ))}
-                            </div>
+                            </InspiredCard>
                         </motion.div>
                     ))}
                 </div>

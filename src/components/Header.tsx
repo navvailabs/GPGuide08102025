@@ -4,14 +4,19 @@ import { Menu, X, BriefcaseMedical, Home } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { cn } from '@/lib/utils';
 import BrightnessControl from './BrightnessControl';
+import ThemeToggle from './ThemeToggle';
+import { useTheme } from '@/contexts/ThemeContext';
 
 interface HeaderProps {
   variant?: 'default' | 'transparent';
 }
 
-const Header = ({ variant = 'default' }: HeaderProps) => {
+const Header = ({ variant: propVariant }: HeaderProps) => {
   const [isOpen, setIsOpen] = useState(false);
   const location = useLocation();
+  const { theme } = useTheme();
+
+  const variant = propVariant || (theme === 'light' && location.pathname === '/' ? 'light' : 'default');
 
   const navItems = [
     { name: 'Features', href: '/#features' },
@@ -22,7 +27,11 @@ const Header = ({ variant = 'default' }: HeaderProps) => {
 
   const headerClasses = cn(
     "sticky top-0 z-50 backdrop-blur-xl border-b",
-    variant === 'default' ? "bg-black/30 border-white/10" : "bg-black/30 border-white/10"
+    {
+      'bg-black/30 border-white/10': variant === 'default',
+      'bg-transparent border-white/10': variant === 'transparent',
+      'bg-white/80 border-gray-200': variant === 'light',
+    }
   );
   
   const isHomePage = location.pathname === '/';
@@ -37,12 +46,12 @@ const Header = ({ variant = 'default' }: HeaderProps) => {
             transition={{ duration: 0.5 }}
           >
             <Link to="/" className="flex items-center space-x-2">
-              <BriefcaseMedical className="h-8 w-8 text-success-green" />
-              <span className="text-2xl font-satoshi font-bold text-white">GPGuide</span>
+              <BriefcaseMedical className={cn("h-8 w-8", variant === 'light' ? 'text-medical-blue' : 'text-success-green')} />
+              <span className={cn("text-2xl font-satoshi font-bold", variant === 'light' ? 'text-gray-900' : 'text-white')}>GPGuide</span>
             </Link>
           </motion.div>
 
-          {variant === 'default' && (
+          {(variant === 'default' || variant === 'light') && (
             <>
               <nav className="hidden md:flex items-center space-x-8">
                 {navItems.map((item, index) => (
@@ -53,11 +62,11 @@ const Header = ({ variant = 'default' }: HeaderProps) => {
                     transition={{ duration: 0.5, delay: 0.2 + index * 0.1 }}
                   >
                     {item.href.startsWith('/') ? (
-                      <Link to={item.href} className="text-trust-gray hover:text-premium-gold transition-colors duration-300">
+                      <Link to={item.href} className={cn("transition-colors duration-300", variant === 'light' ? 'text-gray-600 hover:text-medical-blue' : 'text-trust-gray hover:text-premium-gold')}>
                         {item.name}
                       </Link>
                     ) : (
-                      <a href={item.href} className="text-trust-gray hover:text-premium-gold transition-colors duration-300">
+                      <a href={item.href} className={cn("transition-colors duration-300", variant === 'light' ? 'text-gray-600 hover:text-medical-blue' : 'text-trust-gray hover:text-premium-gold')}>
                         {item.name}
                       </a>
                     )}
@@ -66,6 +75,7 @@ const Header = ({ variant = 'default' }: HeaderProps) => {
               </nav>
 
               <div className="hidden md:flex items-center space-x-4 ml-8">
+                <ThemeToggle />
                 <BrightnessControl />
                 <motion.div
                   initial={{ opacity: 0, x: 50 }}
@@ -74,15 +84,16 @@ const Header = ({ variant = 'default' }: HeaderProps) => {
                 >
                   <Link
                     to="/login"
-                    className="px-6 py-2 text-white bg-premium-gold rounded-full font-semibold hover:bg-opacity-90 transition-all duration-300"
+                    className={cn("px-6 py-2 rounded-full font-semibold transition-all duration-300", variant === 'light' ? 'bg-medical-blue text-white hover:bg-opacity-90' : 'bg-premium-gold text-white hover:bg-opacity-90')}
                   >
                     Login
                   </Link>
                 </motion.div>
               </div>
 
-              <div className="md:hidden">
-                <button onClick={() => setIsOpen(!isOpen)} className="text-white">
+              <div className="md:hidden flex items-center gap-2">
+                <ThemeToggle />
+                <button onClick={() => setIsOpen(!isOpen)} className={cn(variant === 'light' ? 'text-gray-800' : 'text-white')}>
                   {isOpen ? <X size={28} /> : <Menu size={28} />}
                 </button>
               </div>
@@ -91,6 +102,7 @@ const Header = ({ variant = 'default' }: HeaderProps) => {
           
           {variant === 'transparent' && (
              <div className="flex items-center space-x-4">
+              <ThemeToggle />
               <BrightnessControl />
               <motion.div
                 initial={{ opacity: 0, x: 50 }}
@@ -111,26 +123,26 @@ const Header = ({ variant = 'default' }: HeaderProps) => {
       </div>
 
       <AnimatePresence>
-        {isOpen && variant === 'default' && (
+        {isOpen && (variant === 'default' || variant === 'light') && (
           <motion.div
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: 'auto' }}
             exit={{ opacity: 0, height: 0 }}
-            className="md:hidden bg-black/80 pb-4"
+            className={cn("md:hidden pb-4", variant === 'light' ? 'bg-white/95' : 'bg-black/80')}
           >
             <nav className="flex flex-col items-center space-y-4 pt-4">
               {navItems.map((item) => (
                  item.href.startsWith('/') ? (
-                  <Link key={item.name} to={item.href} className="text-trust-gray hover:text-premium-gold transition-colors duration-300 py-2" onClick={() => setIsOpen(false)}>
+                  <Link key={item.name} to={item.href} className={cn("py-2 transition-colors duration-300", variant === 'light' ? 'text-gray-600 hover:text-medical-blue' : 'text-trust-gray hover:text-premium-gold')} onClick={() => setIsOpen(false)}>
                     {item.name}
                   </Link>
                 ) : (
-                  <a key={item.name} href={item.href} className="text-trust-gray hover:text-premium-gold transition-colors duration-300 py-2" onClick={() => setIsOpen(false)}>
+                  <a key={item.name} href={item.href} className={cn("py-2 transition-colors duration-300", variant === 'light' ? 'text-gray-600 hover:text-medical-blue' : 'text-trust-gray hover:text-premium-gold')} onClick={() => setIsOpen(false)}>
                     {item.name}
                   </a>
                 )
               ))}
-              <Link to="/login" className="w-4/5 text-center px-6 py-3 text-white bg-premium-gold rounded-full font-semibold hover:bg-opacity-90 transition-all duration-300" onClick={() => setIsOpen(false)}>
+              <Link to="/login" className={cn("w-4/5 text-center px-6 py-3 rounded-full font-semibold transition-all duration-300", variant === 'light' ? 'bg-medical-blue text-white hover:bg-opacity-90' : 'bg-premium-gold text-white hover:bg-opacity-90')} onClick={() => setIsOpen(false)}>
                 Login
               </Link>
             </nav>

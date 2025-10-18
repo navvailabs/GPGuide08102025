@@ -8,13 +8,13 @@ const Footer = () => {
     };
 
     return (
-        <footer className="bg-black/30 backdrop-blur-xl border-t border-white/10 text-gray-400 shadow-lg">
+        <footer className="bg-gray-100 dark:bg-black/30 border-t border-gray-200 dark:border-white/10 text-gray-500 dark:text-gray-400 shadow-lg">
             <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-16">
                 <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
                     <div className="space-y-4 pr-8">
                         <div className="flex items-center space-x-2">
-                            <BriefcaseMedical className="h-8 w-8 text-success-green" />
-                            <span className="text-2xl font-satoshi font-bold text-white">GPGuide</span>
+                            <BriefcaseMedical className="h-8 w-8 text-medical-blue dark:text-success-green" />
+                            <span className="text-2xl font-satoshi font-bold text-gray-900 dark:text-white">GPGuide</span>
                         </div>
                         <p className="text-sm">Professional clinical decision support for Australian GPs.</p>
                         <p className="text-xs">New Era Pty Ltd (trading as GPGuide)<br/>ABN: 12 345 678 901<br/>Sydney, Australia</p>
@@ -22,11 +22,11 @@ const Footer = () => {
 
                     {Object.entries(sections).map(([title, links]) => (
                         <div key={title}>
-                            <h4 className="font-bold text-white mb-4">{title}</h4>
+                            <h4 className="font-bold text-gray-900 dark:text-white mb-4">{title}</h4>
                             <ul className="space-y-2">
                                 {links.map(link => (
                                     <li key={link}>
-                                        <a href="#" className="text-sm hover:text-white transition-colors">{link}</a>
+                                        <a href="#" className="text-sm hover:text-gray-900 dark:hover:text-white transition-colors">{link}</a>
                                     </li>
                                 ))}
                             </ul>
@@ -34,9 +34,9 @@ const Footer = () => {
                     ))}
                 </div>
 
-                <div className="mt-12 border-t border-white/10 pt-8">
-                    <div className="bg-premium-gold/10 border border-premium-gold/20 p-4 rounded-lg text-premium-gold text-xs mb-8">
-                        © 2025 New Era Pty Ltd (trading as GPGuide). All rights reserved. GPGuide provides educational clinical documentation and decision-support tools for Australian healthcare professionals. Use requires professional judgment and clinical oversight. GPGuide is not affiliated with RACGP, AMA, eTG, or PBS. Full details in our <a href="#" className="underline hover:text-white">Terms of Service</a> and <a href="#" className="underline hover:text-white">Privacy Policy</a>.
+                <div className="mt-12 border-t border-gray-200 dark:border-white/10 pt-8">
+                    <div className="bg-gray-200/50 dark:bg-premium-gold/10 border border-gray-300 dark:border-premium-gold/20 p-4 rounded-lg text-gray-600 dark:text-premium-gold text-xs mb-8">
+                        © 2025 New Era Pty Ltd (trading as GPGuide). All rights reserved. GPGuide provides educational clinical documentation and decision-support tools for Australian healthcare professionals. Use requires professional judgment and clinical oversight. GPGuide is not affiliated with RACGP, AMA, eTG, or PBS. Full details in our <a href="#" className="underline hover:text-gray-900 dark:hover:text-white">Terms of Service</a> and <a href="#" className="underline hover:text-gray-900 dark:hover:text-white">Privacy Policy</a>.
                     </div>
                     <div className="flex flex-col sm:flex-row justify-between items-center text-sm">
                         <div className="flex flex-wrap gap-x-4 gap-y-2">

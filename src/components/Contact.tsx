@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion';
 import { Mail, Phone, MessageSquare, BookOpen } from 'lucide-react';
+import InspiredCard from './ui/InspiredCard';
 
 const Contact = () => {
     const contactMethods = [
@@ -10,7 +11,7 @@ const Contact = () => {
     ];
 
     return (
-        <section className="py-20 sm:py-24 text-white">
+        <section className="py-20 sm:py-24 bg-white dark:bg-medical-blue">
             <div className="container mx-auto px-4 sm:px-6 lg:px-8">
                 <motion.div
                     className="text-center max-w-3xl mx-auto mb-12"
@@ -19,8 +20,8 @@ const Contact = () => {
                     viewport={{ once: true, amount: 0.5 }}
                     transition={{ duration: 0.5 }}
                 >
-                    <h2 className="text-3xl md:text-4xl font-bold bg-clip-text text-transparent bg-gradient-to-b from-neutral-50 to-neutral-400">Get Help When You Need It</h2>
-                    <p className="mt-4 text-lg text-neutral-300">
+                    <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:bg-clip-text dark:text-transparent dark:bg-gradient-to-b dark:from-neutral-50 dark:to-neutral-400">Get Help When You Need It</h2>
+                    <p className="mt-4 text-lg text-gray-600 dark:text-neutral-300">
                         Our Australian-based support team understands the challenges GPs face and is here to provide real help from real people.
                     </p>
                 </motion.div>
@@ -29,20 +30,21 @@ const Contact = () => {
                     {contactMethods.map((method, index) => (
                         <motion.div
                             key={method.title}
-                            className="bg-black/30 backdrop-blur-lg border border-white/10 rounded-2xl p-6 text-center flex flex-col"
                             initial={{ opacity: 0, y: 40 }}
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true, amount: 0.3 }}
                             transition={{ duration: 0.5, delay: index * 0.1 }}
                         >
-                            <div className="flex justify-center mb-4">
-                                <div className="bg-white/10 p-4 rounded-full">
-                                    <method.icon className="h-8 w-8 text-cyan-400" />
+                            <InspiredCard className="p-6 text-center flex flex-col h-full">
+                                <div className="flex justify-center mb-4">
+                                    <div className="bg-medical-blue/10 dark:bg-white/10 p-4 rounded-full">
+                                        <method.icon className="h-8 w-8 text-cyan-500 dark:text-cyan-400" />
+                                    </div>
                                 </div>
-                            </div>
-                            <h3 className="text-xl font-bold bg-clip-text text-transparent bg-gradient-to-b from-neutral-50 to-neutral-400">{method.title}</h3>
-                            <p className="mt-2 font-semibold text-gray-300">{method.detail}</p>
-                            <p className="mt-1 text-sm text-gray-400 flex-grow">{method.response}</p>
+                                <h3 className="text-xl font-bold text-gray-900 dark:bg-clip-text dark:text-transparent dark:bg-gradient-to-b dark:from-neutral-50 dark:to-neutral-400">{method.title}</h3>
+                                <p className="mt-2 font-semibold text-gray-700 dark:text-gray-300">{method.detail}</p>
+                                <p className="mt-1 text-sm text-gray-500 dark:text-gray-400 flex-grow">{method.response}</p>
+                            </InspiredCard>
                         </motion.div>
                     ))}
                 </div>
