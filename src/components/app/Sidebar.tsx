@@ -1,7 +1,6 @@
 import React, { Fragment } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { LayoutGrid, HeartPulse, BriefcaseMedical, X, Bone, ClipboardList, HardHat, Calculator } from 'lucide-react';
-import { Link } from 'react-router-dom';
+import { LayoutGrid, HeartPulse, X, Bone, ClipboardList, HardHat, Calculator } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import type { ActiveView } from '@/pages/CarePlanSuite';
 import { useTheme } from '@/contexts/ThemeContext';
@@ -137,29 +136,12 @@ const Sidebar = ({ isMobileOpen, setIsMobileOpen, activeView, setActiveView }: S
         <>
             {/* Desktop Sidebar */}
             <div
-                className="hidden md:flex flex-col fixed top-0 left-0 h-full z-30 w-80"
+                className="hidden md:flex flex-col fixed top-[9.5rem] left-0 h-[calc(100vh-9.5rem)] z-30 w-80 p-4"
             >
-                <div className="flex flex-col h-full p-4">
-                    <div className={cn(
-                        "flex items-center border-b pb-4 mb-4 h-12 justify-start px-1",
-                        theme === 'light' ? 'border-gray-200' : 'border-white/10'
-                    )}>
-                        <Link to="/" className="flex items-center space-x-2">
-                            <BriefcaseMedical className={cn(
-                                "h-7 w-7",
-                                theme === 'light' ? 'text-medical-blue' : 'text-success-green'
-                            )} />
-                            <span className={cn(
-                                "text-xl font-satoshi font-bold",
-                                theme === 'light' ? 'text-gray-900' : 'text-white'
-                            )}>GPGuide</span>
-                        </Link>
-                    </div>
-                    <SidebarContent 
-                        activeView={activeView} 
-                        setActiveView={setActiveView} 
-                    />
-                </div>
+                <SidebarContent 
+                    activeView={activeView} 
+                    setActiveView={setActiveView} 
+                />
             </div>
 
             {/* Mobile Sidebar */}
@@ -182,13 +164,9 @@ const Sidebar = ({ isMobileOpen, setIsMobileOpen, activeView, setActiveView }: S
                             className="fixed top-0 left-0 h-full w-80 bg-gray-50 dark:bg-gray-900/80 backdrop-blur-lg border-r border-gray-200 dark:border-white/10 z-50 flex flex-col md:hidden p-4"
                         >
                              <div className={cn(
-                                 "flex items-center justify-between border-b pb-4 mb-4 h-12",
+                                 "flex items-center justify-end border-b pb-4 mb-4 h-12",
                                  theme === 'light' ? 'border-gray-200' : 'border-white/10'
                              )}>
-                                <Link to="/" className="flex items-center space-x-2">
-                                    <BriefcaseMedical className={cn("h-7 w-7", theme === 'light' ? 'text-medical-blue' : 'text-success-green')} />
-                                    <span className={cn("text-xl font-satoshi font-bold", theme === 'light' ? 'text-gray-900' : 'text-white')}>GPGuide</span>
-                                </Link>
                                 <button onClick={() => setIsMobileOpen(false)} className={cn("p-2", theme === 'light' ? 'text-gray-600 hover:text-gray-900' : 'text-gray-300 hover:text-white')}>
                                     <X />
                                 </button>

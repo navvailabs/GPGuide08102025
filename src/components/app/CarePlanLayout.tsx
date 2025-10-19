@@ -18,22 +18,22 @@ const CarePlanLayout = ({ children, activeView, setActiveView }: CarePlanLayoutP
     return (
         <div className="font-display text-gray-800 dark:text-foreground-dark min-h-screen">
             <RadialGradientBackground />
-            <div className="relative flex min-h-screen">
+            <AppHeader onMenuClick={() => setIsMobileSidebarOpen(true)} />
+            <div className="relative flex">
                 <Sidebar
                     isMobileOpen={isMobileSidebarOpen}
                     setIsMobileOpen={setIsMobileSidebarOpen}
                     activeView={activeView}
                     setActiveView={setActiveView}
                 />
-                <div 
+                <main 
                     className={cn(
-                        "flex-1 flex flex-col w-full",
-                        "md:ml-80" // Fixed margin for the 20rem sidebar
+                        "flex-1 w-full pt-12", // pt-12 for header height
+                        "md:ml-80" // margin for sidebar
                     )}
                 >
-                    <AppHeader onMenuClick={() => setIsMobileSidebarOpen(true)} />
-                    <main className="flex-grow container mx-auto px-4 sm:px-6 lg:px-8 py-8 md:py-12">
-                         <AnimatePresence mode="wait">
+                    <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-8 md:py-12">
+                        <AnimatePresence mode="wait">
                             <motion.div
                                 key={activeView}
                                 initial={{ opacity: 0, y: 20 }}
@@ -44,8 +44,8 @@ const CarePlanLayout = ({ children, activeView, setActiveView }: CarePlanLayoutP
                                 {children}
                             </motion.div>
                         </AnimatePresence>
-                    </main>
-                </div>
+                    </div>
+                </main>
             </div>
         </div>
     );

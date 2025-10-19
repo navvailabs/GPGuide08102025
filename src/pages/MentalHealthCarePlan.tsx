@@ -100,7 +100,7 @@ const MentalHealthCarePlan = ({
             history,
             goals,
         };
-        const webhookUrl = 'https://n8n.srv1072529.hstgr.cloud/webhook-test/ebdae1e4-3445-41da-b885-28a6995350b2';
+        const webhookUrl = 'https://n8n.srv1072529.hstgr.cloud/webhook/ebdae1e4-3445-41da-b885-28a6995350b2';
 
         try {
             const response = await axios.post(webhookUrl, payload);
