@@ -138,123 +138,73 @@
     transform: translate(-15px, 25px) rotate(225deg);
   }
 
+  /* === START: NEW CARE PLAN STYLES === */
   .care-plan-container {
-    @apply bg-gray-100 dark:bg-[#1A1B1E]/85 backdrop-blur-lg border border-transparent dark:border-white/10 rounded-[20px] p-6 md:p-8 shadow-clay-light dark:shadow-clay-dark space-y-8 overflow-x-auto;
-    color: #374151; /* Base text color for light theme */
-  }
-  .dark .care-plan-container {
-      color: #e8f3f5; /* Base text color for dark theme */
-  }
-
-  /*
-    Targeted reset to override unwanted styles from the webhook.
-    This is safer than a wildcard (*) selector.
-  */
-  .care-plan-container h1,
-  .care-plan-container h2,
-  .care-plan-container h3,
-  .care-plan-container h4,
-  .care-plan-container h5,
-  .care-plan-container h6,
-  .care-plan-container p,
-  .care-plan-container span,
-  .care-plan-container div,
-  .care-plan-container ul,
-  .care-plan-container li,
-  .care-plan-container table,
-  .care-plan-container thead,
-  .care-plan-container tbody,
-  .care-plan-container tfoot,
-  .care-plan-container tr,
-  .care-plan-container th,
-  .care-plan-container td {
-    background: transparent !important;
-    color: inherit !important;
-  }
-
-  .care-plan-container h2 {
-    @apply text-2xl md:text-3xl font-bold mb-4 pb-2 border-b border-gray-200 dark:border-white/10;
-  }
-  .dark .care-plan-container h2 {
-    color: white !important;
-  }
-  .care-plan-container h2 {
-    color: #111827 !important;
-  }
-
-  /* Adjusted font size for better hierarchy */
-  .care-plan-container h3 {
-    @apply text-xl font-semibold mb-3 flex items-center gap-x-2;
-  }
-  .dark .care-plan-container h3 {
-    color: white !important;
-  }
-  .care-plan-container h3 {
-    color: #111827 !important;
-  }
-
-
-  .care-plan-container h3::before {
-    content: '';
-    display: inline-block;
-    width: 1.1em;
-    height: 1.1em;
-    background-color: currentColor !important;
-    mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z'/%3E%3Cpolyline points='14 2 14 8 20 8'/%3E%3Cline x1='16' x2='8' y1='13' y2='13'/%3E%3Cline x1='16' x2='8' y1='17' y2='17'/%3E%3Cline x1='10' x2='8' y1='9' y2='9'/%3E%3C/svg%3E");
-    mask-size: contain;
-    mask-repeat: no-repeat;
-    mask-position: center;
-    flex-shrink: 0;
-  }
-
-  .care-plan-container table {
-    @apply w-full text-sm text-left border-collapse;
-  }
-
-  .care-plan-container thead {
-    background-color: rgba(243, 244, 246, 1) !important; /* bg-gray-100 */
-  }
-  .dark .care-plan-container thead {
-    background-color: rgba(0, 0, 0, 0.3) !important;
-  }
-
-  .care-plan-container th {
-    @apply p-3 font-medium border border-gray-200 dark:border-white/10;
-  }
-  .dark .care-plan-container th {
-    color: white !important;
-  }
-  .care-plan-container th {
-    color: #1F2937 !important;
-  }
-
-  .care-plan-container td {
-    @apply p-3 align-top border border-gray-200 dark:border-white/10;
-  }
-  .dark .care-plan-container td {
-    color: #D1D5DB !important; /* text-gray-300 */
-  }
-  .care-plan-container td {
-    color: #4B5563 !important; /* text-gray-600 */
-  }
-
-  .care-plan-container td ul {
-    @apply list-disc list-outside pl-4 space-y-1.5;
-  }
-
-  .care-plan-container tbody tr:nth-child(even) {
-    background-color: rgba(249, 250, 251, 1) !important; /* bg-gray-50 */
-  }
-  .dark .care-plan-container tbody tr:nth-child(even) {
-    background-color: rgba(255, 255, 255, 0.05) !important;
+    @apply bg-gray-100/80 dark:bg-[#1A1B1E]/80 backdrop-blur-lg border border-gray-200 dark:border-white/10 rounded-[20px] p-6 md:p-8 shadow-clay-light dark:shadow-clay-dark;
   }
   
-  .care-plan-container tbody tr:hover {
-    background-color: rgba(243, 244, 246, 1) !important; /* bg-gray-100 */
+  .care-plan-content {
+    @apply text-gray-700 dark:text-gray-300;
   }
-  .dark .care-plan-container tbody tr:hover {
-    background-color: rgba(255, 255, 255, 0.1) !important;
+
+  .care-plan-content h1,
+  .care-plan-content h2,
+  .care-plan-content h3,
+  .care-plan-content h4,
+  .care-plan-content h5,
+  .care-plan-content h6 {
+    @apply font-semibold text-gray-900 dark:text-white mt-6 mb-3;
   }
+
+  .care-plan-content h1 { @apply text-2xl md:text-3xl border-b border-gray-200 dark:border-white/10 pb-2; }
+  .care-plan-content h2 { @apply text-xl md:text-2xl border-b border-gray-200 dark:border-white/10 pb-2; }
+  .care-plan-content h3 { @apply text-lg md:text-xl; }
+  .care-plan-content h4 { @apply text-base md:text-lg; }
+
+  .care-plan-content p {
+    @apply text-base leading-relaxed mb-4;
+  }
+
+  .care-plan-content ul,
+  .care-plan-content ol {
+    @apply list-outside pl-5 my-4 space-y-2;
+  }
+  
+  .care-plan-content ul { @apply list-disc; }
+  .care-plan-content ol { @apply list-decimal; }
+
+  .care-plan-content li {
+    @apply pl-2;
+  }
+
+  .care-plan-content strong, .care-plan-content b {
+    @apply font-semibold text-gray-800 dark:text-gray-100;
+  }
+  
+  .care-plan-content table {
+    @apply w-full text-sm text-left border-collapse my-6;
+  }
+
+  .care-plan-content thead {
+    @apply bg-gray-50 dark:bg-white/5;
+  }
+
+  .care-plan-content th {
+    @apply p-3 font-semibold text-gray-800 dark:text-white border border-gray-200 dark:border-white/10;
+  }
+
+  .care-plan-content td {
+    @apply p-3 align-top border border-gray-200 dark:border-white/10 text-gray-600 dark:text-gray-400;
+  }
+  
+  .care-plan-content tbody tr:nth-child(even) {
+    @apply bg-gray-50/50 dark:bg-white/[0.02];
+  }
+  
+  .care-plan-content tbody tr:hover {
+    @apply bg-gray-100 dark:bg-white/10;
+  }
+  /* === END: NEW CARE PLAN STYLES === */
 }
 
 @layer utilities {

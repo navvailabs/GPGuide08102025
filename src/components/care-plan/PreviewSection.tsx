@@ -1,4 +1,4 @@
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useRef } from 'react';
 import { FileText, Copy, Check } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { cn } from '@/lib/utils';
@@ -69,12 +69,10 @@ const findCoreData = (data: any): object | null => {
     const contentKeys = ['clinical_details', 'management_goals', 'presenting_complaint', 'conditions', 'mse', 'mental_state_examination'];
     const dataKeys = Object.keys(data);
     
-    // If the current object has multiple content-like keys, it's probably the one.
     if (dataKeys.filter(k => contentKeys.includes(k.toLowerCase().replace(/[\s_-]/g, ''))).length > 1) {
         return data;
     }
 
-    // Check common wrapper structures
     if (Array.isArray(data) && data.length > 0) {
         return findCoreData(data[0]);
     }
@@ -82,7 +80,6 @@ const findCoreData = (data: any): object | null => {
     if (data.json) return findCoreData(data.json);
     if (data.data) return findCoreData(data.data);
 
-    // If all else fails, and it's a non-array object with keys, return it.
     if (Object.keys(data).length > 0 && !Array.isArray(data)) {
         return data;
     }
@@ -108,16 +105,19 @@ const ParsedContentToDocument = ({ contentString }: { contentString: string }) =
     ], []);
 
     const parsedContent = useMemo(() => {
+        const processString = (str: string) => {
+            return str
+                .replace(/\*\*(.*?)\*\*/g, '<h4 class="font-bold text-gray-900 dark:text-white mt-4 mb-2">$1</h4>')
+                .replace(/\n/g, '<br />');
+        };
+
         let initialData;
         try {
             initialData = JSON.parse(contentString);
         } catch (e) {
-            const parser = new DOMParser();
-            const doc = parser.parseFromString(contentString, 'text/html');
-            if (doc.body.firstChild && doc.body.firstChild.nodeName !== 'PRE') {
-                 return <div className="prose dark:prose-invert max-w-none text-gray-600 dark:text-gray-300" dangerouslySetInnerHTML={{ __html: contentString }} />;
-            }
-            return <p className="text-gray-500 dark:text-gray-400">Could not parse the response as a structured plan. Raw response: <pre className="whitespace-pre-wrap">{contentString}</pre></p>;
+            // If it's not JSON, treat it as a single block of text/html and process it.
+            const processedContent = processString(contentString);
+            return <div className="care-plan-content" dangerouslySetInnerHTML={{ __html: processedContent }} />;
         }
 
         const coreData = findCoreData(initialData);
@@ -134,7 +134,7 @@ const ParsedContentToDocument = ({ contentString }: { contentString: string }) =
 
                 const heading = formatHeading(key);
                 const contentHtml = typeof value === 'string' 
-                    ? value.replace(/\n/g, '<br />') 
+                    ? processString(value)
                     : `<pre class="whitespace-pre-wrap">${JSON.stringify(value, null, 2)}</pre>`;
 
                 return (
@@ -150,8 +150,8 @@ const ParsedContentToDocument = ({ contentString }: { contentString: string }) =
                     >
                         <CardCopyButton contentToCopy={`<h3>${heading}</h3><div>${contentHtml}</div>`} />
                         <div>
-                            <h4 className="text-lg font-bold text-gray-900 dark:text-white mb-3 pr-10">{heading}</h4>
-                            <div className="prose dark:prose-invert max-w-none text-gray-600 dark:text-gray-300 prose-p:my-1.5 prose-ul:my-2 prose-li:my-1" dangerouslySetInnerHTML={{ __html: contentHtml }} />
+                            <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-4 pr-10">{heading}</h3>
+                            <div className="care-plan-content" dangerouslySetInnerHTML={{ __html: contentHtml }} />
                         </div>
                     </LiquidGlassCard>
                 );
@@ -174,15 +174,48 @@ interface PreviewSectionProps {
 }
 
 const PreviewSection = ({ carePlanHtml }: PreviewSectionProps) => {
+    const contentRef = useRef<HTMLDivElement>(null);
 
     if (!carePlanHtml?.trim()) {
         return null;
     }
 
     const handleDownloadWord = () => {
-        if (!carePlanHtml) return;
+        if (!contentRef.current) return;
         const generatedDate = new Date().toLocaleDateString('en-AU', { year: 'numeric', month: 'long', day: 'numeric' });
-        const fullHtml = `<html><head><meta charset='utf-8'><title>Care Plan</title></head><body><h1>Care Plan - ${generatedDate}</h1><pre>${carePlanHtml}</pre></body></html>`;
+        
+        const styles = `
+            body { font-family: Calibri, sans-serif; font-size: 11pt; color: #333; }
+            h1, h2, h3, h4 { font-family: Cambria, serif; color: #2F5496; margin-bottom: 8px; }
+            h1 { font-size: 16pt; }
+            h2 { font-size: 14pt; border-bottom: 1px solid #ddd; padding-bottom: 4px; margin-top: 20px; }
+            h3 { font-size: 12pt; font-weight: bold; }
+            h4 { font-size: 11pt; font-weight: bold; margin-top: 12px; }
+            p { margin-bottom: 12px; line-height: 1.5; }
+            table { border-collapse: collapse; width: 100%; margin-bottom: 16px; }
+            th, td { border: 1px solid #BFBFBF; padding: 8px; text-align: left; }
+            th { background-color: #F2F2F2; }
+            ul { margin-top: 0; padding-left: 20px; }
+            br { display: block; margin-bottom: 0.5em; content: ""; }
+        `;
+        
+        const contentToDownload = contentRef.current.innerHTML;
+
+        const fullHtml = `
+            <!DOCTYPE html>
+            <html>
+                <head>
+                    <meta charset='utf-8'>
+                    <title>Care Plan</title>
+                    <style>${styles}</style>
+                </head>
+                <body>
+                    <h1>Care Plan - ${generatedDate}</h1>
+                    ${contentToDownload}
+                </body>
+            </html>
+        `;
+        
         const source = 'data:application/vnd.ms-word;charset=utf-8,' + encodeURIComponent(fullHtml);
         const fileDownloadLink = document.createElement("a");
         document.body.appendChild(fileDownloadLink);
@@ -200,6 +233,7 @@ const PreviewSection = ({ carePlanHtml }: PreviewSectionProps) => {
 
             <motion.div
                 layout
+                ref={contentRef}
                 transition={{ duration: 0.3, ease: [0.4, 0, 0.2, 1] }}
                 className="care-plan-container"
             >
