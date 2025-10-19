@@ -8,6 +8,7 @@ type ViewMode = 'table' | 'document';
 
 interface PreviewSectionProps {
     carePlanHtml: string | null;
+    identifier: string;
 }
 
 const sectionVariants = {
@@ -313,7 +314,7 @@ const TableView = ({ htmlString }: { htmlString: string }) => {
 };
 
 // --- Main Component ---
-const PreviewSection = ({ carePlanHtml }: PreviewSectionProps) => {
+const PreviewSection = ({ carePlanHtml, identifier }: PreviewSectionProps) => {
     const [viewMode, setViewMode] = useState<ViewMode>('table');
 
     if (!carePlanHtml?.trim()) {
@@ -360,7 +361,11 @@ const PreviewSection = ({ carePlanHtml }: PreviewSectionProps) => {
     };
 
     return (
-        <motion.div variants={sectionVariants} className="border-t border-gray-200 dark:border-white/10 pt-8 mt-12">
+        <motion.div 
+            key={identifier}
+            variants={sectionVariants} 
+            className="border-t border-gray-200 dark:border-white/10 pt-8 mt-12"
+        >
             <div className="flex flex-col sm:flex-row justify-between sm:items-center gap-4 mb-6">
                 <h3 className="text-2xl font-bold text-gray-900 dark:text-white">Generated Plan Preview</h3>
                 <div className="flex items-center bg-gray-100 dark:bg-black/20 p-1 rounded-lg self-start sm:self-center">
@@ -396,9 +401,9 @@ const PreviewSection = ({ carePlanHtml }: PreviewSectionProps) => {
                 transition={{ duration: 0.3, ease: [0.4, 0, 0.2, 1] }}
                 className="care-plan-container"
             >
-                <AnimatePresence initial={false}>
+                <AnimatePresence initial={false} mode="wait">
                     <motion.div
-                        key={viewMode}
+                        key={`${identifier}-${viewMode}`}
                         variants={viewVariants}
                         initial="enter"
                         animate="center"

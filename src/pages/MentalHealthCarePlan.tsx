@@ -328,7 +328,7 @@ const MentalHealthCarePlan = ({
                 </button>
             </motion.div>
 
-            <PreviewSection carePlanHtml={carePlanHtml} />
+            <PreviewSection identifier="mh-care-plan" carePlanHtml={carePlanHtml} />
         </motion.div>
     );
 };

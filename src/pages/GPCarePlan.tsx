@@ -191,7 +191,7 @@ const GPCarePlan = ({
                     </button>
                 </motion.div>
 
-                <PreviewSection carePlanHtml={carePlanHtml} />
+                <PreviewSection identifier="gp-care-plan" carePlanHtml={carePlanHtml} />
             </div>
         </motion.div>
     );
