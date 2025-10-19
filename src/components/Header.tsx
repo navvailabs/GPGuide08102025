@@ -29,85 +29,83 @@ const Header = ({ variant = 'default' }: HeaderProps) => {
 
   return (
     <header className={headerClasses}>
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-20">
-          <motion.div
-            initial={{ opacity: 0, x: -50 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.5 }}
-          >
-            <Link to="/" className="flex items-center space-x-2">
-              <BriefcaseMedical className="h-8 w-8 text-success-green" />
-              <span className="text-2xl font-satoshi font-bold text-white">GPGuide</span>
-            </Link>
-          </motion.div>
+      <div className="flex items-center justify-between h-20 px-4 sm:px-6 lg:px-8">
+        <motion.div
+          initial={{ opacity: 0, x: -50 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.5 }}
+        >
+          <Link to="/" className="flex items-center space-x-2">
+            <BriefcaseMedical className="h-8 w-8 text-success-green" />
+            <span className="text-2xl font-satoshi font-bold text-white">GPGuide</span>
+          </Link>
+        </motion.div>
 
-          {variant === 'default' && (
-            <>
-              <nav className="hidden md:flex items-center space-x-8">
-                {navItems.map((item, index) => (
-                  <motion.div
-                    key={item.name}
-                    initial={{ opacity: 0, y: -20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.5, delay: 0.2 + index * 0.1 }}
-                  >
-                    {item.href.startsWith('/') ? (
-                      <Link to={item.href} className="text-trust-gray hover:text-premium-gold transition-colors duration-300">
-                        {item.name}
-                      </Link>
-                    ) : (
-                      <a href={item.href} className="text-trust-gray hover:text-premium-gold transition-colors duration-300">
-                        {item.name}
-                      </a>
-                    )}
-                  </motion.div>
-                ))}
-              </nav>
-
-              <div className="hidden md:flex items-center space-x-4 ml-8">
-                <BrightnessControl />
+        {variant === 'default' && (
+          <>
+            <nav className="hidden md:flex items-center space-x-8">
+              {navItems.map((item, index) => (
                 <motion.div
-                  initial={{ opacity: 0, x: 50 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ duration: 0.5, delay: 0.6 }}
+                  key={item.name}
+                  initial={{ opacity: 0, y: -20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5, delay: 0.2 + index * 0.1 }}
                 >
-                  <Link
-                    to="/login"
-                    className="px-6 py-2 text-white bg-gold-gradient rounded-full font-semibold transition-all duration-300 hover:scale-105"
-                  >
-                    Login
-                  </Link>
+                  {item.href.startsWith('/') ? (
+                    <Link to={item.href} className="text-trust-gray hover:text-premium-gold transition-colors duration-300">
+                      {item.name}
+                    </Link>
+                  ) : (
+                    <a href={item.href} className="text-trust-gray hover:text-premium-gold transition-colors duration-300">
+                      {item.name}
+                    </a>
+                  )}
                 </motion.div>
-              </div>
+              ))}
+            </nav>
 
-              <div className="md:hidden">
-                <button onClick={() => setIsOpen(!isOpen)} className="text-white">
-                  {isOpen ? <X size={28} /> : <Menu size={28} />}
-                </button>
-              </div>
-            </>
-          )}
-          
-          {variant === 'transparent' && (
-             <div className="flex items-center space-x-4">
+            <div className="hidden md:flex items-center space-x-4 ml-8">
               <BrightnessControl />
               <motion.div
                 initial={{ opacity: 0, x: 50 }}
                 animate={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.5, delay: 0.2 }}
+                transition={{ duration: 0.5, delay: 0.6 }}
               >
                 <Link
-                  to="/"
-                  className="flex items-center gap-2 px-4 py-2 text-white border border-white/20 rounded-full font-semibold hover:bg-white/10 transition-all duration-300 text-sm"
+                  to="/login"
+                  className="px-6 py-2 text-white bg-gold-gradient rounded-full font-semibold transition-all duration-300 hover:scale-105"
                 >
-                  <Home className="w-4 h-4" />
-                  Home
+                  Login
                 </Link>
               </motion.div>
             </div>
-          )}
-        </div>
+
+            <div className="md:hidden">
+              <button onClick={() => setIsOpen(!isOpen)} className="text-white">
+                {isOpen ? <X size={28} /> : <Menu size={28} />}
+              </button>
+            </div>
+          </>
+        )}
+        
+        {variant === 'transparent' && (
+           <div className="flex items-center space-x-4">
+            <BrightnessControl />
+            <motion.div
+              initial={{ opacity: 0, x: 50 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.5, delay: 0.2 }}
+            >
+              <Link
+                to="/"
+                className="flex items-center gap-2 px-4 py-2 text-white border border-white/20 rounded-full font-semibold hover:bg-white/10 transition-all duration-300 text-sm"
+              >
+                <Home className="w-4 h-4" />
+                Home
+              </Link>
+            </motion.div>
+          </div>
+        )}
       </div>
 
       <AnimatePresence>
