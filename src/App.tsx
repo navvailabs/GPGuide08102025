@@ -7,15 +7,20 @@ import { ThemeProvider } from './contexts/ThemeContext';
 
 function App() {
   return (
-    <ThemeProvider>
-      <BrightnessProvider>
-        <Routes>
-          <Route path="/" element={<HomePage />} />
-          <Route path="/login" element={<LoginPage />} />
-          <Route path="/gp-care-plan-generator" element={<CarePlanSuite />} />
-        </Routes>
-      </BrightnessProvider>
-    </ThemeProvider>
+    <BrightnessProvider>
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+        <Route path="/login" element={<LoginPage />} />
+        <Route 
+          path="/gp-care-plan-generator" 
+          element={
+            <ThemeProvider>
+              <CarePlanSuite />
+            </ThemeProvider>
+          } 
+        />
+      </Routes>
+    </BrightnessProvider>
   );
 }
 
