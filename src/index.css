@@ -207,53 +207,86 @@
     flex-shrink: 0;
   }
 
+  /* Enhanced Table Styles for Preview Section */
   .care-plan-container table {
-    @apply w-full text-sm text-left border-collapse;
+    @apply w-full border-collapse;
+    min-width: 600px; /* Ensure table has a minimum width for readability */
   }
 
   .care-plan-container thead {
-    background-color: rgba(243, 244, 246, 1) !important; /* bg-gray-100 */
+    /* The !important is there for a reason, I'll keep it */
+    background-color: rgba(243, 244, 246, 1) !important; 
   }
   .dark .care-plan-container thead {
     background-color: rgba(0, 0, 0, 0.3) !important;
   }
 
   .care-plan-container th {
-    @apply p-3 font-medium border border-gray-200 dark:border-white/10;
+    @apply p-4 text-left text-xs font-bold uppercase tracking-wider border-b-2 border-gray-200 dark:border-white/20;
   }
   .dark .care-plan-container th {
     color: white !important;
   }
   .care-plan-container th {
-    color: #1F2937 !important;
+    color: #374151 !important; /* text-gray-700 */
   }
 
   .care-plan-container td {
-    @apply p-3 align-top border border-gray-200 dark:border-white/10;
+    @apply p-4 align-top border-b border-gray-200 dark:border-white/10;
   }
-  .dark .care-plan-container td {
+
+  /* Style for the first column (Section heading) */
+  .care-plan-container td:first-child {
+    @apply font-semibold w-1/4;
+  }
+  .dark .care-plan-container td:first-child {
+      color: #F3F4F6 !important; /* text-gray-100 */
+  }
+  .care-plan-container td:first-child {
+      color: #1F2937 !important; /* text-gray-800 */
+  }
+
+  /* Style for the second column (Details content) */
+  .dark .care-plan-container td:last-child {
     color: #D1D5DB !important; /* text-gray-300 */
   }
-  .care-plan-container td {
+  .care-plan-container td:last-child {
     color: #4B5563 !important; /* text-gray-600 */
   }
 
-  .care-plan-container td ul {
-    @apply list-disc list-outside pl-4 space-y-1.5;
+  /* Prose-like styling for content within the details cell */
+  .care-plan-container td:last-child p {
+    @apply my-2;
+  }
+  .care-plan-container td:last-child h4 {
+    @apply font-semibold text-base mt-4 mb-1 first:mt-0;
+  }
+  .dark .care-plan-container td:last-child h4 {
+      color: #F9FAFB !important; /* text-gray-50 */
+  }
+  .care-plan-container td:last-child h4 {
+      color: #111827 !important; /* text-gray-900 */
+  }
+
+  .care-plan-container td:last-child ul {
+    @apply list-disc list-outside pl-5 space-y-1 my-2;
+  }
+  .care-plan-container td:last-child li {
+    @apply mb-1;
   }
 
   .care-plan-container tbody tr:nth-child(even) {
     background-color: rgba(249, 250, 251, 1) !important; /* bg-gray-50 */
   }
   .dark .care-plan-container tbody tr:nth-child(even) {
-    background-color: rgba(255, 255, 255, 0.05) !important;
+    background-color: rgba(255, 255, 255, 0.03) !important;
   }
   
   .care-plan-container tbody tr:hover {
     background-color: rgba(243, 244, 246, 1) !important; /* bg-gray-100 */
   }
   .dark .care-plan-container tbody tr:hover {
-    background-color: rgba(255, 255, 255, 0.1) !important;
+    background-color: rgba(255, 255, 255, 0.07) !important;
   }
 }
 

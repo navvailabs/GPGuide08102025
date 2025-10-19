@@ -55,7 +55,7 @@ const CardCopyButton = ({ contentToCopy }: { contentToCopy: string }) => {
         <button
             onClick={handleCopy}
             className={cn(
-                "absolute top-4 right-4 z-10 flex items-center justify-center h-9 w-9 bg-gray-100/50 dark:bg-black/30 hover:bg-gray-200/70 dark:hover:bg-black/50 backdrop-blur-sm font-semibold rounded-full transition-all text-gray-600 dark:text-gray-300 text-sm p-0",
+                "z-10 flex-shrink-0 flex items-center justify-center h-9 w-9 bg-gray-100/50 dark:bg-black/30 hover:bg-gray-200/70 dark:hover:bg-black/50 backdrop-blur-sm font-semibold rounded-full transition-all text-gray-600 dark:text-gray-300 text-sm p-0",
                 isCopied && "text-success-green bg-green-500/10 dark:bg-green-500/20"
             )}
             aria-label={isCopied ? "Copied" : "Copy section"}
@@ -93,121 +93,74 @@ const ParsedTableToDocument = ({ tableHtml }: { tableHtml: string }) => {
         const table = doc.querySelector('table');
         if (!table) return null;
 
-        const headers: string[] = [];
-        const headerRow = table.querySelector('thead tr') || table.querySelector('tr');
-        if (headerRow) {
-            Array.from(headerRow.children).forEach(th => {
-                headers.push(th.innerHTML);
-            });
+        // Find all rows in the tbody
+        const dataRows = Array.from(table.querySelectorAll('tbody tr'));
+        if (dataRows.length === 0) {
+            // Fallback for tables without tbody
+            const allRows = Array.from(table.querySelectorAll('tr'));
+            const headerRowIndex = allRows.findIndex(row => row.querySelector('th'));
+            dataRows.push(...allRows.slice(headerRowIndex + 1));
         }
-
-        const dataRows = Array.from(table.querySelectorAll('tr')).filter(row => row !== headerRow);
 
         const documentSections = dataRows.map((row, rowIndex) => {
             const cells = Array.from(row.children) as HTMLElement[];
+            
+            // Expecting two cells: [Heading, Content]
+            if (cells.length === 2) {
+                const headingHtml = cells[0].innerHTML;
+                const contentHtml = cells[1].innerHTML;
 
-            if (cells.length === 1 && (cells[0].colSpan > 1 || headers.length <= 1)) {
-                const textContent = cells[0].textContent?.trim();
-                if (textContent) {
+                // Ensure there's actual content to render
+                if (cells[0].textContent?.trim() || cells[1].textContent?.trim()) {
+                    // For the copy button, we only want the content.
+                    const cardHtmlStringToCopy = `<div>${contentHtml}</div>`;
+
                     return (
-                        <div key={`section-title-${rowIndex}`} className="mt-8 mb-4 first:mt-0">
-                            <h4 className="text-xl font-bold text-gray-900 dark:text-white" dangerouslySetInnerHTML={{ __html: cells[0].innerHTML }} />
-                             <hr className="mt-2 border-gray-200 dark:border-white/10"/>
-                        </div>
-                    );
-                }
-                return null;
-            }
-
-            const contentPairs = cells.map((cell, cellIndex) => {
-                const header = headers[cellIndex];
-                const content = cell.innerHTML;
-                const textContent = cell.textContent?.trim();
-                if (header && textContent) {
-                    return { header, content };
-                }
-                return null;
-            }).filter(Boolean) as { header: string, content: string }[];
-
-            if (contentPairs.length === 0) return null;
-
-            const topSection = contentPairs[0];
-            const otherSections = contentPairs.slice(1);
-
-            let cardHtmlString = `<h3>${topSection.header.trim().replace(/:$/, '')}</h3><div>${topSection.content}</div>`;
-            otherSections.forEach(pair => {
-                cardHtmlString += `<div><h4>${pair.header.trim().replace(/:$/, '')}</h4><div>${pair.content}</div></div>`;
-            });
-
-            return (
-                <LiquidGlassCard
-                    key={`row-card-${rowIndex}`}
-                    shadowIntensity='md'
-                    blurIntensity='lg'
-                    borderRadius='24px'
-                    glowIntensity='md'
-                    draggable={false}
-                    expandable={false}
-                    className={cn("p-6 border relative", cardAccents[rowIndex % cardAccents.length])}
-                >
-                    <CardCopyButton contentToCopy={cardHtmlString} />
-                    <div>
-                        <h4 className="text-lg font-bold text-gray-900 dark:text-white mb-3 pr-10" dangerouslySetInnerHTML={{ __html: topSection.header.trim().replace(/:$/, '') }} />
-                        <div className="prose dark:prose-invert max-w-none text-gray-600 dark:text-gray-300 prose-p:my-0 prose-ul:my-0 prose-li:my-1" dangerouslySetInnerHTML={{ __html: topSection.content }} />
-                    </div>
-
-                    {otherSections.length > 0 && (
-                        <div className="mt-6 space-y-6">
-                            {otherSections.map((pair, index) => (
-                                <div key={`other-pair-${rowIndex}-${index}`}>
-                                    <div className="text-sm font-semibold text-gray-800 dark:text-gray-100 mb-1" dangerouslySetInnerHTML={{ __html: pair.header.trim().replace(/:$/, '') }} />
-                                    <div className="prose prose-sm dark:prose-invert max-w-none text-gray-600 dark:text-gray-300 prose-p:my-0 prose-ul:my-0 prose-li:my-1" dangerouslySetInnerHTML={{ __html: pair.content }} />
-                                </div>
-                            ))}
-                        </div>
-                    )}
-                </LiquidGlassCard>
-            );
-        }).filter(Boolean);
-
-        if (documentSections.length === 0) {
-            const fallbackSections = dataRows.map((row, rowIndex) => {
-                const cells = Array.from(row.children) as HTMLElement[];
-                if (cells.length === 2) {
-                    const label = cells[0].innerHTML;
-                    const value = cells[1].innerHTML;
-                    if (cells[0].textContent?.trim() || cells[1].textContent?.trim()) {
-                         const cardHtmlString = `<h3>${cells[0].textContent?.trim().replace(/:$/, '') || 'Section'}</h3><div>${value}</div>`;
-                         const contentBlock = (
-                             <div key={`fallback-pair-${rowIndex}`}>
-                                <h4 className="text-lg font-bold text-gray-900 dark:text-white mb-2 pr-10" dangerouslySetInnerHTML={{ __html: label.trim().replace(/:$/, '') }} />
-                                <div className="prose dark:prose-invert max-w-none text-gray-600 dark:text-gray-300 prose-p:my-0 prose-ul:my-0 prose-li:my-1" dangerouslySetInnerHTML={{ __html: value }} />
+                        <div key={`doc-section-${rowIndex}`}>
+                            <div className="flex justify-between items-start gap-4 mb-3">
+                                <h4 
+                                    className="text-lg font-bold text-gray-900 dark:text-white" 
+                                    dangerouslySetInnerHTML={{ __html: headingHtml.trim().replace(/:$/, '') }} 
+                                />
+                                <CardCopyButton contentToCopy={cardHtmlStringToCopy} />
                             </div>
-                         );
-                         return (
+                            
                             <LiquidGlassCard
-                                key={`fallback-card-${rowIndex}`}
                                 shadowIntensity='md'
                                 blurIntensity='lg'
                                 borderRadius='24px'
                                 glowIntensity='md'
                                 draggable={false}
                                 expandable={false}
-                                className={cn("p-6 border relative", cardAccents[rowIndex % cardAccents.length])}
+                                className={cn("p-6 border", cardAccents[rowIndex % cardAccents.length])}
                             >
-                                <CardCopyButton contentToCopy={cardHtmlString} />
-                                {contentBlock}
+                                <div 
+                                    className="prose dark:prose-invert max-w-none text-gray-600 dark:text-gray-300 prose-p:my-2 prose-ul:my-0 prose-li:my-1 prose-h4:font-semibold prose-h4:text-base prose-h4:mt-4 prose-h4:mb-1 prose-h4:first:mt-0" 
+                                    dangerouslySetInnerHTML={{ __html: contentHtml }} 
+                                />
                             </LiquidGlassCard>
-                         );
-                    }
+                        </div>
+                    );
                 }
-                return null;
-            }).filter(Boolean);
+            }
             
-            if (fallbackSections.length > 0) {
-                return <div className="space-y-6">{fallbackSections}</div>;
+            // Handle special rows that might span columns (like a title)
+            if (cells.length === 1 && cells[0].colSpan > 1) {
+                const textContent = cells[0].textContent?.trim();
+                if (textContent) {
+                    return (
+                        <div key={`section-title-${rowIndex}`} className="mt-8 mb-4 first:mt-0">
+                            <h3 className="text-xl font-bold text-gray-900 dark:text-white" dangerouslySetInnerHTML={{ __html: cells[0].innerHTML }} />
+                             <hr className="mt-2 border-gray-200 dark:border-white/10"/>
+                        </div>
+                    );
+                }
             }
 
+            return null;
+        }).filter(Boolean);
+
+        if (documentSections.length === 0) {
             return <p className="text-gray-500 dark:text-gray-400">Could not parse table content into document view.</p>;
         }
 
