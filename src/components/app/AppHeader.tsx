@@ -1,7 +1,6 @@
 import { Link } from 'react-router-dom';
 import { Home, Menu } from 'lucide-react';
 import { motion } from 'framer-motion';
-import BrightnessControl from '@/components/BrightnessControl';
 import ThemeToggle from '@/components/ThemeToggle';
 import { cn } from '@/lib/utils';
 import { useTheme } from '@/contexts/ThemeContext';
@@ -28,7 +27,6 @@ const AppHeader = ({ onMenuClick }: AppHeaderProps) => {
           </div>
           <div className="flex items-center gap-4">
             <ThemeToggle />
-            <BrightnessControl />
             <motion.div
               initial={{ opacity: 0, x: 50 }}
               animate={{ opacity: 1, x: 0 }}
