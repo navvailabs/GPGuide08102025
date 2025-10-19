@@ -67,10 +67,6 @@ const HowItWorks = () => {
                 </motion.div>
 
                 <motion.div className="relative mb-20" variants={itemVariants}>
-                    <div className="hidden lg:block absolute top-1/2 left-0 w-full h-px -translate-y-1/2">
-                        <div className="w-full h-full bg-[repeating-linear-gradient(to_right,theme(colors.cyan.400),theme(colors.cyan.400)_2px,transparent_2px,transparent_10px)]"></div>
-                        <div className="absolute inset-0 bg-cyan-400/20 blur-sm"></div>
-                    </div>
                     <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
                         {steps.map((step, index) => (
                             <motion.div
@@ -78,7 +74,7 @@ const HowItWorks = () => {
                                 className="relative glass-card p-6 text-center flex flex-col items-center"
                                 whileHover={{ y: -8, scale: 1.03, transition: { type: 'spring', stiffness: 300 } }}
                             >
-                                <span className="absolute top-4 left-4 text-lg font-bold text-white/20">{step.num}</span>
+                                <span className="absolute top-4 left-4 text-2xl font-bold text-gradient-gold">{step.num}</span>
                                 <div className="relative mb-4">
                                     <div className="absolute -inset-2 bg-cyan-400/20 rounded-full blur-md animate-pulse"></div>
                                     <div className="relative w-16 h-16 bg-medical-blue/50 border border-white/20 rounded-full flex items-center justify-center">

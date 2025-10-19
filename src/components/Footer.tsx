@@ -13,8 +13,8 @@ const Footer = () => {
                 <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
                     <div className="space-y-4 pr-8">
                         <div className="flex items-center space-x-2">
-                            <BriefcaseMedical className="h-8 w-8 text-success-green" />
-                            <span className="text-2xl font-satoshi font-bold text-white">GPGuide</span>
+                            <BriefcaseMedical className="h-8 w-8 text-premium-gold" />
+                            <span className="text-2xl font-satoshi font-bold text-gradient-gold">GPGuide</span>
                         </div>
                         <p className="text-sm">Professional clinical decision support for Australian GPs.</p>
                         <p className="text-xs">New Era Pty Ltd (trading as GPGuide)<br/>ABN: 12 345 678 901<br/>Sydney, Australia</p>
