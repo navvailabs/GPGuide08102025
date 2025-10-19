@@ -35,7 +35,7 @@ const CarePlanSuite = () => {
     const [mhMse, setMhMse] = useState<string>('');
     const [mhHistory, setMhHistory] = useState<string>('');
     const [mhGoals, setMhGoals] = useState<string>('');
-    const [mhIsPreviewGenerated, setMhIsPreviewGenerated] = useState(false);
+    const [mhCarePlanHtml, setMhCarePlanHtml] = useState<string | null>(null);
 
     // State for DexaScanTool
     const [dexaInputs, setDexaInputs] = useState({
@@ -75,8 +75,8 @@ const CarePlanSuite = () => {
                     setHistory={setMhHistory}
                     goals={mhGoals}
                     setGoals={setMhGoals}
-                    isPreviewGenerated={mhIsPreviewGenerated}
-                    setIsPreviewGenerated={setMhIsPreviewGenerated}
+                    carePlanHtml={mhCarePlanHtml}
+                    setCarePlanHtml={setMhCarePlanHtml}
                 />;
             case 'dexa-scan-tool':
                 return <DexaScanTool

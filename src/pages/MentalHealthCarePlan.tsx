@@ -1,12 +1,14 @@
-import React from 'react';
+import React, { useState } from 'react';
+import axios from 'axios';
 import { motion } from 'framer-motion';
-import { Sparkles, RefreshCw } from 'lucide-react';
+import { Sparkles, RefreshCw, Loader2 } from 'lucide-react';
 import { StyledTextarea } from '@/components/ui/StyledTextarea';
 import InspiredCard from '@/components/ui/InspiredCard';
 import { QuickActionButton } from '@/components/ui/QuickActionButton';
 import { cn } from '@/lib/utils';
 import { useTheme } from '@/contexts/ThemeContext';
 import MseSection from '@/components/care-plan/MseSection';
+import PreviewSection from '@/components/care-plan/PreviewSection';
 
 interface MentalHealthCarePlanProps {
     presentation: string;
@@ -19,8 +21,8 @@ interface MentalHealthCarePlanProps {
     setHistory: React.Dispatch<React.SetStateAction<string>>;
     goals: string;
     setGoals: React.Dispatch<React.SetStateAction<string>>;
-    isPreviewGenerated: boolean;
-    setIsPreviewGenerated: React.Dispatch<React.SetStateAction<boolean>>;
+    carePlanHtml: string | null;
+    setCarePlanHtml: React.Dispatch<React.SetStateAction<string | null>>;
 }
 
 const sectionVariants = {
@@ -81,13 +83,74 @@ const MentalHealthCarePlan = ({
     setHistory,
     goals,
     setGoals,
-    isPreviewGenerated,
-    setIsPreviewGenerated
+    carePlanHtml,
+    setCarePlanHtml
 }: MentalHealthCarePlanProps) => {
     const { theme } = useTheme();
+    const [isLoading, setIsLoading] = useState(false);
 
-    const handleGeneratePreview = () => {
-        setIsPreviewGenerated(true);
+    const handleGeneratePreview = async () => {
+        setIsLoading(true);
+        setCarePlanHtml(null);
+
+        const payload = {
+            presentation,
+            assessment,
+            mse,
+            history,
+            goals,
+        };
+        const webhookUrl = 'https://n8n.srv1072529.hstgr.cloud/webhook-test/ebdae1e4-3445-41da-b885-28a6995350b2';
+
+        try {
+            const response = await axios.post(webhookUrl, payload);
+            const data = response.data;
+
+            if (data && typeof data.output === 'string') {
+                const markdownContent = data.output;
+                
+                // Convert Markdown to HTML
+                const htmlContent = markdownContent
+                    .split('\n\n')
+                    .filter(paragraph => paragraph.trim() !== '') // Filter out empty paragraphs from multiple newlines
+                    .map(paragraph => {
+                        // Handle headings like **CLINICAL DISCLAIMER**
+                        if (paragraph.startsWith('**') && paragraph.endsWith('**')) {
+                            return `<h2>${paragraph.substring(2, paragraph.length - 2)}</h2>`;
+                        }
+                        // Handle the crisis resources list
+                        if (paragraph.includes('Lifeline:')) {
+                            const listItems = paragraph.split('\n').map(item => `<li>${item.trim().replace(/  /g, ' ')}</li>`).join('');
+                            return `<h3>Australian Crisis Resources for Patient</h3><ul>${listItems}</ul>`;
+                        }
+                        // Handle regular paragraphs and preserve single line breaks
+                        return `<p>${paragraph.replace(/\n/g, '<br />')}</p>`;
+                    })
+                    .join('');
+
+                setCarePlanHtml(htmlContent);
+            } else {
+                const receivedDataString = typeof data === 'string' ? data : JSON.stringify(data, null, 2);
+                console.error("Webhook response was not in the expected format.", data);
+                alert("Failed to generate the care plan. The format of the data received from the webhook was not recognized.\n\nReceived data:\n" + receivedDataString);
+            }
+
+        } catch (error) {
+            console.error('Error fetching care plan from webhook:', error);
+            let errorMessage = 'An error occurred while generating the care plan.';
+            if (axios.isAxiosError(error)) {
+                if (!error.response) {
+                    errorMessage = 'A network error occurred. This is often due to a CORS policy on the server. Please check your browser\'s developer console (F12) for "CORS" errors and ensure your webhook is configured to allow requests from this origin.';
+                } else {
+                    errorMessage = `The server responded with an error: ${error.response.status} ${error.response.statusText}. Check the console for more details.`;
+                }
+            } else if (error instanceof Error) {
+                errorMessage = `An unexpected error occurred: ${error.message}`;
+            }
+            alert(errorMessage);
+        } finally {
+            setIsLoading(false);
+        }
     };
 
     const handleReset = () => {
@@ -96,7 +159,7 @@ const MentalHealthCarePlan = ({
         setMse('');
         setHistory('');
         setGoals('');
-        setIsPreviewGenerated(false);
+        setCarePlanHtml(null);
     };
 
     const handleAddPresentation = (presentationToAdd: string) => {
@@ -230,37 +293,42 @@ const MentalHealthCarePlan = ({
             >
                 <button
                     onClick={handleGeneratePreview}
-                    className="w-full sm:w-auto flex items-center justify-center gap-2 h-12 px-6 bg-gray-900 dark:bg-white text-white dark:text-black font-bold rounded-lg shadow-lg hover:bg-opacity-90 transition-all transform hover:scale-105"
+                    disabled={isLoading || !presentation.trim()}
+                    className={cn(
+                        "w-full sm:w-auto flex items-center justify-center gap-2 h-12 px-6 font-bold rounded-lg shadow-lg transition-all transform hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed disabled:scale-100",
+                        theme === 'light'
+                            ? 'bg-gray-900 text-white hover:bg-gray-700'
+                            : 'bg-white text-black hover:bg-gray-200'
+                    )}
                 >
-                    <Sparkles className="h-5 w-5" />
-                    Generate Care Plan
+                    {isLoading ? (
+                        <>
+                            <Loader2 className="h-5 w-5 animate-spin" />
+                            Generating...
+                        </>
+                    ) : (
+                        <>
+                            <Sparkles className="h-5 w-5" />
+                            Generate Care Plan
+                        </>
+                    )}
                 </button>
                 <button
                     onClick={handleReset}
-                    className="w-full sm:w-auto flex items-center justify-center gap-2 h-12 px-6 bg-gray-100 dark:bg-white/10 hover:bg-gray-200 dark:hover:bg-white/20 text-gray-800 dark:text-white font-semibold rounded-lg transition-colors"
+                    disabled={isLoading}
+                    className={cn(
+                        "w-full sm:w-auto flex items-center justify-center gap-2 h-12 px-6 font-semibold rounded-lg transition-colors disabled:opacity-70 disabled:cursor-not-allowed",
+                        theme === 'light'
+                            ? 'bg-gray-200 text-gray-700 hover:bg-gray-300'
+                            : 'bg-white/10 text-white hover:bg-white/20'
+                    )}
                 >
                     <RefreshCw className="h-5 w-5" />
                     Reset
                 </button>
             </motion.div>
 
-            {isPreviewGenerated && (
-                <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    className="border-t border-gray-200 dark:border-white/10 pt-8 mt-12"
-                >
-                    <h3 className="text-2xl font-bold mb-6 text-gray-900 dark:text-white">Generated Plan Preview</h3>
-                    <InspiredCard className="text-gray-600 dark:text-gray-300 space-y-4">
-                        <p>A preview for the Mental Health Care Plan will be shown here once implemented.</p>
-                        <div><strong className="text-gray-800 dark:text-white">Clinical Details:</strong> {presentation || 'N/A'}</div>
-                        <div><strong className="text-gray-800 dark:text-white">Psychological Assessment:</strong> {assessment || 'N/A'}</div>
-                        <div><strong className="text-gray-800 dark:text-white">MSE:</strong> {mse || 'N/A'}</div>
-                        <div><strong className="text-gray-800 dark:text-white">History:</strong> {history || 'N/A'}</div>
-                        <div><strong className="text-gray-800 dark:text-white">Goals:</strong> {goals || 'N/A'}</div>
-                    </InspiredCard>
-                </motion.div>
-            )}
+            <PreviewSection carePlanHtml={carePlanHtml} />
         </motion.div>
     );
 };
