@@ -2,7 +2,7 @@ import { motion } from 'framer-motion';
 import { useTheme } from '@/contexts/ThemeContext';
 import { cn } from '@/lib/utils';
 import InspiredCard from '../ui/InspiredCard';
-import { StyledPillInput } from '../ui/StyledPillInput';
+import { StyledTextarea } from '../ui/StyledTextarea';
 import { QuickActionButton } from '@/components/ui/QuickActionButton';
 
 interface AlliedHealthSectionProps {
@@ -28,10 +28,10 @@ const AlliedHealthSection = ({ alliedHealth, setAlliedHealth }: AlliedHealthSect
 
     const handleAddQuickAction = (action: string) => {
         setAlliedHealth(prev => {
-            if (!prev) return action;
-            const items = prev.split(',').map(item => item.trim()).filter(Boolean);
+            if (!prev.trim()) return action;
+            const items = prev.split('\n').map(item => item.trim()).filter(Boolean);
             if (items.includes(action)) return prev;
-            return `${prev}, ${action}`;
+            return `${prev}\n${action}`;
         });
     };
 
@@ -46,12 +46,13 @@ const AlliedHealthSection = ({ alliedHealth, setAlliedHealth }: AlliedHealthSect
                     <label className={cn(
                         "block text-sm font-medium mb-2",
                         theme === 'light' ? 'text-gray-600' : 'text-gray-300'
-                    )} htmlFor="allied-health-input">Enter allied health referrals</label>
-                    <StyledPillInput
+                    )} htmlFor="allied-health-input">Enter one allied health referral per line</label>
+                    <StyledTextarea
                         id="allied-health-input"
-                        placeholder="e.g., Dietitian, Exercise Physiologist"
+                        placeholder="e.g.,&#10;Dietitian&#10;Exercise Physiologist"
                         value={alliedHealth}
                         onChange={(e) => setAlliedHealth(e.target.value)}
+                        rows={3}
                     />
                 </div>
                 <div className="mt-4">

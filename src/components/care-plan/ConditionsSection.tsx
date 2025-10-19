@@ -2,7 +2,7 @@ import { motion } from 'framer-motion';
 import { useTheme } from '@/contexts/ThemeContext';
 import { cn } from '@/lib/utils';
 import InspiredCard from '../ui/InspiredCard';
-import { StyledPillInput } from '../ui/StyledPillInput';
+import { StyledTextarea } from '../ui/StyledTextarea';
 import { QuickActionButton } from '@/components/ui/QuickActionButton';
 
 interface ConditionsSectionProps {
@@ -38,10 +38,10 @@ const ConditionsSection = ({ conditions, setConditions }: ConditionsSectionProps
 
     const handleAddShortcut = (conditionToAdd: string) => {
         setConditions(prev => {
-            if (!prev) return conditionToAdd;
-            const conditionsArray = prev.split(',').map(c => c.trim()).filter(Boolean);
+            if (!prev.trim()) return conditionToAdd;
+            const conditionsArray = prev.split('\n').map(c => c.trim()).filter(Boolean);
             if (conditionsArray.includes(conditionToAdd)) return prev;
-            return `${prev}, ${conditionToAdd}`;
+            return `${prev}\n${conditionToAdd}`;
         });
     };
 
@@ -56,12 +56,13 @@ const ConditionsSection = ({ conditions, setConditions }: ConditionsSectionProps
                     <label className={cn(
                         "block text-sm font-medium mb-2",
                         theme === 'light' ? 'text-gray-600' : 'text-gray-300'
-                    )} htmlFor="conditions-input">Enter chronic conditions</label>
-                    <StyledPillInput
+                    )} htmlFor="conditions-input">Enter one chronic condition per line</label>
+                    <StyledTextarea
                         id="conditions-input"
-                        placeholder="e.g., Type 2 Diabetes, Hypertension"
+                        placeholder="e.g.,&#10;Type 2 Diabetes&#10;Hypertension"
                         value={conditions}
                         onChange={(e) => setConditions(e.target.value)}
+                        rows={4}
                     />
                 </div>
                 <div className="mt-4">

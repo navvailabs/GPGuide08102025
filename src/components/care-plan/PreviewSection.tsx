@@ -252,13 +252,22 @@ const TableWithCopyButton = ({ tableHtml }: { tableHtml: string }) => {
     const [buttonText, setButtonText] = useState('Copy Table');
 
     const handleCopy = () => {
-        const tempDiv = document.createElement('div');
-        tempDiv.innerHTML = tableHtml;
-        const plainText = tempDiv.innerText;
+        // Create a temporary container to parse the HTML and add inline styles
+        const container = document.createElement('div');
+        container.innerHTML = tableHtml;
+
+        // Add `vertical-align: top` to all table cells for better Word compatibility
+        const cells = container.querySelectorAll('th, td');
+        cells.forEach(cell => {
+            (cell as HTMLElement).style.verticalAlign = 'top';
+        });
+
+        const styledHtml = container.innerHTML;
+        const plainText = container.innerText;
 
         const listener = (e: ClipboardEvent) => {
             if (e.clipboardData) {
-                e.clipboardData.setData('text/html', tableHtml);
+                e.clipboardData.setData('text/html', styledHtml);
                 e.clipboardData.setData('text/plain', plainText);
                 e.preventDefault();
             }
@@ -324,6 +333,16 @@ const PreviewSection = ({ carePlanHtml, identifier }: PreviewSectionProps) => {
     const handleDownloadWord = () => {
         if (!carePlanHtml) return;
         const generatedDate = new Date().toLocaleDateString('en-AU', { year: 'numeric', month: 'long', day: 'numeric' });
+        
+        // Prepare HTML for Word download with inline styles
+        const container = document.createElement('div');
+        container.innerHTML = carePlanHtml;
+        const cells = container.querySelectorAll('th, td');
+        cells.forEach(cell => {
+            (cell as HTMLElement).style.verticalAlign = 'top';
+        });
+        const styledCarePlanHtml = container.innerHTML;
+
         const fullHtml = `
             <html xmlns:o='urn:schemas-microsoft-com:office:office' xmlns:w='urn:schemas-microsoft-com:office:word' xmlns='http://www.w3.org/TR/REC-html40'>
             <head><meta charset='utf-8'><title>GP Chronic Condition Management Plan</title>
@@ -347,7 +366,7 @@ const PreviewSection = ({ carePlanHtml, identifier }: PreviewSectionProps) => {
             <body><div class="WordSection1">
             <p style='font-size:24pt; font-family:"Calibri Light", "sans-serif"; color:#1F4E79; text-align:center;'>GP Chronic Condition Management Plan</p>
             <p style='text-align:center; font-size:10pt; color:#595959; margin-bottom:24pt;'>Generated on ${generatedDate}</p>
-            ${carePlanHtml}
+            ${styledCarePlanHtml}
             <div style='mso-element:header' id=h1><p class='MsoHeader' style='text-align:right;'>GPGuide Professional Document</p></div>
             <div style='mso-element:footer' id=f1><p class='MsoFooter' style='text-align:right;'>Page <span style='mso-field-code:"PAGE"'></span> of <span style='mso-field-code:"NUMPAGES"'></span></p></div>
             </div></body></html>`;

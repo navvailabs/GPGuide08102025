@@ -8,7 +8,7 @@ import { QuickActionButton } from '@/components/ui/QuickActionButton';
 import { cn } from '@/lib/utils';
 import { useTheme } from '@/contexts/ThemeContext';
 import MseSection from '@/components/care-plan/MseSection';
-import PreviewSection from '@/components/care-plan/PreviewSection';
+import MentalHealthPreviewSection from '@/components/care-plan/MentalHealthPreviewSection';
 
 interface MentalHealthCarePlanProps {
     presentation: string;
@@ -328,7 +328,7 @@ const MentalHealthCarePlan = ({
                 </button>
             </motion.div>
 
-            <PreviewSection identifier="mh-care-plan" carePlanHtml={carePlanHtml} />
+            <MentalHealthPreviewSection carePlanHtml={carePlanHtml} />
         </motion.div>
     );
 };
